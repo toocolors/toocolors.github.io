@@ -11,7 +11,7 @@ header, main, nav, footer, #content {
 
 
 /* LINK STYLES */
-nav a {
+nav a, #home_link {
     padding: 15px;
     padding-bottom: 4px;
     font-size: 1.8em;
@@ -19,10 +19,10 @@ nav a {
     color: white;
 }
 
-nav a:hover {
+nav a:hover, #home_link:hover {
     border-bottom: 2px orange solid;
-    font-size: 2em;
-    transition: .9s;
+    color: orange;
+    transition: .5s;
 }
 
 .current_page {
