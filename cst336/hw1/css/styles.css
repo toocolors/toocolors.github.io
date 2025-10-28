@@ -7,6 +7,15 @@ header, main, nav, footer, #content {
     text-align: center;
 }
 
+/* MAIN STYLES */
+main {
+    display:flex;
+    justify-content: center;
+}
+
+/* DIV STYLES */
+
+
 /* HEADER STYLES */
 
 
