@@ -31,7 +31,7 @@ footer {
     font-size: 0.8em;
 }
 
-.active {
+.current {
     color: yellow;
     font-size: 2em;
     text-decoration: underline;
