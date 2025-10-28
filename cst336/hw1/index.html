@@ -8,12 +8,13 @@
 </head>
 <body>
     <header>
-        <h1><a href="index.html" id="home_link">Home</a></h1>
+        <h1>Home</h1>
     </header>
 
     <!-- Top of Page Links -->
     <hr>
     <nav>
+        <a href="index.html" class="current_page">Home</a>
         <a href="osi.html">OSI Model</a>
         <a href="sql.html">SQL</a>
         <a href="llm.html">LLMs</a>
@@ -21,25 +22,29 @@
     </nav>
 
     <main>
-        <div id="home_row_1">
+        <div id="home_row_1" class="home_row">
             <div id="osi_preview" class="preview">
+                <img src="img/osi.gif" alt="OSI Model">
                 <h2><a href="osi.html">The OSI Model</a></h2>
                 <p>How is information transferred between computers? What is a router?</p>
             </div>
             
             <div id="sql_preview" class="preview">
+                <img src="img/sql.jpg" alt="SQL Logo">
                 <h2><a href="sql.html">Standard Query Language (SQL)</a></h2>
                 <p>What are databases? How do they store and retrieve information?</p>
             </div>
         </div>
 
-        <div id="home_row_2">
+        <div id="home_row_2" class="home_row">
             <div id="llm_preview" class="preview">
+                <img src="img/llm.jpg" alt="Large Language Model">
                 <h2><a href="llm.html">Large Language Models</a></h2>
                 <p>LLMs have become very popular in the last few years. What are they, and how do they work?</p>
             </div>
             
             <div  id="virus_preview" class="preview">
+                <img src="img/virus.jpg" alt="Computer with computer virus">
                 <h2><a href="virus.html">Computer Viruses</a></h2>
                 <p>Computer viruses have plagued the internet for nearly as long as it has existed. What types of viruses are there, and what do they do?</p>
             </div>
