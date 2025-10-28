@@ -1,6 +1,6 @@
 body {
     background-color: black;
-    color: gray;
+    color: white;
 }
 
 header, main, nav, footer, #content {
@@ -38,10 +38,17 @@ main {
 }
 
 /* HEADER STYLES */
+h1 {
+    font-size: 2.5em;
+}
 
+.header_link {
+    color: white;
+    text-decoration: none;
+}
 
 /* LINK STYLES */
-nav a, #home_link {
+nav a {
     padding: 15px;
     padding-bottom: 4px;
     font-size: 1.8em;
@@ -49,7 +56,7 @@ nav a, #home_link {
     color: white;
 }
 
-nav a:hover, #home_link:hover {
+nav a:hover, .header_link:hover {
     border-bottom: 2px orange solid;
     color: orange;
     transition: .5s;
