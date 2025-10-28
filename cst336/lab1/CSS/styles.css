@@ -3,7 +3,7 @@ body {
     color: gray;
 }
 
-header, main, nav, footer {
+header, main, nav, footer, #content {
     text-align: center;
 }
 
