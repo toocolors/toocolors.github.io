@@ -1,6 +1,6 @@
 body {
     background-color: black;
-    color: white;
+    color: gray;
 }
 
 header, main, nav, footer {
@@ -27,7 +27,7 @@ main {
 }
 
 footer {
-    color: gray;
+    color: white;
     font-size: 0.8em;
 }
 
