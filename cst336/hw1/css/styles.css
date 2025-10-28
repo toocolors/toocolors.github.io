@@ -14,7 +14,21 @@ main {
 }
 
 /* DIV STYLES */
+#osi_preview {
+    background-color: rgb(80, 80, 0);
+}
 
+#llm_preview {
+    background-color: rgb(0, 80, 0);
+}
+
+#sql_preview {
+    background-color: rgb(0, 0, 80);
+}
+
+#virus_preview {
+    background-color: rgb(80, 0, 0);
+}
 
 /* HEADER STYLES */
 
