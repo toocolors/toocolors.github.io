@@ -36,3 +36,40 @@ footer {
     font-size: 2em;
     text-decoration: underline;
 }
+
+/* TABLE STYLES */
+
+table {
+    margin: 0px auto;
+    padding: 10px;
+    font-size: 1.3em;
+}
+
+td {
+    padding-right: 10px;
+    font-size: 1.3em;
+}
+
+td strong {
+    color: orange;
+}
+
+#table_header {
+    background-color: #351a00;
+}
+
+.table_row {
+    background-color: #753900;
+}
+
+/* LIST STYLES */
+
+ul {
+    margin: 0 auto;
+    width: 500px;
+    text-align: left;
+}
+
+.hobby {
+    color: yellow;
+}
