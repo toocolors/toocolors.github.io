@@ -36,6 +36,8 @@ body {
     justify-content: center;
 }
 
+
+
 /* DIV STYLES */
 .preview {
     width: 500px;
@@ -82,18 +84,6 @@ header {
     position: relative;
 }
 
-/* HEADING STYLES */
-
-h1 {
-    font-size: 2.5em;
-    width: 87%;
-    margin: 0;
-}
-
-#home_heading {
-    width: auto;
-}
-
 #osi_header {
     background-color: rgb(80, 80, 0);
 }
@@ -110,7 +100,21 @@ h1 {
     background-color: rgb(80, 0, 0);
 }
 
-.header_link {
+
+
+/* HEADING STYLES */
+
+h1 {
+    font-size: 2.5em;
+    width: 87%;
+    margin: 0;
+}
+
+#home_heading {
+    width: auto;
+}
+
+.heading_link {
     color: white;
     text-decoration: none;
 }
@@ -124,7 +128,7 @@ nav a, header a {
     color: white;
 }
 
-nav a:hover, .header_link:hover, header a:hover {
+nav a:hover, .heading_link:hover, header a:hover {
     border-bottom: 2px orange solid;
     color: orange;
     transition: .5s;
