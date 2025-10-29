@@ -6,9 +6,25 @@ header, main, nav, footer, #content {
 body {
     background-color: black;
     color: white;
+    margin: 0;
+    padding: 0;
 }
 
+#osi_body {
+    background-color: rgb(40, 40, 0);
+}
 
+#llm_body {
+    background-color: rgb(0, 40, 0);
+}
+
+#sql_body {
+    background-color: rgb(0, 0, 40);
+}
+
+#virus_body {
+    background-color: rgb(40, 0, 0);
+}
 
 /* MAIN STYLES */
 main {
@@ -40,14 +56,52 @@ main {
     background-color: rgb(80, 0, 0);
 }
 
+/* HR STYLES */
+
+hr {
+    margin-top: 0;
+}
+
 /* HEADER STYLES */
-h1 {
-    font-size: 2.5em;
-    width: 87%;
+header {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 #home_header {
+    position: relative;
+}
+
+/* HEADING STYLES */
+
+h1 {
+    font-size: 2.5em;
+    width: 87%;
+    margin: 0;
+}
+
+#home_heading {
     width: auto;
+}
+
+#osi_header {
+    background-color: rgb(80, 80, 0);
+}
+
+#llm_header {
+    background-color: rgb(0, 80, 0);
+}
+
+#sql_header {
+    background-color: rgb(0, 0, 80);
+}
+
+#virus_header {
+    background-color: rgb(80, 0, 0);
 }
 
 .header_link {
