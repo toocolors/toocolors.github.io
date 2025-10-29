@@ -1,4 +1,4 @@
-header, main, nav, footer, #content {
+header, main, nav, footer, #content, div {
     text-align: center;
 }
 
@@ -36,14 +36,22 @@ body {
     justify-content: center;
 }
 
-
-
 /* DIV STYLES */
+.intro_div {
+    display: flex;
+    justify-content: center;
+}
+
 .preview {
     width: 500px;
     height: 500px;
     margin: 10px 5px;
     padding: 10px;
+}
+
+.intro {
+    width: 30%;
+    text-align: left;
 }
 
 #osi_preview {
