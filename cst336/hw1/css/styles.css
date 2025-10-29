@@ -1,11 +1,14 @@
+header, main, nav, footer, #content {
+    text-align: center;
+}
+
+/* BODY STYLES */
 body {
     background-color: black;
     color: white;
 }
 
-header, main, nav, footer, #content {
-    text-align: center;
-}
+
 
 /* MAIN STYLES */
 main {
@@ -40,6 +43,11 @@ main {
 /* HEADER STYLES */
 h1 {
     font-size: 2.5em;
+    width: 87%;
+}
+
+#home_header {
+    width: auto;
 }
 
 .header_link {
@@ -48,7 +56,7 @@ h1 {
 }
 
 /* LINK STYLES */
-nav a {
+nav a, header a {
     padding: 15px;
     padding-bottom: 4px;
     font-size: 1.8em;
@@ -56,7 +64,7 @@ nav a {
     color: white;
 }
 
-nav a:hover, .header_link:hover {
+nav a:hover, .header_link:hover, header a:hover {
     border-bottom: 2px orange solid;
     color: orange;
     transition: .5s;
@@ -66,4 +74,11 @@ nav a:hover, .header_link:hover {
     color: yellow;
     font-size: 2em;
     text-decoration: underline;
+}
+
+header a{
+    padding: 0;
+    width: 13%;
+    float: left;
+    font-size: 2.5em;
 }
