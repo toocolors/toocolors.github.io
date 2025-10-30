@@ -7,26 +7,21 @@ body {
     background-color: black;
     color: white;
     font-size: 1em;
+    margin: 0;
+    margin-bottom: 10px;
+    margin-top: 57px;
 }
 
-#osi_body {
-    background-color: rgb(40, 40, 0);
-    margin-top: 50px;
-}
-
-#llm_body {
-    background-color: rgb(0, 40, 0);
-    margin-top: 50px;
-}
-
-#sql_body {
-    background-color: rgb(0, 0, 40);
-    margin-top: 50px;
-}
-
-#virus_body {
+#types_body {
     background-color: rgb(40, 0, 0);
-    margin-top: 50px;
+}
+
+#languages_body {
+    background-color: rgb(0, 40, 0);
+}
+
+#tthw_body {
+    background-color: rgb(0, 0, 40);
 }
 
 /* MAIN STYLES */
@@ -82,20 +77,16 @@ body {
     border: 2px gray solid;
 }
 
-#osi_preview {
-    background-color: rgb(80, 80, 0);
+#types_preview {
+    background-color: rgb(80, 0, 0);
 }
 
-#llm_preview {
+#languages_preview {
     background-color: rgb(0, 80, 0);
 }
 
-#sql_preview {
+#tthw_preview {
     background-color: rgb(0, 0, 80);
-}
-
-#virus_preview {
-    background-color: rgb(80, 0, 0);
 }
 
 #div_flex_code {
@@ -108,9 +99,9 @@ body {
 }
 
 /* HR STYLES */
-
 hr {
     margin-top: 0;
+    width: 100%;
 }
 
 /* HEADER STYLES */
@@ -125,10 +116,6 @@ header {
     width: 100%;
 }
 
-#home_header {
-    position: relative;
-}
-
 #osi_header {
     background-color: rgb(80, 80, 0);
 }
@@ -137,7 +124,7 @@ header {
     background-color: rgb(0, 80, 0);
 }
 
-#sql_header {
+#tthw_header {
     background-color: rgb(0, 0, 80);
 }
 
@@ -148,21 +135,11 @@ header {
 /* HEADING STYLES */
 h1 {
     font-size: 2.5em;
-    width: 87%;
     margin: 0;
 }
 
-#home_heading {
-    width: auto;
-}
-
-.heading_link {
-    color: white;
-    text-decoration: none;
-}
-
 /* LINK STYLES */
-nav a, header a {
+nav a {
     padding: 15px;
     padding-bottom: 4px;
     font-size: 1.8em;
@@ -170,7 +147,7 @@ nav a, header a {
     color: white;
 }
 
-nav a:hover, .heading_link:hover, header a:hover {
+nav a:hover {
     border-bottom: 2px orange solid;
     color: orange;
     transition: .5s;
@@ -180,13 +157,6 @@ nav a:hover, .heading_link:hover, header a:hover {
     color: yellow;
     font-size: 2em;
     text-decoration: underline;
-}
-
-header a{
-    padding: 0;
-    width: 13%;
-    float: left;
-    font-size: 2.5em;
 }
 
 /* P STYLES */
