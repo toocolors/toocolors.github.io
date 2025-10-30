@@ -53,7 +53,7 @@ body {
     background-color: rgb(0, 0, 80);
 }
 
-#div_flex_code {
+.div_flex {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,13 +100,27 @@ body {
     margin: auto;
 }
 
-.div_tthm {
-    background-color: rgb(0, 0, 30);
+.div_box {
+    
     width: 400px;
     height: 300px;
     margin: 10px;
     border: 2px gray solid;
 }
+
+.div_types {
+    background-color: rgb(30, 0, 0);
+}
+
+.div_languages {
+    background-color: rgb(0, 30, 0);
+}
+
+.div_tthw {
+    background-color: rgb(0, 0, 30);
+}
+
+
 
 /* HR STYLES */
 hr {
