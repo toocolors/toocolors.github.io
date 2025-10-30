@@ -7,7 +7,6 @@ body {
     background-color: black;
     color: white;
     font-size: 1em;
-
 }
 
 #osi_body {
@@ -40,6 +39,8 @@ body {
 .intro_div {
     display: flex;
     justify-content: center;
+    width: 90%;
+    margin: auto;
 }
 
 .preview {
@@ -52,6 +53,11 @@ body {
 .intro {
     width: 30%;
     text-align: left;
+}
+
+.div_paragraph {
+    width: 80%;
+    margin: auto;
 }
 
 #osi_preview {
@@ -108,10 +114,7 @@ header {
     background-color: rgb(80, 0, 0);
 }
 
-
-
 /* HEADING STYLES */
-
 h1 {
     font-size: 2.5em;
     width: 87%;
@@ -153,4 +156,9 @@ header a{
     width: 13%;
     float: left;
     font-size: 2.5em;
+}
+
+/* P STYLES */
+.intro_p {
+    margin-top: 0;
 }
