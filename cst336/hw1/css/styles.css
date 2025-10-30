@@ -60,6 +60,28 @@ body {
     margin: auto;
 }
 
+.div_left {
+    width: 80%;
+    margin: auto;
+    text-align: left;
+}
+
+.div_code {
+    background-color: black;
+    text-align: left;
+    border: 2px gray solid;
+    width: 85%;
+    margin: auto;
+}
+
+.div_tthm {
+    background-color: rgb(0, 0, 30);
+    width: 400px;
+    height: 300px;
+    margin: 10px;
+    border: 2px gray solid;
+}
+
 #osi_preview {
     background-color: rgb(80, 80, 0);
 }
@@ -74,6 +96,15 @@ body {
 
 #virus_preview {
     background-color: rgb(80, 0, 0);
+}
+
+#div_flex_code {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: auto;
 }
 
 /* HR STYLES */
@@ -160,5 +191,16 @@ header a{
 
 /* P STYLES */
 .intro_p {
+    margin-top: 0;
+}
+
+.p_left {
+    text-align: left;
+    margin-bottom: 0;
+}
+
+/* LIST STYLES */
+.list_left {
+    text-align: left;
     margin-top: 0;
 }
