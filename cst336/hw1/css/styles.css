@@ -31,8 +31,9 @@ body {
 
 /* DIV STYLES */
 #home_intro {
-    width: 80%;
+    width: 50%;
     margin: auto;
+    text-align: left;
 }
 
 #home_previews {
