@@ -35,6 +35,12 @@ body {
     margin: auto;
 }
 
+#home_previews {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 #types_preview {
     background-color: rgb(80, 0, 0);
 }
@@ -64,8 +70,8 @@ body {
 }
 
 .preview {
-    width: 500px;
-    height: 500px;
+    width: 30%;
+    height: 350px;
     margin: 10px 5px;
     padding: 10px;
 }
@@ -138,7 +144,7 @@ h1 {
 }
 
 /* LINK STYLES */
-nav a {
+nav a, div a {
     padding: 15px;
     padding-bottom: 4px;
     font-size: 1.8em;
@@ -146,7 +152,7 @@ nav a {
     color: white;
 }
 
-nav a:hover {
+nav a:hover, div a:hover {
     border-bottom: 2px orange solid;
     color: orange;
     transition: .5s;
