@@ -33,7 +33,7 @@ body {
 #home_intro {
     display: flex;
     justify-content: center;
-    width: 70%;
+    width: 1000px;
     margin: auto;
     margin-bottom: 10px;
     text-align: left;
@@ -69,7 +69,7 @@ body {
 .intro_div {
     display: flex;
     justify-content: center;
-    width: 90%;
+    width: 1000px;
     margin: auto;
 }
 
@@ -223,4 +223,9 @@ img {
 
 a img:hover {
     box-shadow: 0 0 10px 10px rgba(0, 140, 186, 0.5);
+}
+
+.img_intro {
+    float: right;
+    margin-right: 10px;
 }
