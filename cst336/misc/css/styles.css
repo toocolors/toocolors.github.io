@@ -1,0 +1,214 @@
+header, main, nav, footer, #content, div {
+    text-align: center;
+}
+
+/* BODY STYLES */
+body {
+    background-color: black;
+    color: white;
+    font-size: 1em;
+}
+
+#osi_body {
+    background-color: rgb(40, 40, 0);
+    margin-top: 50px;
+}
+
+#llm_body {
+    background-color: rgb(0, 40, 0);
+    margin-top: 50px;
+}
+
+#sql_body {
+    background-color: rgb(0, 0, 40);
+    margin-top: 50px;
+}
+
+#virus_body {
+    background-color: rgb(40, 0, 0);
+    margin-top: 50px;
+}
+
+/* MAIN STYLES */
+#index_main {
+    display:flex;
+    justify-content: center;
+}
+
+/* DIV STYLES */
+.intro_div {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin: auto;
+}
+
+.preview {
+    width: 500px;
+    height: 500px;
+    margin: 10px 5px;
+    padding: 10px;
+}
+
+.intro {
+    width: 30%;
+    text-align: left;
+}
+
+.div_paragraph {
+    width: 80%;
+    margin: auto;
+}
+
+.div_left {
+    width: 80%;
+    margin: auto;
+    text-align: left;
+}
+
+.div_code {
+    background-color: black;
+    text-align: left;
+    border: 2px gray solid;
+    width: 85%;
+    margin: auto;
+}
+
+.div_tthm {
+    background-color: rgb(0, 0, 30);
+    width: 400px;
+    height: 300px;
+    margin: 10px;
+    border: 2px gray solid;
+}
+
+#osi_preview {
+    background-color: rgb(80, 80, 0);
+}
+
+#llm_preview {
+    background-color: rgb(0, 80, 0);
+}
+
+#sql_preview {
+    background-color: rgb(0, 0, 80);
+}
+
+#virus_preview {
+    background-color: rgb(80, 0, 0);
+}
+
+#div_flex_code {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: auto;
+}
+
+/* HR STYLES */
+
+hr {
+    margin-top: 0;
+}
+
+/* HEADER STYLES */
+header {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+#home_header {
+    position: relative;
+}
+
+#osi_header {
+    background-color: rgb(80, 80, 0);
+}
+
+#llm_header {
+    background-color: rgb(0, 80, 0);
+}
+
+#sql_header {
+    background-color: rgb(0, 0, 80);
+}
+
+#virus_header {
+    background-color: rgb(80, 0, 0);
+}
+
+/* HEADING STYLES */
+h1 {
+    font-size: 2.5em;
+    width: 87%;
+    margin: 0;
+}
+
+#home_heading {
+    width: auto;
+}
+
+.heading_link {
+    color: white;
+    text-decoration: none;
+}
+
+/* LINK STYLES */
+nav a, header a {
+    padding: 15px;
+    padding-bottom: 4px;
+    font-size: 1.8em;
+    text-decoration: none;
+    color: white;
+}
+
+nav a:hover, .heading_link:hover, header a:hover {
+    border-bottom: 2px orange solid;
+    color: orange;
+    transition: .5s;
+}
+
+.current_page {
+    color: yellow;
+    font-size: 2em;
+    text-decoration: underline;
+}
+
+header a{
+    padding: 0;
+    width: 13%;
+    float: left;
+    font-size: 2.5em;
+}
+
+/* P STYLES */
+.intro_p {
+    margin-top: 0;
+}
+
+.p_left {
+    text-align: left;
+    margin-bottom: 0;
+}
+
+/* LIST STYLES */
+.list_left {
+    text-align: left;
+    margin-top: 0;
+}
+
+/* TABLE STYLES */
+table, td {
+    text-align: center;
+    background-color: rgb(0, 0, 30);
+    border: 1px gray solid;
+    margin: auto;
+}
