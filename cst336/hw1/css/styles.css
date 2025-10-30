@@ -204,3 +204,11 @@ header a{
     text-align: left;
     margin-top: 0;
 }
+
+/* TABLE STYLES */
+table, td {
+    text-align: center;
+    background-color: rgb(0, 0, 30);
+    border: 1px gray solid;
+    margin: auto;
+}
