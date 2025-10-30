@@ -12,8 +12,74 @@
         <h1 class="">Large Language Models</h1>
     </header>
 
+    <br>
+
     <main>
+        <div class="intro_div">
+            <div class="intro">
+                <img src="img/llm.jpg" alt="OSI Model Image">
+            </div>
+            
+            <div class="intro">
+                <p class="intro_p">
+                    Large Language Models (LLMs), also known by many as simply AI, have taken over the internet recently.
+                    Tools like ChatGPT have become increasingly popular for a variety of tasks,
+                    and countless websites are integrating AI into their services.
+                    <br><br>
+                    Desite their popularity, many do not understand how they work.
+                    <br>
+                    So how do LLMs work?
+                    <br><br>
+                    This can largely be summarized into two stages:
+                    <ol>
+                        <li>How LLMs are trained</li>
+                        <li>How LLMs respond to prompts</li>
+                    </ol>
+                </p>
+            </div>
+        </div>
+
+        <div class="div_paragraph">
+            <h2>How LLMs Are Trained</h2>
+            <p>
+                LLMs go through two phases of training.
+                <br><br>
+                In the first stage, which is known as Pretraining, the LLM is trained on extremely large amounts of data,
+                which can include books, websites, and other sources.
+                Why does it need to process this much data?
+                LLMs get their name from the large number of parameters, or weights, that they possess.
+                Each parameter can represent a word, part of a word, or a character.
+                Pretraining adjusts the value of these parameters, making the LLM output more believable text.
+                <br><br>
+                In the second stage, known as Reinforcement Learning with Human Feedback (RLHF),
+                humans rate the results of an AI, which further tweaks its parameters depending on
+                if the rating was positive or negative.
+            </p>
+        </div>
+
+        <div class="div_paragraph">
+            <h2>How LLMs Respond To Prompts</h2>
+            <p>
+                When an LLM receives a prompt from the user, that prompt is turned into tokens.
+                Tokens, similarly to parameters, represent a word, part of a word, or a character.
+                Then, the LLM calculates the most likely first word based on the tokens and its parameters.
+                It then recalculates the next word based on the prompt and the word it chose from the last step.
+                It repeats this cycle until the response is finished.
+            </p>
+        </div>
         
+        <div class="div_paragraph">
+            <h2>Conclusion</h2>
+            <p>
+                LLMs use large amounts of data and some human input to fine-tune their parameters,
+                which they then use to generate responses to prompts, one token at a time.
+                <br><br>
+                I hope you have enjoyed learning about LLMs! If you want to learn more,
+                here is a short Youtube video that explains the basics of LLMs in more detail:
+                <br><br>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/LPZh9BOjkQs?si=Kuz9K0U077153q4Z" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </p>
+        </div>
     </main>
 </body>
 </html>
