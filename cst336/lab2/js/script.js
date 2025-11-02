@@ -5,8 +5,13 @@ let attempts = 0;
 // Event Listeners
 document.querySelector("#guessBtn").addEventListener("click", checkGuess);
 
+// Start game
+initializeGame();
+
 /**
  * Checks if player guess is valid and compares it against randomNumber.
+ * Edits feedback div according to guess validity and correctness.
+ * Calls gameOver if guess is correct.
  * @returns 
  */
 function checkGuess() {
@@ -27,7 +32,43 @@ function checkGuess() {
         return;
     }
     
+    // Increment attempts
+    attempts++;
+    console.log(`Attempts: ${attempts}`);
 
+    // Check if guess == randomNumber (player won)
+    if (guess == randomNumber) {
+        feedback.textContent = "You guessed it! You won!";
+        feedback.style.color = "darkgreen";
+        gameOver();
+        return;
+    }
+
+    // Check if attempts == 7 (player lost)
+    if (attempts >= 7) {
+        feedback.textContent = "Sorry, you lost!";
+        feedback.style.color = "red";
+        gameOver();
+        return;
+    }
+
+    // Check if guess was higher or lower then randomNumber (player guessed wrong, but hasn't lost)
+    feedback.style.color = "orange";
+    if (guess > randomNumber) {
+        feedback.textContent = "Guess was too high!";
+    } else {
+        feedback.textContent = "Guess was too low!"
+    }
+}
+
+function gameOver() {
+    // Hide guessBtn
+    let guessBtn = document.querySelector("#guessBtn");
+    guessBtn.style.display = "none";
+
+    // Show resetBtn
+    let resetBtn = document.querySelector("#resetBtn");
+    resetBtn.style.display = "inline";
 }
 
 /**
@@ -39,7 +80,7 @@ function initializeGame() {
     console.log(`randomNumber: ${randomNumber}`);
 
     // Hide reset button
-    document.querySelector("#resetBtn").computedStyleMap.display = "none";
+    document.querySelector("#resetBtn").style.display = "none";
 
     // Set focus to textbox
     document.querySelector("#playerGuess").focus();
