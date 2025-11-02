@@ -1,0 +1,35 @@
+/* BODY STYLES */
+body {
+    background-color: gray;
+    text-align: center;
+}
+
+/* DIV STYLES */
+#main {
+    border: 1px black solid;
+}
+
+#wins_losses_div, #attempts_guesses_div {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 60px;
+    margin: auto;
+}
+
+/* SPAN STYLES */
+#wins_span, #losses_span, #guesses_div, #attempts {
+    padding: 10px;
+    border: 1px black solid;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+}
+
+#losses_span {
+    background-color: darkred;
+}
+
+#wins_span {
+    background-color: darkgreen;
+}
