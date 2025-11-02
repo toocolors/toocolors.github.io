@@ -10,20 +10,20 @@ document.querySelector("#guessBtn").addEventListener("click", checkGuess);
  * @returns 
  */
 function checkGuess() {
+    // Get and reset feedback
+    let feedback = document.querySelector("#feedback");
+    feedback.textContent = "";
+
     // Get guess
     let guess = document.querySelector("#playerGuess").value;
     guess = Number(guess);
     console.log(`Player guess: ${guess}`);
 
-    // Check is guess is valid
-    // Check if guess is an integer
-    if (!Number.isInteger(guess)) {
-        alert("Guess is not an integer!");
-        return;
-    }
-    // Check if guess is within bounds
-    if (guess < 1 || 99 < guess) {
-        alert("Guess out of range!");
+    // Check if guess is valid (an integer between 1 and 99)
+    if (!Number.isInteger(guess) || guess < 1 || 99 < guess) {
+        // Update feedback
+        feedback.textContent = "Enter an integer between 1 and 99";
+        feedback.style.color = "red";
         return;
     }
     
