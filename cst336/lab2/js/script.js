@@ -103,11 +103,13 @@ function initializeGame() {
     attempts = 7;
     document.querySelector("#attempts").textContent = `Attempts remaining: ${attempts}`;
 
-    // Hide reset button
-    // document.querySelector("#resetBtn").style.display = "none";
+    // Hide resetBtn
+    let guessBtn = document.querySelector("#resetBtn");
+    guessBtn.style.display = "none";
 
-    // Show guess button
-    document.querySelector("#guessBtn").style.display = "inline";
+    // Show guessBtn
+    let resetBtn = document.querySelector("#guessBtn");
+    resetBtn.style.display = "inline";
 
     // Set focus to textbox and clear it
     playerGuess = document.querySelector("#playerGuess");
