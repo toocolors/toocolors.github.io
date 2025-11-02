@@ -104,7 +104,7 @@ function initializeGame() {
     document.querySelector("#attempts").textContent = `Attempts remaining: ${attempts}`;
 
     // Hide reset button
-    document.querySelector("#resetBtn").style.display = "none";
+    // document.querySelector("#resetBtn").style.display = "none";
 
     // Show guess button
     document.querySelector("#guessBtn").style.display = "inline";

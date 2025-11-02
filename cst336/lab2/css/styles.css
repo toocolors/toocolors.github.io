@@ -4,6 +4,20 @@ body {
     text-align: center;
 }
 
+/* BUTTON STYLES */
+#buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+}
+
+#guessBtn, #resetBtn {
+    border: 1px black solid;
+    margin: 10px;
+    border-radius: 10px;
+}
+
 /* DIV STYLES */
 #main {
     border: 1px black solid;
@@ -15,6 +29,14 @@ body {
     width: 50%;
     height: 60px;
     margin: auto;
+}
+
+#feedback {
+    border: 1px black solid;
+    width: 300px;
+    height: 50px;
+    margin: auto;
+    line-height: 50px;
 }
 
 /* SPAN STYLES */
