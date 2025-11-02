@@ -1,6 +1,6 @@
 // Global variables
 let randomNumber;
-let attempts = 0;
+let attempts = 7;
 
 // Event Listeners
 document.querySelector("#guessBtn").addEventListener("click", checkGuess);
@@ -36,9 +36,10 @@ function checkGuess() {
     // Add guess to guesses element
     document.querySelector("#guesses").textContent += `${guess} `;
     
-    // Increment attempts
-    attempts++;
-    console.log(`Attempts: ${attempts}`);
+    // Decrement attempts and update attempts remaining
+    attempts--;
+    console.log(`Attempts remaining: ${attempts}`);
+    document.querySelector("#attempts").textContent = `Attempts remaining: ${attempts}`;
 
     // Check if guess == randomNumber (player won)
     if (guess == randomNumber) {
@@ -48,8 +49,8 @@ function checkGuess() {
         return;
     }
 
-    // Check if attempts == 7 (player lost)
-    if (attempts >= 7) {
+    // Check if attempts <= 0 (player lost)
+    if (attempts <= 0) {
         feedback.textContent = "Sorry, you lost!";
         feedback.style.color = "red";
         gameOver();
@@ -85,6 +86,10 @@ function initializeGame() {
     // Get random number
     randomNumber = Math.floor(Math.random() * 99) + 1;
     console.log(`randomNumber: ${randomNumber}`);
+
+    // Reset attempts
+    attempts = 7;
+    document.querySelector("#attempts").textContent = `Attempts remaining: ${attempts}`;
 
     // Hide reset button
     document.querySelector("#resetBtn").style.display = "none";
