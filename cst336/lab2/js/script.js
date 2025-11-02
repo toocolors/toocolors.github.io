@@ -4,6 +4,7 @@ let attempts = 0;
 
 // Event Listeners
 document.querySelector("#guessBtn").addEventListener("click", checkGuess);
+document.querySelector("#resetBtn").addEventListener("click", initializeGame);
 
 // Start game
 initializeGame();
@@ -64,6 +65,9 @@ function checkGuess() {
     }
 }
 
+/**
+ * Hides guessBtn, Shows resetBtn
+ */
 function gameOver() {
     // Hide guessBtn
     let guessBtn = document.querySelector("#guessBtn");
@@ -85,6 +89,17 @@ function initializeGame() {
     // Hide reset button
     document.querySelector("#resetBtn").style.display = "none";
 
-    // Set focus to textbox
-    document.querySelector("#playerGuess").focus();
+    // Show guess button
+    document.querySelector("#guessBtn").style.display = "inline";
+
+    // Set focus to textbox and clear it
+    playerGuess = document.querySelector("#playerGuess");
+    playerGuess.focus();
+    playerGuess.value = "";
+
+    // Clear feedback
+    document.querySelector("#feedback").textContent = "";
+
+    // Clear previous guesses
+    document.querySelector("#guesses").textContent = "";
 }
