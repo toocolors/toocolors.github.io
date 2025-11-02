@@ -2,6 +2,34 @@
 let randomNumber;
 let attempts = 0;
 
+// Event Listeners
+document.querySelector("#guessBtn").addEventListener("click", checkGuess);
+
+/**
+ * Checks if player guess is valid and compares it against randomNumber.
+ * @returns 
+ */
+function checkGuess() {
+    // Get guess
+    let guess = document.querySelector("#playerGuess").value;
+    guess = Number(guess);
+    console.log(`Player guess: ${guess}`);
+
+    // Check is guess is valid
+    // Check if guess is an integer
+    if (!Number.isInteger(guess)) {
+        alert("Guess is not an integer!");
+        return;
+    }
+    // Check if guess is within bounds
+    if (guess < 1 || 99 < guess) {
+        alert("Guess out of range!");
+        return;
+    }
+    
+
+}
+
 /**
  * Initializes the game.
  */
