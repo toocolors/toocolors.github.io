@@ -22,6 +22,14 @@ body {
     width: 120px;
 }
 
+#guessBtn {
+    background-color: lightblue;
+}
+
+#resetBtn {
+    background-color: orange;
+}
+
 /* DIV STYLES */
 #main {
     border: 1px black solid;
