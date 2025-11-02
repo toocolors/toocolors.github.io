@@ -1,6 +1,8 @@
 // Global variables
 let randomNumber;
 let attempts = 7;
+let wins = 0;
+let losses = 0;
 
 // Event Listeners
 document.querySelector("#guessBtn").addEventListener("click", checkGuess);
@@ -45,7 +47,7 @@ function checkGuess() {
     if (guess == randomNumber) {
         feedback.textContent = "You guessed it! You won!";
         feedback.style.color = "darkgreen";
-        gameOver();
+        gameOver(true);
         return;
     }
 
@@ -53,7 +55,7 @@ function checkGuess() {
     if (attempts <= 0) {
         feedback.textContent = "Sorry, you lost!";
         feedback.style.color = "red";
-        gameOver();
+        gameOver(false);
         return;
     }
 
@@ -68,8 +70,9 @@ function checkGuess() {
 
 /**
  * Hides guessBtn, Shows resetBtn
+ * @param {boolean} victory true = player won, false = player lost
  */
-function gameOver() {
+function gameOver(victory) {
     // Hide guessBtn
     let guessBtn = document.querySelector("#guessBtn");
     guessBtn.style.display = "none";
@@ -77,6 +80,15 @@ function gameOver() {
     // Show resetBtn
     let resetBtn = document.querySelector("#resetBtn");
     resetBtn.style.display = "inline";
+
+    // Update wins/losses variables and spans
+    if (victory) {
+        wins++;
+        document.querySelector("#wins").textContent = wins;
+    } else {
+        losses++;
+        document.querySelector("#losses").textContent = losses;
+    }
 }
 
 /**
