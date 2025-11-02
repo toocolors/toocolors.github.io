@@ -36,7 +36,11 @@ function checkGuess() {
     }
 
     // Add guess to guesses element
-    document.querySelector("#guesses").textContent += `${guess} `;
+    let guessesSpan = document.querySelector("#guesses");
+    if (attempts < 7) {
+        guessesSpan.textContent += ", ";
+    }
+    guessesSpan.textContent += guess;
     
     // Decrement attempts and update attempts remaining
     attempts--;

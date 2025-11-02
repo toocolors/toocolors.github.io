@@ -30,7 +30,7 @@ body {
 #wins_losses_div, #attempts_guesses_div {
     display: flex;
     justify-content: center;
-    width: 50%;
+    width: 60%;
     height: 100px;
     margin: auto;
 }
