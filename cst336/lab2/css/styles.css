@@ -22,6 +22,14 @@ body {
     width: 120px;
 }
 
+#guessBtn:hover {
+    box-shadow: 0 0 8px 8px rgba(0, 140, 186, 0.5);
+}
+
+#resetBtn:hover {
+    box-shadow: 0 0 8px 8px rgba(150, 100, 0.5);
+}
+
 #guessBtn {
     background-color: lightblue;
 }
