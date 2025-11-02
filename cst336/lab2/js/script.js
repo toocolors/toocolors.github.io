@@ -31,6 +31,9 @@ function checkGuess() {
         feedback.style.color = "red";
         return;
     }
+
+    // Add guess to guesses element
+    document.querySelector("#guesses").textContent += `${guess} `;
     
     // Increment attempts
     attempts++;
