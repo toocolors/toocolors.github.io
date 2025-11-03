@@ -136,8 +136,9 @@ function initializeGame() {
 
     // Clear feedback
     document.querySelector("#feedback").textContent = "";
-    document.querySelector("#feedback").backgroundColor = "white";
+    document.querySelector("#feedback").style.backgroundColor = "white";
 
     // Clear previous guesses
     document.querySelector("#guesses").textContent = "";
+    document.querySelector("#guesses").style.backgroundColor = "white";
 }
