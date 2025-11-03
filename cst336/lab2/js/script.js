@@ -45,26 +45,38 @@ function checkGuess() {
     // Decrement attempts and update attempts remaining
     attempts--;
     console.log(`Attempts remaining: ${attempts}`);
-    document.querySelector("#attempts").textContent = `Attempts remaining: ${attempts}`;
+    let attemptsBox = document.querySelector("#attempts")
+    attemptsBox.textContent = `Attempts remaining: ${attempts}`;
 
     // Check if guess == randomNumber (player won)
     if (guess == randomNumber) {
         feedback.textContent = "You guessed it! You won!";
-        feedback.style.color = "darkgreen";
+        feedback.style.backgroundColor = "green";
         gameOver(true);
         return;
+    }
+
+    // Update attempts background color
+    if (attempts >= 6) {
+        attemptsBox.style.backgroundColor = "green";
+    } else if (attempts >= 4) {
+        attemptsBox.style.backgroundColor = "yellow"; // dark yellow
+    } else if (attempts >= 2) {
+        attemptsBox.style.backgroundColor = "orange";
+    } else {
+        attemptsBox.style.backgroundColor = "red";
     }
 
     // Check if attempts <= 0 (player lost)
     if (attempts <= 0) {
         feedback.textContent = "Sorry, you lost!";
-        feedback.style.color = "red";
+        feedback.style.backgroundColor = "red";
         gameOver(false);
         return;
     }
 
     // Check if guess was higher or lower then randomNumber (player guessed wrong, but hasn't lost)
-    feedback.style.color = "orange";
+    feedback.style.backgroundColor = "orange";
     if (guess > randomNumber) {
         feedback.textContent = "Guess was too high!";
     } else {
@@ -105,7 +117,9 @@ function initializeGame() {
 
     // Reset attempts
     attempts = 7;
-    document.querySelector("#attempts").textContent = `Attempts remaining: ${attempts}`;
+    let attemptsBox = document.querySelector("#attempts");
+    attemptsBox.textContent = `Attempts remaining: ${attempts}`;
+    attemptsBox.style.backgroundColor = "green";
 
     // Hide resetBtn
     let guessBtn = document.querySelector("#resetBtn");
@@ -122,6 +136,7 @@ function initializeGame() {
 
     // Clear feedback
     document.querySelector("#feedback").textContent = "";
+    document.querySelector("#feedback").backgroundColor = "white";
 
     // Clear previous guesses
     document.querySelector("#guesses").textContent = "";
