@@ -100,27 +100,9 @@ input {
     line-height: 50px;
 }
 
-/* HELP STYLES */
-#help_div {
-    display: flex;
-    justify-content: center;
-    margin: 5px;
-    font-size: 0.8em;
-}
-
-#help_div span {
-    line-height: 50px;
-    margin: auto;
-    margin-right: 5px;
-}
-
-#checkbox {
-    margin: auto;
-    margin-left: 5px;
-}
-
 #hint {
     display: none;
+    font-size: 0.8em;
 }
 
 /* OTHER STYLES */

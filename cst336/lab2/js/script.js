@@ -140,5 +140,4 @@ function initializeGame() {
 
     // Clear previous guesses
     document.querySelector("#guesses").textContent = "";
-    document.querySelector("#guesses").style.backgroundColor = "white";
 }
