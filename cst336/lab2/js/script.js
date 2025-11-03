@@ -50,7 +50,7 @@ function checkGuess() {
 
     // Check if guess == randomNumber (player won)
     if (guess == randomNumber) {
-        feedback.textContent = "You guessed it! You won!";
+        feedback.textContent = `You guessed it! The number was ${randomNumber}!`;
         feedback.style.backgroundColor = "green";
         gameOver(true);
         return;
@@ -69,7 +69,7 @@ function checkGuess() {
 
     // Check if attempts <= 0 (player lost)
     if (attempts <= 0) {
-        feedback.textContent = "Sorry, you lost!";
+        feedback.textContent = `Sorry, you lost! The number was ${randomNumber}!`;
         feedback.style.backgroundColor = "red";
         gameOver(false);
         return;
