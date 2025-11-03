@@ -3,6 +3,8 @@ body {
     background-color: white;
     text-align: center;
     font-size: 1.5em;
+    width: 1000px;
+    margin-top: 0;
 }
 
 /* BUTTON STYLES */
@@ -44,6 +46,8 @@ body {
 /* DIV STYLES */
 #main {
     border: 1px black solid;
+    background-color: none;
+    background-image: url(../img/background-bw.jpg);
 }
 
 #wins_losses_div, #attempts_guesses_div {
@@ -75,11 +79,13 @@ input {
 /* ATTEMPTS, GUESSES STYLES */
 #guesses_div {
     margin-left: 5px;
+    background-color: white;
 }
 
 #attempts {
     margin-right: 5px;
     line-height: 50px;
+    background-color: white;
 }
 
 /* WINS, LOSSES STYLES */
@@ -94,6 +100,19 @@ input {
 }
 
 /* OTHER STYLES */
+header {
+    background-image: url(../img/background-color.jpg);
+    margin-top: 0;
+    padding-top: 20px;
+}
+
+h1 {
+    margin: auto;
+    background-color: white;
+    width: 400px;
+    border: 1px black solid;
+}
+
 footer {
     font-size: 0.7em;
 }
@@ -104,6 +123,7 @@ footer {
     height: 50px;
     margin: auto;
     line-height: 50px;
+    background-color: white;
 }
 
 
