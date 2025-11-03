@@ -21,6 +21,8 @@ function checkGuess() {
     // Get and reset feedback
     let feedback = document.querySelector("#feedback");
     feedback.textContent = "";
+    feedback.style.backgroundColor = "white";
+    feedback.style.color = "black";
 
     // Get guess
     let guess = document.querySelector("#playerGuess").value;
