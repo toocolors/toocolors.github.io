@@ -1,6 +1,6 @@
 /* BODY STYLES */
 body {
-    background-color: gray;
+    background-color: white;
     text-align: center;
     font-size: 1.5em;
 }
@@ -88,6 +88,10 @@ input {
 }
 
 /* OTHER STYLES */
+footer {
+    font-size: 0.7em;
+}
+
 #feedback {
     border: 1px black solid;
     width: 400px;
