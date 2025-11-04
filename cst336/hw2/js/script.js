@@ -15,6 +15,7 @@ function gradeQuiz() {
     score = 0;
     let q1Response = document.querySelector("#q1").value.toLowerCase();
     let q2Response = document.querySelector("#q2").value;
+    let q4Response = document.querySelector("input[name=q4]:checked").value;
     console.log(q2Response);
 
 
@@ -40,6 +41,13 @@ function gradeQuiz() {
             rightAnswer(3);
     } else {
         wrongAnswer(3);
+    }
+
+    // Grading Question 4
+    if (q4Response == "Rhode Island") {
+        rightAnswer(4);
+    } else {
+        wrongAnswer(4);
     }
 
     // Show total score
