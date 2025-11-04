@@ -10,6 +10,9 @@ q5CorrectChoices = ["California", "Arizona", "New Mexico", "Texas"];
 q5WrongChoices = ["Louisiana", "Mississipi", "Alabama", "Georgia", "Florida"];
 // Q6
 q6WrongChoices = ["Log Angeles", "San Diego", "Las Vegas", "Spokane", "Boise", "New York"];
+// Q7
+q7CorrectChoices = ["Guam", "Puerto Rico", "Virgin Isles", "Baker Island", "Kingman Reed"];
+q7WrongChoices = ["Guadalajara", "Great Barrier Reef", "Antigua", "Barbuda", "Redonda"];
 
 // Add event listeners
 document.querySelector("button").addEventListener("click", gradeQuiz);
@@ -18,6 +21,7 @@ document.querySelector("button").addEventListener("click", gradeQuiz);
 displayChoices(q4Choices, "radio", 4); // Q4
 mixChoicesCheckBox(q5CorrectChoices, q5WrongChoices, 5); // Q5
 mixChoicesRadio("Reno", q6WrongChoices, 6) // Q6
+mixChoicesCheckBox(q7CorrectChoices, q7WrongChoices, 8); // Q8
 
 /**
  * Displays elements of array as choices for the appropriate question.
@@ -129,9 +133,13 @@ function mixChoicesCheckBox(correctChoices, wrongChoices, index) {
     let array = [];
     for (let i = 0; i < 4; i++) {
         if (Math.random() >= 0.5) { // Add element from correctChoices
-            array.push(correctChoices[Math.floor(Math.random() * correctChoices.length)]);
+            let arrIndex = Math.floor(Math.random() * correctChoices.length)
+            array.push(correctChoices[arrIndex]);
+            correctChoices.splice(arrIndex, 1);
         } else { // Add element from wrongChoices
-            array.push(wrongChoices[Math.floor(Math.random() * wrongChoices.length)]);
+            let arrIndex = Math.floor(Math.random() * wrongChoices.length)
+            array.push(wrongChoices[arrIndex]);
+            wrongChoices.splice(arrIndex, 1);
         }
     }
 
