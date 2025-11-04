@@ -3,14 +3,21 @@ let score = 0;
 let attempts = localStorage.getItem("total_attempts");
 
 // Choices Arrays
+// Q4
 q4Choices = ["Maine", "Rhode Island", "Maryland", "Delaware"];
+// Q5
+q5CorrectChoices = ["California", "Arizona", "New Mexico", "Texas"];
+q5WrongChoices = ["Louisiana", "Mississipi", "Alabama", "Georgia", "Florida"];
+// Q6
+q6WrongChoices = ["Log Angeles", "San Diego", "Las Vegas", "Spokane", "Boise", "New York"];
 
 // Add event listeners
 document.querySelector("button").addEventListener("click", gradeQuiz);
 
 // Call functions
 displayChoices(q4Choices, "radio", 4); // Q4
-mixChoicesCheckBox(); // Q5
+mixChoicesCheckBox(q5CorrectChoices, q5WrongChoices, 5); // Q5
+mixChoicesRadio("Reno", q6WrongChoices, 6) // Q6
 
 /**
  * Displays elements of array as choices for the appropriate question.
@@ -124,13 +131,13 @@ function mixChoicesCheckBox(correctChoices, wrongChoices, index) {
         if (Math.random() >= 0.5) { // Add element from correctChoices
             array.push(correctChoices[Math.floor(Math.random() * correctChoices.length)]);
         } else { // Add element from wrongChoices
-            array.push(wrongChoices[Math.floor(Math.random() * correctChoices.length)]);
+            array.push(wrongChoices[Math.floor(Math.random() * wrongChoices.length)]);
         }
     }
 
     // Call displayChoices
     displayChoices(array, "checkbox", index);
-}
+} //mixChoicesCheckbox
 
 /**
  * Creates an array of answers by pulling values from an array and the correct answer,
@@ -143,20 +150,19 @@ function mixChoicesRadio(answer, wrongChoices, index) {
     let array = [];
     let answerAdded = false;
     for(let i = 0; i < 4; i++) {
-        if (answerAdded || Math.random() <= 0.5) {
-            array.push(wrongChoices[Math.floor(Math.random() * correctChoices.length)]);
-        } else if (i == 3 && !answerAdded) {
+        if (!answerAdded && (i == 3 || Math.random() <= 0.5)) {
             array.push(answer);
             answerAdded = true;
         } else {
-            array.push(answer);
-            answerAdded = true;
+            let arrIndex = Math.floor(Math.random() * wrongChoices.length);
+            array.push(wrongChoices[arrIndex]);
+            wrongChoices.splice(arrIndex, 1);
         }
-
-        // Display array
-        displayChoices(array, "radio", index);
     }
-}
+
+    // Display array
+        displayChoices(array, "radio", index);
+} //mixChoicesRadio
 
 /**
  * Updates feedback and markImg of question at index.
