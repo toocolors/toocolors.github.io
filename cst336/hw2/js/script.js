@@ -32,6 +32,16 @@ function gradeQuiz() {
         wrongAnswer(2);
     }
 
+    // Grading Question 3
+    if (document.querySelector("#Jefferson").checked && 
+        document.querySelector("#Roosevelt").checked &&
+        !document.querySelector("#Jackson").checked &&
+        !document.querySelector("#Franklin").checked) {
+            rightAnswer(3);
+    } else {
+        wrongAnswer(3);
+    }
+
     // Show total score
     document.querySelector("#totalScore").innerHTML = `Total Score: ${score}`;
 } //gradeQuiz
