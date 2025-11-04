@@ -1,5 +1,6 @@
 // Global variables
 let score = 0;
+let attempts = localStorage.getItem("total_attempts");
 
 // Add event listeners
 document.querySelector("button").addEventListener("click", gradeQuiz);
@@ -29,8 +30,6 @@ function gradeQuiz() {
     let q1Response = document.querySelector("#q1").value.toLowerCase();
     let q2Response = document.querySelector("#q2").value;
     let q4Response = document.querySelector("input[name=q4]:checked").value;
-    console.log(q2Response);
-
 
     // Grading Question 1
     if (q1Response == "sacramento") {
@@ -63,8 +62,28 @@ function gradeQuiz() {
         wrongAnswer(4);
     }
 
-    // Show total score
-    document.querySelector("#totalScore").innerHTML = `Total Score: ${score}`;
+    // Update total score
+    let totalScore = document.querySelector("#totalScore");
+    totalScore.innerHTML = `Total Score: ${score}`;
+    if (score >= 80) {
+        totalScore.className = "text-success";
+    } else {
+        totalScore.className = "text-danger";
+    }
+
+    // Update quiz feedback
+    let feedback = document.querySelector("#quizFeedback");
+    if (score >= 80) {
+        feedback.innerHTML = "Congrats! You passed!"
+        feedback.className = "text-success";
+    } else {
+        feedback.innerHTML = "You failed..."
+        feedback.className = "text-danger";
+    }
+
+    // Show total number of attempts
+    document.querySelector("#totalAttempts").innerHTML = `Total Attempts: ${++attempts}`;
+    localStorage.setItem("total_attempts", attempts);
 } //gradeQuiz
 
 function rightAnswer(index) {
