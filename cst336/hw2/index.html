@@ -12,55 +12,90 @@
     <h1 class="p-5 bg-primary">Us Geography Quiz</h1>
 
     <!-- Question 1 -->
-     <h3><span id="markImg1"></span>What is the capital of California?</h3>
-     <input type="text" id="q1">
-     <br><br>
-     <div id="q1Feedback"></div>
+    <h3><span id="markImg1"></span>What is the capital of California?</h3>
+    <input type="text" id="q1">
+    <br><br>
+    <div id="q1Feedback"></div>
 
     <!-- Question 2 -->
-     <h3><span id="markImg2"></span>What is the longest river?</h3>
+    <h3><span id="markImg2"></span>What is the longest river?</h3>
 
-     <select id="q2">
+    <select id="q2">
         <option value="">Select One</option>
         <option value="ms">Mississippi</option>
         <option value="mo">Missouri</option>
         <option value="co">Colorado</option>
         <option value="de">Delaware</option>
-     </select>
-     <br><br>
-     <div id="q2Feedback"></div>
+    </select>
+    <br><br>
+    <div id="q2Feedback"></div>
 
-     <!-- Question 3 -->
-      <h3><span id="markImg3"></span>What presidents are carved into Mount Rushmore?</h3>
-      <input type="checkbox" id="Jackson"> <label for="Jackson">A. Jackson</label>
-      <input type="checkbox" id="Franklin"> <label for="Jackson">B. Franklin</label>
-      <input type="checkbox" id="Jefferson"> <label for="Jackson">T. Jefferson</label>
-      <input type="checkbox" id="Roosevelt"> <label for="Jackson">T. Roosevelt</label>
-      <br><br>
-      <div id="q3Feedback"></div>
+    <!-- Question 3 -->
+    <h3><span id="markImg3"></span>What presidents are carved into Mount Rushmore?</h3>
+    <input type="checkbox" id="Jackson"> <label for="Jackson">A. Jackson</label>
+    <input type="checkbox" id="Franklin"> <label for="Franklin">B. Franklin</label>
+    <input type="checkbox" id="Jefferson"> <label for="Jefferson">T. Jefferson</label>
+    <input type="checkbox" id="Roosevelt"> <label for="Roosevelt">T. Roosevelt</label>
+    <br><br>
+    <div id="q3Feedback"></div>
 
-      <!-- Question 4 -->
-       <h3><span id="markImg4"></span>What is the smallest US State?</h3>
-       <!-- <input type="radio" name="q4" id="me" value="Maine"> <label for="me">Maine</label>
-       <input type="radio" name="q4" id="ri" value="Rhode Island"> <label for="ri">Rhode Island</label>
-       <input type="radio" name="q4" id="md" value="Maryland"> <label for="md">Maryland</label>
-       <input type="radio" name="q4" id="de" value="Delaware"> <label for="de">Delaware</label> -->
-       <div id="q4Choices"></div>
-       <br><br>
-       <div id="q4Feedback"></div>
+    <!-- Question 4 -->
+    <h3><span id="markImg4"></span>What is the smallest US State?</h3>
+    <div id="q4Choices"></div>
+    <br><br>
+    <div id="q4Feedback"></div>
+
+    <!-- Question 5 -->
+    <!-- TODO: Randomize Answers -->
+    <h3><span id="markImg5"></span>Which states border Mexico?</h3>
+    <input type="checkbox" id="Ohio"> <label for="California">California</label>
+    <input type="checkbox" id="Nevada"> <label for="Arizona">Arizona</label>
+    <input type="checkbox" id="Maine"> <label for="New Mexico">New Mexico</label>
+    <input type="checkbox" id="Kentucky"> <label for="Texas">Texas</label>
+    <br><br>
+    <div id="q5Feedback"></div>
+
+    <!-- Question 6 -->
+    <!-- TODO: Randomize Answers -->
+    <h3><span id="markImg6"></span>Which city is located most Westward?</h3>
+    <input type="radio" name="q6" id="Los Angeles"><label for="Los Angeles">Los Angeles</label>
+    <input type="radio" name="q6" id="Reno"><label for="Reno">Reno</label>
+    <input type="radio" name="q6" id="Spokane"><label for="Spokane">Spokane</label>
+    <input type="radio" name="q6" id="Spokane"><label for="San Diego">San Diego</label>
+    <br><br>
+    <div id="q6Feedback"></div>
+
+    <!-- Question 7 -->
+    
+
+    <!-- Question 9 -->
+    <h3><span id="markImg9"></span>How many territories does the US have?</h3>
+    <input type="number" id="territories">
+    <br><br>
+    <div id="q9Feedback"></div>
+
+    <!-- Question 10 -->
+    <h3><span id="markImg10"></span>What is the address of the White House?</h3>
+    <span><input type="text" id="address" placeholder="Address"></span>
+    <span><input type="text" id="state" placeholder="State"></span>
+    <br><br>
+    <span><input type="text" id="zip" placeholder="ZIP"></span>
+    <span><input type="text" id="country" placeholder="Country"></span>
+    <br><br>
+    <div id="q10Feedback"></div>
 
      <!-- Validation -->
-     <br><br>
-     <h3 id="validation" class="bg-danger text-white"></h3>
-     <button class="btn btn-light btn-outline-dark">Submit Quiz</button>
+    <br><br>
+    <h3 id="validation" class="bg-danger text-white"></h3>
+    <button class="btn btn-light btn-outline-dark">Submit Quiz</button>
 
      <!-- Score -->
-     <br>
-     <h2 id="totalScore" class="text-light"></h2>
-     <h2 id="quizFeedback"></h2>
+    <br>
+    <h2 id="totalScore" class="text-light"></h2>
+    <h2 id="quizFeedback"></h2>
 
      <!-- Attempts -->
-      <h3 id="totalAttempts"></h3>
+    <h3 id="totalAttempts"></h3>
     
     <script src="js/script.js"></script>
 </body>
