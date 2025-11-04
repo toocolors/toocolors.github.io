@@ -4,6 +4,19 @@ let score = 0;
 // Add event listeners
 document.querySelector("button").addEventListener("click", gradeQuiz);
 
+// Call functions
+displayQ4Choices();
+
+function displayQ4Choices() {
+    let q4ChoicesArray = ["Maine", "Rhode Island", "Maryland", "Delaware"];
+    q4ChoicesArray = _.shuffle(q4ChoicesArray);
+    for (let i = 0; i < q4ChoicesArray.length; i++) {
+        document.querySelector("#q4Choices").innerHTML += `<input type='radio' name='q4'
+        id='${q4ChoicesArray[i]}' value='${q4ChoicesArray[i]}'>
+        <label for='${q4ChoicesArray[i]}'>${q4ChoicesArray[i]}</label>`;
+    }
+} //displayQ4Choices
+
 function gradeQuiz() {
     console.log("Grading quiz...");
     document.querySelector("#validation").innerHTML = "";
