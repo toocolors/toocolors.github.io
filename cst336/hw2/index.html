@@ -66,23 +66,40 @@
     <div id="q6Feedback"></div>
 
     <!-- Question 7 -->
-    
-
-    <!-- Question 9 -->
-    <h3><span id="markImg9"></span>How many territories does the US have?</h3>
+    <h3><span id="markImg7"></span>How many territories does the US have?</h3>
     <input type="number" id="territories">
     <br><br>
-    <div id="q9Feedback"></div>
+    <div id="q7Feedback"></div>
 
-    <!-- Question 10 -->
-    <h3><span id="markImg10"></span>What is the address of the White House?</h3>
+    <!-- Question 8 -->
+    <h3><span id="markImg8"></span>Which locations are US territories?</h3>
+    <input type="checkbox" id="Puerto Rico"><label for="Puerto Rico">Puerto Rico</label>
+
+    <!-- Question 9 -->
+    <h3><span id="markImg9"></span>What is the address of the White House?</h3>
     <span><input type="text" id="address" placeholder="Address"></span>
     <span><input type="text" id="state" placeholder="State"></span>
     <br><br>
     <span><input type="text" id="zip" placeholder="ZIP"></span>
     <span><input type="text" id="country" placeholder="Country"></span>
     <br><br>
-    <div id="q10Feedback"></div>
+    <div id="q9Feedback"></div>
+
+    <!-- Question 10 -->
+    <h3><span id="markImg10"></span>What is the longitude and latitude of Monterey Bay?</h3>
+    <div id="ranges">
+        <div class="range">
+            <label for="latitude">Latitude:</label>
+            <input type="range" id="latitude">
+        </div>
+            
+        <div class="range">
+            <label for="longitude">Longitude:</label>
+            <input type="range" id="longitude">
+        </div>
+    </div>
+    
+    
 
      <!-- Validation -->
     <br><br>
@@ -96,6 +113,16 @@
 
      <!-- Attempts -->
     <h3 id="totalAttempts"></h3>
+
+    <footer>
+        <hr>
+        CST336 Internet Programming. 2025&copy; deFer <br>
+        <strong>Disclaimer:</strong> The information in this webpage is purely for educational purposes. <br>
+
+        <figure>
+            <img src="../img/CSUMB-Logo.jpg" alt="CSUMB Logo">
+        </figure>
+    </footer>
     
     <script src="js/script.js"></script>
 </body>
