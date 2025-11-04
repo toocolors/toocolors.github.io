@@ -2,21 +2,30 @@
 let score = 0;
 let attempts = localStorage.getItem("total_attempts");
 
+// Choices Arrays
+q4Choices = ["Maine", "Rhode Island", "Maryland", "Delaware"];
+
 // Add event listeners
 document.querySelector("button").addEventListener("click", gradeQuiz);
 
 // Call functions
-displayQ4Choices();
+displayChoices(q4Choices, "radio", 4); // Q4
+mixChoicesCheckBox(); // Q5
 
-function displayQ4Choices() {
-    let q4ChoicesArray = ["Maine", "Rhode Island", "Maryland", "Delaware"];
-    q4ChoicesArray = _.shuffle(q4ChoicesArray);
-    for (let i = 0; i < q4ChoicesArray.length; i++) {
-        document.querySelector("#q4Choices").innerHTML += `<input type='radio' name='q4'
-        id='${q4ChoicesArray[i]}' value='${q4ChoicesArray[i]}'>
-        <label for='${q4ChoicesArray[i]}'>${q4ChoicesArray[i]}</label>`;
+/**
+ * Displays elements of array as choices for the appropriate question.
+ * @param {*} array The array of answers to be displayed.
+ * @param {*} type The type of input used (checkbox, radio)
+ * @param {int} index The index of the question.
+ */
+function displayChoices(array, type, index) {
+    array = _.shuffle(array);
+    for (let i = 0; i < array.length; i++) {
+        document.querySelector(`#q${index}Choices`).innerHTML += `<input type='${type}' name='q4'
+        id='${array[i]}' value='${array[i]}'>
+        <label for='${array[i]}'>${array[i]}</label>`;
     }
-} //displayQ4Choices
+} //displayChoices
 
 function gradeQuiz() {
     console.log("Grading quiz...");
@@ -102,6 +111,58 @@ function isFormValid() {
     return isValid;
 } //isFormValid
 
+/**
+ * Creates an array of answers by pulling values from two arrays,
+ *  then calls displayChoices.
+ * @param {array} correctChoices Possible correct answers to the question.
+ * @param {array} wrongChoices Possible incorrect answers to the question.
+ */
+function mixChoicesCheckBox(correctChoices, wrongChoices, index) {
+    // Create array
+    let array = [];
+    for (let i = 0; i < 4; i++) {
+        if (Math.random() >= 0.5) { // Add element from correctChoices
+            array.push(correctChoices[Math.floor(Math.random() * correctChoices.length)]);
+        } else { // Add element from wrongChoices
+            array.push(wrongChoices[Math.floor(Math.random() * correctChoices.length)]);
+        }
+    }
+
+    // Call displayChoices
+    displayChoices(array, "checkbox", index);
+}
+
+/**
+ * Creates an array of answers by pulling values from an array and the correct answer,
+ *  then calls displayChoices.
+ * @param {string} answer The correct answer to the question
+ * @param {array} wrongChoices Possible incorrect answers to the question.
+ */
+function mixChoicesRadio(answer, wrongChoices, index) {
+    // Create array
+    let array = [];
+    let answerAdded = false;
+    for(let i = 0; i < 4; i++) {
+        if (answerAdded || Math.random() <= 0.5) {
+            array.push(wrongChoices[Math.floor(Math.random() * correctChoices.length)]);
+        } else if (i == 3 && !answerAdded) {
+            array.push(answer);
+            answerAdded = true;
+        } else {
+            array.push(answer);
+            answerAdded = true;
+        }
+
+        // Display array
+        displayChoices(array, "radio", index);
+    }
+}
+
+/**
+ * Updates feedback and markImg of question at index.
+ * Called when question is answered wrong.
+ * @param {int} index The index of the question.
+ */
 function wrongAnswer(index) {
     document.querySelector(`#q${index}Feedback`).innerHTML = "Incorrect!";
     document.querySelector(`#q${index}Feedback`).className = "bg-warning text-white";
