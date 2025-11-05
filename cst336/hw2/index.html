@@ -5,111 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>US Geography Quiz</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.2/underscore-umd-min.js"> </script> 
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.2/underscore-umd-min.js"> </script>
 </head>
-<body class="text-center bg-info">
+<body class="text-center">
 
     <h1 class="p-5 bg-primary">Us Geography Quiz</h1>
 
-    <!-- Question 1 -->
-    <h3><span id="markImg1"></span>What is the capital of California?</h3>
-    <input type="text" id="q1">
-    <br><br>
-    <div id="q1Feedback"></div>
+    <main class="bg-info">
+        <br>
+        <!-- Question 1 -->
+        <h3><span id="markImg1"></span>What is the capital of California?</h3>
+        <input type="text" id="q1">
+        <br><br>
+        <div id="q1Feedback"></div>
 
-    <!-- Question 2 -->
-    <h3><span id="markImg2"></span>What is the longest river?</h3>
+        <!-- Question 2 -->
+        <h3><span id="markImg2"></span>What is the longest river?</h3>
 
-    <select id="q2">
-        <option value="">Select One</option>
-        <option value="ms">Mississippi</option>
-        <option value="mo">Missouri</option>
-        <option value="co">Colorado</option>
-        <option value="de">Delaware</option>
-    </select>
-    <br><br>
-    <div id="q2Feedback"></div>
+        <select id="q2">
+            <option value="">Select One</option>
+            <option value="ms">Mississippi</option>
+            <option value="mo">Missouri</option>
+            <option value="co">Colorado</option>
+            <option value="de">Delaware</option>
+        </select>
+        <br><br>
+        <div id="q2Feedback"></div>
 
-    <!-- Question 3 -->
-    <h3><span id="markImg3"></span>What presidents are carved into Mount Rushmore?</h3>
-    <input type="checkbox" id="Jackson"> <label for="Jackson">A. Jackson</label>
-    <input type="checkbox" id="Franklin"> <label for="Franklin">B. Franklin</label>
-    <input type="checkbox" id="Jefferson"> <label for="Jefferson">T. Jefferson</label>
-    <input type="checkbox" id="Roosevelt"> <label for="Roosevelt">T. Roosevelt</label>
-    <br><br>
-    <div id="q3Feedback"></div>
+        <!-- Question 3 -->
+        <h3><span id="markImg3"></span>What presidents are carved into Mount Rushmore?</h3>
+        <input type="checkbox" id="Jackson"> <label for="Jackson">A. Jackson</label>
+        <input type="checkbox" id="Franklin"> <label for="Franklin">B. Franklin</label>
+        <input type="checkbox" id="Jefferson"> <label for="Jefferson">T. Jefferson</label>
+        <input type="checkbox" id="Roosevelt"> <label for="Roosevelt">T. Roosevelt</label>
+        <br><br>
+        <div id="q3Feedback"></div>
 
-    <!-- Question 4 -->
-    <h3><span id="markImg4"></span>What is the smallest US State?</h3>
-    <div id="q4Choices"></div>
-    <br><br>
-    <div id="q4Feedback"></div>
+        <!-- Question 4 -->
+        <h3><span id="markImg4"></span>What is the smallest US State?</h3>
+        <div id="q4Choices"></div>
+        <br><br>
+        <div id="q4Feedback"></div>
 
-    <!-- Question 5 -->
-    <h3><span id="markImg5"></span>Which states border Mexico?</h3>
-    <div id="q5Choices"></div>
-    <br><br>
-    <div id="q5Feedback"></div>
+        <!-- Question 5 -->
+        <h3><span id="markImg5"></span>Which states border Mexico?</h3>
+        <div id="q5Choices"></div>
+        <br><br>
+        <div id="q5Feedback"></div>
 
-    <!-- Question 6 -->
-    <h3><span id="markImg6"></span>Which city is located most westward?</h3>
-    <div id="q6Choices"></div>
-    <br><br>
-    <div id="q6Feedback"></div>
+        <!-- Question 6 -->
+        <h3><span id="markImg6"></span>Which city is located most westward?</h3>
+        <div id="q6Choices"></div>
+        <br><br>
+        <div id="q6Feedback"></div>
 
-    <!-- Question 7 -->
-    <h3><span id="markImg7"></span>How many territories does the US have?</h3>
-    <input type="number" id="territories">
-    <br><br>
-    <div id="q7Feedback"></div>
+        <!-- Question 7 -->
+        <h3><span id="markImg7"></span>How many territories does the US have?</h3>
+        <input type="number" id="territories">
+        <br><br>
+        <div id="q7Feedback"></div>
 
-    <!-- Question 8 -->
-    <h3><span id="markImg8"></span>Which locations are US territories?</h3>
-    <div id="q8Choices"></div>
-    <br><br>
-    <div id="q8Feedback"></div>
+        <!-- Question 8 -->
+        <h3><span id="markImg8"></span>Which locations are US territories?</h3>
+        <div id="q8Choices"></div>
+        <br><br>
+        <div id="q8Feedback"></div>
 
-    <!-- Question 9 -->
-    <h3><span id="markImg9"></span>What is the address of the White House?</h3>
-    <span><input type="text" id="address" placeholder="Address"></span>
-    <span><input type="text" id="state" placeholder="State"></span>
-    <br><br>
-    <span><input type="text" id="zip" placeholder="ZIP"></span>
-    <span><input type="text" id="country" placeholder="Country"></span>
-    <br><br>
-    <div id="q9Feedback"></div>
+        <!-- Question 9 -->
+        <h3><span id="markImg9"></span>What is the address of the White House?</h3>
+        <span><input type="text" id="address" placeholder="Address"></span>
+        <span><input type="text" id="state" placeholder="State"></span>
+        <br><br>
+        <span><input type="text" id="zip" placeholder="ZIP"></span>
+        <span><input type="text" id="country" placeholder="Country"></span>
+        <br><br>
+        <div id="q9Feedback"></div>
 
-    <!-- Question 10 -->
-    <h3><span id="markImg10"></span>What is the longitude and latitude of Monterey Bay?</h3>
-    <div id="ranges">
-        <div class="range">
-            <label for="latitude" id="latitudeLabel">Latitude: 36.50</label>
-            <input type="range" id="latitude">
+        <!-- Question 10 -->
+        <h3><span id="markImg10"></span>What is the longitude and latitude of Monterey Bay?</h3>
+        <div id="ranges">
+            <div class="range">
+                <label for="latitude" id="latitudeLabel">Latitude: 36.50</label>
+                <input type="range" id="latitude">
+            </div>
+                
+            <div class="range">
+                <label for="longitude" id="longitudeLabel">Longitude: -121.50</label>
+                <input type="range" id="longitude">
+            </div>
         </div>
-            
-        <div class="range">
-            <label for="longitude" id="longitudeLabel">Longitude: -121.50</label>
-            <input type="range" id="longitude">
-        </div>
-    </div>
-    <div id="q10Feedback"></div>
-    
-    
+        <div id="q10Feedback"></div>
+        
+        
 
-     <!-- Validation -->
-    <br><br>
-    <h3 id="validation" class="bg-danger text-white"></h3>
-    <button class="btn btn-light btn-outline-dark">Submit Quiz</button>
+        <!-- Validation -->
+        <br><br>
+        <h3 id="validation" class="bg-danger text-white"></h3>
+        <button class="btn btn-light btn-outline-dark">Submit Quiz</button>
 
-     <!-- Score -->
-    <br>
-    <h2 id="totalScore" class="text-light"></h2>
-    <h2 id="quizFeedback"></h2>
+        <!-- Score -->
+        <br>
+        <h2 id="totalScore" class="text-light"></h2>
+        <h2 id="quizFeedback"></h2>
 
-     <!-- Attempts -->
-    <h3 id="totalAttempts"></h3>
+        <!-- Attempts -->
+        <h3 id="totalAttempts"></h3>
+    </main>
 
-    <footer>
+    <footer class="bg-info">
         <hr>
         CST336 Internet Programming. 2025&copy; deFer <br>
         <strong>Disclaimer:</strong> The information in this webpage is purely for educational purposes. <br>

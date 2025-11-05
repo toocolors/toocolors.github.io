@@ -1,0 +1,10 @@
+body {
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1)), 
+    url(../img/flag-colors.jpg);
+}
+
+h1, main, footer {
+    margin: 0 auto;
+    padding: 10px;
+    width: 1000px;
+}
