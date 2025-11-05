@@ -32,8 +32,8 @@ mixChoicesCheckBox(q7CorrectChoices, q7WrongChoices, 8); // Q8
 function displayChoices(array, type, index) {
     array = _.shuffle(array);
     for (let i = 0; i < array.length; i++) {
-        document.querySelector(`#q${index}Choices`).innerHTML += `<input type='${type}' name='q4'
-        id='${array[i]}' value='${array[i]}'>
+        document.querySelector(`#q${index}Choices`).innerHTML += `<input type='${type}' 
+        name='q${index}' id='${array[i]}' value='${array[i]}' class='q${index}'>
         <label for='${array[i]}'>${array[i]}</label>`;
     }
 } //displayChoices
@@ -41,15 +41,15 @@ function displayChoices(array, type, index) {
 function gradeQuiz() {
     console.log("Grading quiz...");
     document.querySelector("#validation").innerHTML = "";
-    if (!isFormValid()) {
-        return;
-    }
+    // if (!isFormValid()) {
+    //     return;
+    // }
 
     // variables
     score = 0;
     let q1Response = document.querySelector("#q1").value.toLowerCase();
     let q2Response = document.querySelector("#q2").value;
-    let q4Response = document.querySelector("input[name=q4]:checked").value;
+    let q4Response = document.querySelector("input[name=q4]:checked");
 
     // Grading Question 1
     if (q1Response == "sacramento") {
@@ -76,11 +76,38 @@ function gradeQuiz() {
     }
 
     // Grading Question 4
-    if (q4Response == "Rhode Island") {
+    if (q4Response != null  && q4Response.value == "Rhode Island") {
         rightAnswer(4);
     } else {
         wrongAnswer(4);
     }
+
+    // Grading Question 5
+    let q5Answers = [];
+    q5Answers = q5Answers.concat(Array.from(document.getElementsByClassName("q5")));
+    console.log(q5Answers.length);
+    let q5Correct = true;
+    console.log("Entering for loop");
+    for (let i = 0; i < q5Answers.length; i++) {
+        let checkbox = q5Answers[i];
+        let inCorrects = q5CorrectChoices.includes(checkbox.value);
+        console.log(`Grading ${checkbox.value}, ${checkbox.checked}`);
+        if (inCorrects && !checkbox.checked) {
+            console.log(`${checkbox.value} should be checked`);
+            q5Correct = false;
+            break;
+        } else if (!inCorrects && checkbox.checked) {
+            console.log(`${checkbox.value} shouldn't be checked`);
+            q5Correct = false;
+            break;
+        }
+    }
+    if (q5Correct) {
+        rightAnswer(5);
+    } else {
+        wrongAnswer(5);
+    }
+
 
     // Update total score
     let totalScore = document.querySelector("#totalScore");
@@ -129,17 +156,20 @@ function isFormValid() {
  * @param {array} wrongChoices Possible incorrect answers to the question.
  */
 function mixChoicesCheckBox(correctChoices, wrongChoices, index) {
+    // Clone arrays
+    let rights = [...correctChoices];
+    let wrongs = [...wrongChoices];
     // Create array
     let array = [];
     for (let i = 0; i < 4; i++) {
-        if (Math.random() >= 0.5) { // Add element from correctChoices
-            let arrIndex = Math.floor(Math.random() * correctChoices.length)
-            array.push(correctChoices[arrIndex]);
-            correctChoices.splice(arrIndex, 1);
-        } else { // Add element from wrongChoices
-            let arrIndex = Math.floor(Math.random() * wrongChoices.length)
-            array.push(wrongChoices[arrIndex]);
-            wrongChoices.splice(arrIndex, 1);
+        if (Math.random() >= 0.5) { // Add element from rights
+            let arrIndex = Math.floor(Math.random() * rights.length)
+            array.push(rights[arrIndex]);
+            rights.splice(arrIndex, 1);
+        } else { // Add element from wrongs
+            let arrIndex = Math.floor(Math.random() * wrongs.length)
+            array.push(wrongs[arrIndex]);
+            wrongs.splice(arrIndex, 1);
         }
     }
 
@@ -154,6 +184,8 @@ function mixChoicesCheckBox(correctChoices, wrongChoices, index) {
  * @param {array} wrongChoices Possible incorrect answers to the question.
  */
 function mixChoicesRadio(answer, wrongChoices, index) {
+    // Clone arrays
+    let wrongs = [...wrongChoices];
     // Create array
     let array = [];
     let answerAdded = false;
@@ -162,9 +194,9 @@ function mixChoicesRadio(answer, wrongChoices, index) {
             array.push(answer);
             answerAdded = true;
         } else {
-            let arrIndex = Math.floor(Math.random() * wrongChoices.length);
-            array.push(wrongChoices[arrIndex]);
-            wrongChoices.splice(arrIndex, 1);
+            let arrIndex = Math.floor(Math.random() * wrongs.length);
+            array.push(wrongs[arrIndex]);
+            wrongs.splice(arrIndex, 1);
         }
     }
 
