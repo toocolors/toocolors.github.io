@@ -10,9 +10,9 @@ q5CorrectChoices = ["California", "Arizona", "New Mexico", "Texas"];
 q5WrongChoices = ["Louisiana", "Mississipi", "Alabama", "Georgia", "Florida"];
 // Q6
 q6WrongChoices = ["Log Angeles", "San Diego", "Las Vegas", "Spokane", "Boise", "New York"];
-// Q7
-q7CorrectChoices = ["Guam", "Puerto Rico", "Virgin Isles", "Baker Island", "Kingman Reed"];
-q7WrongChoices = ["Guadalajara", "Great Barrier Reef", "Antigua", "Barbuda", "Redonda"];
+// Q8
+q8CorrectChoices = ["Guam", "Puerto Rico", "Virgin Isles", "Baker Island", "Kingman Reed"];
+q8WrongChoices = ["Guadalajara", "Great Barrier Reef", "Antigua", "Barbuda", "Redonda"];
 
 // Add event listeners
 document.querySelector("button").addEventListener("click", gradeQuiz);
@@ -21,7 +21,7 @@ document.querySelector("button").addEventListener("click", gradeQuiz);
 displayChoices(q4Choices, "radio", 4); // Q4
 mixChoicesCheckBox(q5CorrectChoices, q5WrongChoices, 5); // Q5
 mixChoicesRadio("Reno", q6WrongChoices, 6) // Q6
-mixChoicesCheckBox(q7CorrectChoices, q7WrongChoices, 8); // Q8
+mixChoicesCheckBox(q8CorrectChoices, q8WrongChoices, 8); // Q8
 
 /**
  * Displays elements of array as choices for the appropriate question.
@@ -38,6 +38,19 @@ function displayChoices(array, type, index) {
     }
 } //displayChoices
 
+function gradeCheckbox(index, corrects) {
+    let answers = [];
+    answers = answers.concat(Array.from(document.getElementsByClassName(`q${index}`)));
+    for (let i = 0; i < answers.length; i++) {
+        let checkbox = answers[i];
+        let inCorrects = corrects.includes(checkbox.value);
+        if (inCorrects && !checkbox.checked || !inCorrects && checkbox.checked) {
+            return false;
+        }
+    }
+    return true;
+}
+
 function gradeQuiz() {
     console.log("Grading quiz...");
     document.querySelector("#validation").innerHTML = "";
@@ -50,6 +63,7 @@ function gradeQuiz() {
     let q1Response = document.querySelector("#q1").value.toLowerCase();
     let q2Response = document.querySelector("#q2").value;
     let q4Response = document.querySelector("input[name=q4]:checked");
+    let q6Response = document.querySelector("input[name=q6]:checked");
 
     // Grading Question 1
     if (q1Response == "sacramento") {
@@ -83,26 +97,35 @@ function gradeQuiz() {
     }
 
     // Grading Question 5
-    let q5Answers = [];
-    q5Answers = q5Answers.concat(Array.from(document.getElementsByClassName("q5")));
-    console.log(q5Answers.length);
-    let q5Correct = true;
-    console.log("Entering for loop");
-    for (let i = 0; i < q5Answers.length; i++) {
-        let checkbox = q5Answers[i];
-        let inCorrects = q5CorrectChoices.includes(checkbox.value);
-        if (inCorrects && !checkbox.checked || !inCorrects && checkbox.checked) {
-            q5Correct = false;
-            break;
-        }
-    }
-    if (q5Correct) {
+    if (gradeCheckbox(5, q5CorrectChoices)) {
         rightAnswer(5);
     } else {
         wrongAnswer(5);
     }
 
     // Grading Question 6
+    if (q6Response != null  && q6Response.value == "Reno") {
+        rightAnswer(6);
+    } else {
+        wrongAnswer(6);
+    }
+
+    // Grading Question 7
+    if (document.querySelector("#territories").value == 14) {
+        rightAnswer(7);
+    } else {
+        wrongAnswer(7);
+    }
+
+    // Grading Question 8
+    if (gradeCheckbox(5, q8CorrectChoices)) {
+        rightAnswer(8);
+    } else {
+        wrongAnswer(8);
+    }
+
+    // Grading Question 9
+    
 
 
     // Update total score
