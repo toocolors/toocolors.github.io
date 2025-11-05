@@ -46,6 +46,12 @@ function displayChoices(array, type, index) {
     }
 } //displayChoices
 
+/**
+ * Grades the check boxes for the question at index.
+ * @param {int} index The question to be graded.
+ * @param {array} corrects The array of correct choices for the question.
+ * @returns True = correct, False = incorrect
+ */
 function gradeCheckbox(index, corrects) {
     let answers = [];
     answers = answers.concat(Array.from(document.getElementsByClassName(`q${index}`)));
@@ -57,14 +63,20 @@ function gradeCheckbox(index, corrects) {
         }
     }
     return true;
-}
+} //gradeCheckbox
 
+/**
+ * Grades each question and displays the total score.
+ * Returns early if one or more questions is missing an answer.
+ */
 function gradeQuiz() {
     console.log("Grading quiz...");
     document.querySelector("#validation").innerHTML = "";
-    // if (!isFormValid()) {
-    //     return;
-    // }
+
+    // Check if questions are missing
+    if (!isFormValid()) {
+        return;
+    }
 
     // variables
     score = 0;
@@ -189,13 +201,76 @@ function rightAnswer(index) {
     score += 20;
 } //rightAnswer
 
+/**
+ * Checks all questions to see if they have been answered.
+ * @returns true = All questions are answers, false = answers are missing
+ */
 function isFormValid() {
-    let isValid = true;
+    let unanswered = []
+
+    // Check Question 1
     if(document.querySelector("#q1").value == "") {
-        isValid = false;
-        document.querySelector("#validation").innerHTML = "Question 1 was not answered";
+        unanswered.push(1);
     }
-    return isValid;
+
+    // Check Question 2
+
+
+    // Check Question 3
+
+
+    // Check Question 4
+
+
+    // Check Question 5
+
+
+    // Check Question 6
+
+
+    // Check Question 7
+
+
+    // Check Question 8
+
+
+    // Check Question 9
+    
+
+    // Check if there are unanswered questions
+    if (unanswered.length == 0) {
+        return true;
+    }
+
+    // Print error message to user.
+    // Set beginning of message.
+    let validation = document.querySelector("#validation")
+    if (unanswered.length == 1) {
+        validation.innerHTML = "Question ";
+    } else {
+        validation.innerHTML = "Questions ";
+    }
+    
+    // Add question numbers to message
+    for(let i = 0; i < unanswered.length; i++) {
+        if (i != unanswered.length - 1) {
+            validation.innerHTML += `${unanswered[i]}, `;
+        } else {
+            validation.innerHTML += unanswered[i];
+        }
+    }
+
+    // Add the rest of the message
+    if(unanswered.length == 1) {
+        validation.innerHTML += " is ";
+    } else {
+        validation.innerHTML += " are ";
+    }
+    validation.innerHTML += "unanswered.";
+
+    // Finally return false
+    return false;
+
 } //isFormValid
 
 /**
@@ -253,6 +328,10 @@ function mixChoicesRadio(answer, wrongChoices, index) {
         displayChoices(array, "radio", index);
 } //mixChoicesRadio
 
+/**
+ * Update the text displayed next to the ranges for Question 10.
+ * Called when either range is moved.
+ */
 function updateRanges() {
     // Update latitude
     let latitude = document.querySelector("#latitude").value;
