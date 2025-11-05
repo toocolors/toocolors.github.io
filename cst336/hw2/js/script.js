@@ -13,6 +13,10 @@ q6WrongChoices = ["Log Angeles", "San Diego", "Las Vegas", "Spokane", "Boise", "
 // Q8
 q8CorrectChoices = ["Guam", "Puerto Rico", "Virgin Isles", "Baker Island", "Kingman Reed"];
 q8WrongChoices = ["Guadalajara", "Great Barrier Reef", "Antigua", "Barbuda", "Redonda"];
+// Q9
+q9CorrectStates = ["dc", "wdc", "washington dc"];
+q9CorrectCountries = ["us", "usa", "united states", "the united states", 
+    "united states of america", "the united states of america"];
 
 // Add event listeners
 document.querySelector("button").addEventListener("click", gradeQuiz);
@@ -64,6 +68,14 @@ function gradeQuiz() {
     let q2Response = document.querySelector("#q2").value;
     let q4Response = document.querySelector("input[name=q4]:checked");
     let q6Response = document.querySelector("input[name=q6]:checked");
+    //Q9
+    let q9Address = document.querySelector("#address").value.toLowerCase();
+    q9Address = q9Address.replace(/[.,]/g, '');
+    let q9State = document.querySelector("#state").value.toLowerCase();
+    q9State = q9State.replace(/[.,]/g, '');
+    let q9Zip = document.querySelector("#zip").value.toLowerCase();
+    let q9Country = document.querySelector("#country").value.toLowerCase();
+    q9Country = q9Country.replace(/[.,]/g, '');
 
     // Grading Question 1
     if (q1Response == "sacramento") {
@@ -125,8 +137,14 @@ function gradeQuiz() {
     }
 
     // Grading Question 9
-    
-
+    if(q9Address == "1600 pennsylvania avenue nw" &&
+        q9CorrectStates.includes(q9State) &&
+        q9Zip == "20500" &&
+        q9CorrectCountries.includes(q9Country)) {
+            rightAnswer(9);
+    } else {
+        wrongAnswer(9);
+    }
 
     // Update total score
     let totalScore = document.querySelector("#totalScore");
