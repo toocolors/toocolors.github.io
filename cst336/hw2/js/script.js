@@ -206,36 +206,48 @@ function rightAnswer(index) {
  * @returns true = All questions are answers, false = answers are missing
  */
 function isFormValid() {
-    let unanswered = []
+    let unanswered = [];
 
     // Check Question 1
-    if(document.querySelector("#q1").value == "") {
+    if (document.querySelector("#q1").value == "") {
         unanswered.push(1);
     }
 
     // Check Question 2
-
+    if (document.querySelector("#q2").value == "") {
+        unanswered.push(2);
+    }
 
     // Check Question 3
-
+    if (!document.querySelector("#Jackson").checked &&
+    !document.querySelector("#Franklin").checked &&
+    !document.querySelector("#Jefferson").checked &&
+    !document.querySelector("#Roosevelt").checked) {
+        unanswered.push(3);
+    }
 
     // Check Question 4
-
-
-    // Check Question 5
-
+    if (document.querySelector("input[name=q4]:checked") == null) {
+        unanswered.push(4);
+    }
 
     // Check Question 6
-
+    if (document.querySelector("input[name=q6]:checked") == null) {
+        unanswered.push(6);
+    }
 
     // Check Question 7
-
-
-    // Check Question 8
-
+    if (document.querySelector("#territories").value = "") {
+        unanswered.push(7);
+    }
 
     // Check Question 9
-
+    if(document.querySelector("#address").value == "" ||
+    document.querySelector("#state").value == "" ||
+    document.querySelector("#zip").value == "" ||
+    document.querySelector("#country").value == "") {
+        unanswered.push(9);
+    }
 
     // Check if there are unanswered questions
     if (unanswered.length == 0) {
