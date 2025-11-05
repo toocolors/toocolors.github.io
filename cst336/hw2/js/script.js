@@ -198,7 +198,7 @@ function rightAnswer(index) {
     document.querySelector(`#q${index}Feedback`).innerHTML = "Correct!";
     document.querySelector(`#q${index}Feedback`).className = "bg-success text-white";
     document.querySelector(`#markImg${index}`).innerHTML = "<img src='img/checkmark.png' alt=Checkmark'>"
-    score += 20;
+    score += 10;
 } //rightAnswer
 
 /**
@@ -235,7 +235,7 @@ function isFormValid() {
 
 
     // Check Question 9
-    
+
 
     // Check if there are unanswered questions
     if (unanswered.length == 0) {
