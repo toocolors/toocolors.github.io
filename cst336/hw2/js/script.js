@@ -91,13 +91,7 @@ function gradeQuiz() {
     for (let i = 0; i < q5Answers.length; i++) {
         let checkbox = q5Answers[i];
         let inCorrects = q5CorrectChoices.includes(checkbox.value);
-        console.log(`Grading ${checkbox.value}, ${checkbox.checked}`);
-        if (inCorrects && !checkbox.checked) {
-            console.log(`${checkbox.value} should be checked`);
-            q5Correct = false;
-            break;
-        } else if (!inCorrects && checkbox.checked) {
-            console.log(`${checkbox.value} shouldn't be checked`);
+        if (inCorrects && !checkbox.checked || !inCorrects && checkbox.checked) {
             q5Correct = false;
             break;
         }
@@ -107,6 +101,8 @@ function gradeQuiz() {
     } else {
         wrongAnswer(5);
     }
+
+    // Grading Question 6
 
 
     // Update total score
