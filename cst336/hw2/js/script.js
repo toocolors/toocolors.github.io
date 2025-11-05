@@ -20,12 +20,16 @@ q9CorrectCountries = ["us", "usa", "united states", "the united states",
 
 // Add event listeners
 document.querySelector("button").addEventListener("click", gradeQuiz);
+document.querySelector("#latitude").addEventListener("input", updateRanges);
+document.querySelector("#longitude").addEventListener("input", updateRanges);
+
 
 // Call functions
 displayChoices(q4Choices, "radio", 4); // Q4
 mixChoicesCheckBox(q5CorrectChoices, q5WrongChoices, 5); // Q5
 mixChoicesRadio("Reno", q6WrongChoices, 6) // Q6
 mixChoicesCheckBox(q8CorrectChoices, q8WrongChoices, 8); // Q8
+updateRanges();
 
 /**
  * Displays elements of array as choices for the appropriate question.
@@ -146,6 +150,14 @@ function gradeQuiz() {
         wrongAnswer(9);
     }
 
+    // Grading Question 10
+    if(document.querySelector("#latitude").value == 80 &&
+        document.querySelector("#longitude").value == 94) {
+            rightAnswer(10);
+    } else {
+        wrongAnswer(10);
+    }
+
     // Update total score
     let totalScore = document.querySelector("#totalScore");
     totalScore.innerHTML = `Total Score: ${score}`;
@@ -240,6 +252,25 @@ function mixChoicesRadio(answer, wrongChoices, index) {
     // Display array
         displayChoices(array, "radio", index);
 } //mixChoicesRadio
+
+function updateRanges() {
+    // Update latitude
+    let latitude = document.querySelector("#latitude").value;
+    if (latitude >= 100) {
+        document.querySelector("#latitudeLabel").textContent = `Latitude: 37.00`;
+    } else {
+        document.querySelector("#latitudeLabel").textContent = `Latitude: 36.${latitude}`;
+    }
+
+    // Update longitude
+    let longitude = document.querySelector("#longitude").value;
+    if (longitude >= 100) {
+        document.querySelector("#longitudeLabel").textContent = `Longitude: -122.00`;
+    } else {
+        document.querySelector("#longitudeLabel").textContent = `Longitude: -121.${longitude}`;
+    }
+    
+}
 
 /**
  * Updates feedback and markImg of question at index.
