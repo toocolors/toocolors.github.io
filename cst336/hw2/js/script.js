@@ -71,6 +71,8 @@ function gradeCheckbox(index, corrects) {
 /**
  * Grades each question and displays the total score.
  * Returns early if one or more questions is missing an answer.
+ * Some questions can be graded as partially correct,
+ *  this still counts as getting it incorrect.
  */
 function gradeQuiz() {
     console.log("Grading quiz...");
