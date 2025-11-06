@@ -247,6 +247,9 @@ function gradeQuiz() {
     // Show total number of attempts
     document.querySelector("#totalAttempts").innerHTML = `Total Attempts: ${++attempts}`;
     localStorage.setItem("total_attempts", attempts);
+
+    // Show reset button
+    document.querySelector("#resetBtn").style.display = "inline";
 } //gradeQuiz
 
 function rightAnswer(index) {
