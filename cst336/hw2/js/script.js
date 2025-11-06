@@ -416,9 +416,6 @@ function partialAnswer(index) {
  * @param {boolean} reload True = reload page, False = don't reload page, Default is true
  */
 function resetQuiz(reload = true) {
-    // Hide Reset Button
-    // document.querySelector("#resetBtn").style.display = "none";
-
     // Reset Question 1
     document.querySelector("#q1").value = "";
 
