@@ -8,3 +8,8 @@ h1, main, footer {
     padding: 10px;
     width: 1000px;
 }
+
+h1 {
+    background-color: #8fa0ce;
+
+}
