@@ -74,9 +74,9 @@ function gradeQuiz() {
     document.querySelector("#validation").innerHTML = "";
 
     // Check if questions are missing
-    if (!isFormValid()) {
-        return;
-    }
+    // if (!isFormValid()) {
+    //     return;
+    // }
 
     // variables
     score = 0;
@@ -146,7 +146,7 @@ function gradeQuiz() {
     }
 
     // Grading Question 8
-    if (gradeCheckbox(5, q8CorrectChoices)) {
+    if (gradeCheckbox(8, q8CorrectChoices)) {
         rightAnswer(8);
     } else {
         wrongAnswer(8);
@@ -209,7 +209,7 @@ function gradeQuiz() {
 
 function rightAnswer(index) {
     document.querySelector(`#q${index}Feedback`).innerHTML = "Correct!";
-    document.querySelector(`#q${index}Feedback`).className = "bg-success text-white";
+    document.querySelector(`#question${index}`).className = "question bg-success";
     document.querySelector(`#markImg${index}`).innerHTML = "<img src='img/checkmark.png' alt=Checkmark'>"
     score += 10;
 } //rightAnswer
@@ -383,6 +383,6 @@ function updateRanges() {
  */
 function wrongAnswer(index) {
     document.querySelector(`#q${index}Feedback`).innerHTML = "Incorrect!";
-    document.querySelector(`#q${index}Feedback`).className = "bg-warning text-white";
+    document.querySelector(`#question${index}`).className = "question bg-warning";
     document.querySelector(`#markImg${index}`).innerHTML = "<img src='img/xmark.png' alt=Checkmark'>"
 } //wrongAnswer
