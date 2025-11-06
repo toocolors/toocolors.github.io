@@ -42,7 +42,7 @@ function displayChoices(array, type, index) {
     for (let i = 0; i < array.length; i++) {
         document.querySelector(`#q${index}Choices`).innerHTML += `<input type='${type}' 
         name='q${index}' id='${array[i]}' value='${array[i]}' class='q${index}'>
-        <label for='${array[i]}'>${array[i]}</label>`;
+        <label for='${array[i]}'>${array[i]}</label><br>`;
     }
 } //displayChoices
 

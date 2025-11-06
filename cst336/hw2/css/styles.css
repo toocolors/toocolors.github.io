@@ -28,7 +28,11 @@ h1 {
     margin-right: 10px;
 }
 
-.feedback {;
+.feedback {
     margin: auto;
     margin-left: 10px;
+}
+
+.multiple_choice {
+    text-align: left;
 }
