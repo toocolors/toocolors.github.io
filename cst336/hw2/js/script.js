@@ -20,17 +20,18 @@ q9CorrectCountries = ["us", "usa", "united states", "the united states",
     "united states of america", "the united states of america"];
 
 // Add event listeners
-document.querySelector("button").addEventListener("click", gradeQuiz);
+document.querySelector("#submitBtn").addEventListener("click", gradeQuiz);
+document.querySelector("#resetBtn").addEventListener("click", resetQuiz);
 document.querySelector("#latitude").addEventListener("input", updateRanges);
 document.querySelector("#longitude").addEventListener("input", updateRanges);
 
 
 // Call functions
+resetQuiz(false);
 displayChoices(q4Choices, "radio", 4); // Q4
 mixChoicesCheckBox(q5CorrectChoices, q5WrongChoices, 5); // Q5
 mixChoicesRadio("Reno", q6WrongChoices, 6) // Q6
 mixChoicesCheckBox(q8CorrectChoices, q8WrongChoices, 8); // Q8
-updateRanges();
 
 /**
  * Displays elements of array as choices for the appropriate question.
@@ -408,6 +409,47 @@ function partialAnswer(index) {
     document.querySelector(`#question${index}`).className = "question bg-warning";
     document.querySelector(`#markImg${index}`).innerHTML = "<img src='img/xmark.png' alt=Xmark'>"
 } //wrongAnswer
+
+/**
+ * Clears all of the questions that aren't assigned answers in script (all but 4,5,6,8).
+ * Reloads page if parameter is true.
+ * @param {boolean} reload True = reload page, False = don't reload page, Default is true
+ */
+function resetQuiz(reload = true) {
+    // Hide Reset Button
+    // document.querySelector("#resetBtn").style.display = "none";
+
+    // Reset Question 1
+    document.querySelector("#q1").value = "";
+
+    // Reset Question 2
+    document.querySelector("#q2").value = "";
+
+    // Reset Question 3
+    document.querySelector("#Jackson").checked = false;
+    document.querySelector("#Franklin").checked = false;
+    document.querySelector("#Jefferson").checked = false;
+    document.querySelector("#Roosevelt").checked = false;
+
+    // Reset Question 7
+    document.querySelector("#territories").value = "";
+
+    // Reset Question 9
+    document.querySelector("#address").value = "";
+    document.querySelector("#state").value = "";
+    document.querySelector("#zip").value = "";
+    document.querySelector("#country").value = "";
+
+    // Reset Question 10
+    document.querySelector("#latitude").value = "50";
+    document.querySelector("#longitude").value = "50";
+    updateRanges();
+
+    // Reload Page
+    if(reload) {
+        location.reload();
+    }
+} //resetQuiz
 
 /**
  * Update the text displayed next to the ranges for Question 10.
