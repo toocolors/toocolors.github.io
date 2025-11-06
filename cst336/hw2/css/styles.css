@@ -13,10 +13,15 @@ h1 {
     background-color: #8fa0ce;
 }
 
+button {
+    margin-bottom: 10px;
+}
+
 /* QUESTION STYLES */
 .question {
     padding: 10px;
     margin: 10px;
+    border-radius: 10px;
 }
 
 .answer_feedback {
@@ -35,4 +40,12 @@ h1 {
 
 .multiple_choice {
     text-align: left;
+}
+
+/* SCORE/FEEDBACK STYLES */
+#score_feedback {
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+    width: 600px;
 }

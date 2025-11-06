@@ -14,6 +14,7 @@ q6WrongChoices = ["Log Angeles", "San Diego", "Las Vegas", "Spokane", "Boise", "
 q8CorrectChoices = ["Guam", "Puerto Rico", "Virgin Isles", "Baker Island", "Kingman Reed"];
 q8WrongChoices = ["Guadalajara", "Great Barrier Reef", "Antigua", "Barbuda", "Redonda"];
 // Q9
+q9CorrectAddresses = ["1600 pennsylvania avenue nw", "1600 pennsylvania av nw", "1600 pennsylvania ave nw"];
 q9CorrectStates = ["dc", "wdc", "washington dc"];
 q9CorrectCountries = ["us", "usa", "united states", "the united states", 
     "united states of america", "the united states of america"];
@@ -153,7 +154,7 @@ function gradeQuiz() {
     }
 
     // Grading Question 9
-    if(q9Address == "1600 pennsylvania avenue nw" &&
+    if(q9CorrectAddresses.includes(q9Address) &&
         q9CorrectStates.includes(q9State) &&
         q9Zip == "20500" &&
         q9CorrectCountries.includes(q9Country)) {
@@ -171,35 +172,31 @@ function gradeQuiz() {
     }
 
     // Update total score
-    let totalScore = document.querySelector("#totalScore");
-    totalScore.innerHTML = `Total Score: ${score}`;
+    document.querySelector("#totalScore").innerHTML = `Total Score: ${score}`;
+    let scoreDiv = document.querySelector("#score_feedback");
     if (score >= 80) {
-        totalScore.className = "text-success";
+        scoreDiv.className = "bg-success";
+    } else if (score >= 70) {
+        scoreDiv.className = "bg-warning";
     } else {
-        totalScore.className = "text-danger";
+        scoreDiv.className = "bg-danger";
     }
 
     // Update quiz feedback
     let feedback = document.querySelector("#quizFeedback");
     if (score >= 100) {
         feedback.innerHTML = "Amazing! You got a perfect score!"
-        feedback.className = "text-success";
     } else if (score >= 90) {
         feedback.innerHTML = "Wow! You got an A!"
-        feedback.className = "text-success";
     }
     else if (score >= 80) {
         feedback.innerHTML = "Nice work! You got a B."
-        feedback.className = "text-success";
     } else if (score >= 70) {
-        feedback.innerHTML = "You passed with a C."
-        feedback.className = "text-warning";
+        feedback.innerHTML = "That was close! You passed with a C."
     } else if (score >= 60) {
         feedback.innerHTML = "You got a D. Better study next time."
-        feedback.className = "text-danger";
     } else {
         feedback.innerHTML = "You got an F..."
-        feedback.className = "text-danger";
     }
 
     // Show total number of attempts
