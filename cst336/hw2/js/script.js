@@ -160,7 +160,6 @@ function gradeQuiz() {
 
     // Grading Question 7
     let q7Response = document.querySelector("#territories").value;
-    console.log(q7Response);
     if (q7Response == 14) {
         rightAnswer(7);
     } else if(Math.abs(14 - q7Response) <= 2) {
