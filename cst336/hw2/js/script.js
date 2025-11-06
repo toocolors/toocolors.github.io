@@ -181,11 +181,24 @@ function gradeQuiz() {
 
     // Update quiz feedback
     let feedback = document.querySelector("#quizFeedback");
-    if (score >= 80) {
-        feedback.innerHTML = "Congrats! You passed!"
+    if (score >= 100) {
+        feedback.innerHTML = "Amazing! You got a perfect score!"
         feedback.className = "text-success";
+    } else if (score >= 90) {
+        feedback.innerHTML = "Wow! You got an A!"
+        feedback.className = "text-success";
+    }
+    else if (score >= 80) {
+        feedback.innerHTML = "Nice work! You got a B."
+        feedback.className = "text-success";
+    } else if (score >= 70) {
+        feedback.innerHTML = "You passed with a C."
+        feedback.className = "text-warning";
+    } else if (score >= 60) {
+        feedback.innerHTML = "You got a D. Better study next time."
+        feedback.className = "text-danger";
     } else {
-        feedback.innerHTML = "You failed..."
+        feedback.innerHTML = "You got an F..."
         feedback.className = "text-danger";
     }
 
