@@ -79,9 +79,9 @@ function gradeQuiz() {
     document.querySelector("#validation").innerHTML = "";
 
     // Check if questions are missing
-    // if (!isFormValid()) {
-    //     return;
-    // }
+    if (!isFormValid()) {
+        return;
+    }
 
     // variables
     score = 0;
@@ -159,7 +159,8 @@ function gradeQuiz() {
     }
 
     // Grading Question 7
-    let q7Response = Number(document.querySelector("#territories").value);
+    let q7Response = document.querySelector("#territories").value;
+    console.log(q7Response);
     if (q7Response == 14) {
         rightAnswer(7);
     } else if(Math.abs(14 - q7Response) <= 2) {
@@ -292,7 +293,7 @@ function isFormValid() {
     }
 
     // Check Question 7
-    if (document.querySelector("#territories").value = "") {
+    if (document.querySelector("#territories").value == "") {
         unanswered.push(7);
     }
 
