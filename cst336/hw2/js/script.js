@@ -109,11 +109,23 @@ function gradeQuiz() {
     }
 
     // Grading Question 3
-    if (document.querySelector("#Jefferson").checked && 
-        document.querySelector("#Roosevelt").checked &&
-        !document.querySelector("#Jackson").checked &&
-        !document.querySelector("#Franklin").checked) {
-            rightAnswer(3);
+    let q3Score = 0;
+    if (document.querySelector("#Jefferson").checked) {
+        q3Score++;
+    }
+    if (document.querySelector("#Roosevelt").checked) {
+        q3Score++;
+    }
+    if (!document.querySelector("#Jackson").checked) {
+        q3Score++;
+    }
+    if (!document.querySelector("#Franklin").checked) {
+        q3Score++;
+    }
+    if (q3Score >= 4) {
+        rightAnswer(3);
+    } else if (q3Score == 3) {
+        partialAnswer(3);
     } else {
         wrongAnswer(3);
     }
@@ -140,8 +152,11 @@ function gradeQuiz() {
     }
 
     // Grading Question 7
-    if (document.querySelector("#territories").value == 14) {
+    let q7Response = Number(document.querySelector("#territories").value);
+    if (q7Response == 14) {
         rightAnswer(7);
+    } else if(Math.abs(14 - q7Response) <= 2) {
+        partialAnswer(7);
     } else {
         wrongAnswer(7);
     }
@@ -154,19 +169,39 @@ function gradeQuiz() {
     }
 
     // Grading Question 9
-    if(q9CorrectAddresses.includes(q9Address) &&
-        q9CorrectStates.includes(q9State) &&
-        q9Zip == "20500" &&
-        q9CorrectCountries.includes(q9Country)) {
-            rightAnswer(9);
+    let q9Score = 0;
+    if (q9CorrectAddresses.includes(q9Address)) {
+        q9Score++;
+    }
+    if (q9CorrectStates.includes(q9State)) {
+        q9Score++;
+    }
+    if (q9Zip == "20500") {
+        q9Score++;
+    }
+    if (q9CorrectCountries.includes(q9Country)) {
+        q9Score++;
+    }
+    if(q9Score >= 4) {
+        rightAnswer(9);
+    } else if (q9Score == 3) {
+        partialAnswer(9);
     } else {
         wrongAnswer(9);
     }
 
     // Grading Question 10
-    if(document.querySelector("#latitude").value == 80 &&
-        document.querySelector("#longitude").value == 94) {
-            rightAnswer(10);
+    let q10Score = 0;
+    if(document.querySelector("#latitude").value == 80) {
+        q10Score++;
+    }
+    if (document.querySelector("#longitude").value == 94) {
+        q10Score++;
+    }
+    if(q10Score >= 2) {
+        rightAnswer(10);
+    } else if (q10Score == 1) {
+        partialAnswer(10);
     } else {
         wrongAnswer(10);
     }
@@ -349,6 +384,17 @@ function mixChoicesRadio(answer, wrongChoices, index) {
     // Display array
         displayChoices(array, "radio", index);
 } //mixChoicesRadio
+
+/**
+ * Updates feedback and markImg of question at index.
+ * Called when question is answered mostly correct.
+ * @param {int} index The index of the question.
+ */
+function partialAnswer(index) {
+    document.querySelector(`#q${index}Feedback`).innerHTML = "Almost!";
+    document.querySelector(`#question${index}`).className = "question bg-warning";
+    document.querySelector(`#markImg${index}`).innerHTML = "<img src='img/xmark.png' alt=Xmark'>"
+} //wrongAnswer
 
 /**
  * Update the text displayed next to the ranges for Question 10.
