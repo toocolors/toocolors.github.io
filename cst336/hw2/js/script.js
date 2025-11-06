@@ -383,6 +383,6 @@ function updateRanges() {
  */
 function wrongAnswer(index) {
     document.querySelector(`#q${index}Feedback`).innerHTML = "Incorrect!";
-    document.querySelector(`#question${index}`).className = "question bg-warning";
-    document.querySelector(`#markImg${index}`).innerHTML = "<img src='img/xmark.png' alt=Checkmark'>"
+    document.querySelector(`#question${index}`).className = "question bg-danger";
+    document.querySelector(`#markImg${index}`).innerHTML = "<img src='img/xmark.png' alt=Xmark'>"
 } //wrongAnswer
