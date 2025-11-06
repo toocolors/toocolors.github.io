@@ -49,21 +49,23 @@ function displayChoices(array, type, index) {
 
 /**
  * Grades the check boxes for the question at index.
+ * Increases the score of question for each correct checkbox.
  * @param {int} index The question to be graded.
  * @param {array} corrects The array of correct choices for the question.
- * @returns True = correct, False = incorrect
+ * @returns Number of checkboxes checked correctly.
  */
 function gradeCheckbox(index, corrects) {
+    let qScore = 0;
     let answers = [];
     answers = answers.concat(Array.from(document.getElementsByClassName(`q${index}`)));
     for (let i = 0; i < answers.length; i++) {
         let checkbox = answers[i];
         let inCorrects = corrects.includes(checkbox.value);
-        if (inCorrects && !checkbox.checked || !inCorrects && checkbox.checked) {
-            return false;
+        if (inCorrects && checkbox.checked || !inCorrects && !checkbox.checked) {
+            qScore++;
         }
     }
-    return true;
+    return qScore;
 } //gradeCheckbox
 
 /**
@@ -138,8 +140,11 @@ function gradeQuiz() {
     }
 
     // Grading Question 5
-    if (gradeCheckbox(5, q5CorrectChoices)) {
+    let q5Score = gradeCheckbox(5, q5CorrectChoices)
+    if (q5Score >= 4) {
         rightAnswer(5);
+    } else if (q5Score == 3) {
+        partialAnswer(5);
     } else {
         wrongAnswer(5);
     }
@@ -162,8 +167,11 @@ function gradeQuiz() {
     }
 
     // Grading Question 8
-    if (gradeCheckbox(8, q8CorrectChoices)) {
+    let q8Score = gradeCheckbox(8, q8CorrectChoices)
+    if (q8Score >= 4) {
         rightAnswer(8);
+    } else if (q8Score == 3) {
+        partialAnswer(8);
     } else {
         wrongAnswer(8);
     }
