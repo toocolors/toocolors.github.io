@@ -106,9 +106,19 @@ async function displayCity() {
     // Get Response
     let response = await fetch(url);
     let data = await response.json();
-    // console.log(data);
 
-    // Display data
+    // Reset data
+    let zipError = document.querySelector("#zipError");
+    zipError.innerHTML = "";
+    document.querySelector("#city").innerHTML = "";
+    document.querySelector("#latitude").innerHTML = "";
+    document.querySelector("#longitude").innerHTML = "";
+    
+    // Display Data
+    if (data == false) {
+        zipError.innerHTML = "ZIP code not found.<br>";
+        return;
+    }
     document.querySelector("#city").innerHTML = data.city;
     document.querySelector("#latitude").innerHTML = data.latitude;
     document.querySelector("#longitude").innerHTML = data.longitude;
@@ -194,7 +204,7 @@ function validateForm(e) {
         document.querySelector("#passwordError").innerHTML = "Invalid Password!<br>";
         isValid = false;
     }
-    if(retypedPassword = null || password != retypedPassword) {
+    if(retypedPassword == null || password != retypedPassword) {
         document.querySelector("#retypeError").innerHTML = "Passwords don't match!<br>";
         isValid = false;
     }
