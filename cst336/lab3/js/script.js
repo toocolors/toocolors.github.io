@@ -2,6 +2,9 @@
 document.querySelector("#zip").addEventListener("change", displayCity);
 document.querySelector("#state").addEventListener("change", displayState);
 document.querySelector("#username").addEventListener("change", checkUsername);
+document.querySelector("#signupForm").addEventListener("submit", function(event) {
+    validateForm(event);
+});
 
 /**
  * Checks whether the entered username is available,
@@ -81,5 +84,21 @@ async function displayState() {
     countyList.innerHTML = "<option> Select County </option>";
     for (let i = 0; i < data.length; i++) {
         countyList.innerHTML += `<option> ${data[i].county} </option>`;
+    }
+}
+
+function validateForm(e) {
+    let isValid = true;
+
+    // Check username
+    let username = document.querySelector("#username").value;
+    if (username.length == 0) {
+        document.querySelector("#usernameError").innerHTML = "Username Required!";
+        isValid = false;
+    }
+
+    // Check if form is valid
+    if (!isValid) {
+        e.preventDefault();
     }
 }
