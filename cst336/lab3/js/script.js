@@ -97,6 +97,14 @@ function validateForm(e) {
         isValid = false;
     }
 
+    // Check password
+    let password = document.querySelector("#password").value;
+    let retypedPassword = document.querySelector("#retypePassword").value;
+    if (password.length < 6 || password != retypedPassword) {
+        document.querySelector("#passwordError").innerHTML = "Invalid Password!";
+        isValid = false;
+    }
+
     // Check if form is valid
     if (!isValid) {
         e.preventDefault();
