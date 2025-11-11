@@ -2,6 +2,7 @@
 document.querySelector("#zip").addEventListener("change", displayCity);
 document.querySelector("#state").addEventListener("change", displayState);
 document.querySelector("#username").addEventListener("change", checkUsername);
+document.querySelector("#password").addEventListener("click", suggestPassword);
 document.querySelector("#signupForm").addEventListener("submit", function(event) {
     validateForm(event);
 });
@@ -87,6 +88,24 @@ async function displayState() {
     }
 }
 
+function suggestPassword() {
+    // Get random password
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_!@';
+    const passwordLength = Math.floor(Math.random() * (20 - 6 + 1) + 6);
+    let password = '';
+    for (let i = 0; i < passwordLength; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+
+    // Display random password
+    document.querySelector("#suggestedPassword").innerHTML = password;
+}
+
+/**
+ * Checks to see if the username and password are valid,
+ *  then blocks the form from completing if either are not.
+ * @param {event} e The event related to the form submission.
+ */
 function validateForm(e) {
     let isValid = true;
 
