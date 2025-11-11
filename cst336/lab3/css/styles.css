@@ -14,6 +14,22 @@ form {
     width: 50%;
 }
 
+/* SIGNUP PAGE STYLES */
+
 #submit {
+    margin-left: 40%;
+}
+
+/* WELCOME PAGE STYLES */
+
+#welcome {
+    height: 150px;
+}
+
+#welcomeText {
+    padding-top: 30px;
+}
+
+#backButton {
     margin-left: 40%;
 }
