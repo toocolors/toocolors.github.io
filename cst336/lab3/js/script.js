@@ -1,6 +1,34 @@
 // event listeners
 document.querySelector("#zip").addEventListener("change", displayCity);
 document.querySelector("#state").addEventListener("change", displayState);
+document.querySelector("#username").addEventListener("change", checkUsername);
+
+/**
+ * Checks whether the entered username is available,
+ *  then displays the result.
+ * Uses CSUMB usernames API.
+ */
+async function checkUsername() {
+    // Get username
+    let username = document.querySelector("#username").value;
+
+    // Get URL
+    let url = `https://csumb.space/api/usernamesAPI.php?username=${username}`;
+
+    // Get data
+    let response = await fetch(url);
+    let data = await response.json();
+
+    // Check username
+    let usernameError = document.querySelector("#usernameError");
+    if(data.available) {
+        usernameError.innerHTML = "Username available!";
+        usernameError.style.color = "green";
+    } else {
+        usernameError.innerHTML = "Username taken!";
+        usernameError.style.color = "red";
+    }
+}
 
 /**
  * Gets data about the ZIP code entered in the #zip text box,
@@ -25,6 +53,12 @@ async function displayCity() {
     document.querySelector("#longitude").innerHTML = data.longitude;
 }
 
+/**
+ * Gets the counties within the currently selected state,
+ *  then displays those counties.
+ * Uses CSUMB County List API.
+ * @returns 
+ */
 async function displayState() {
     // Get State
     let state = document.querySelector("#state").value;
