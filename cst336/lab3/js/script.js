@@ -155,6 +155,9 @@ function displayStates() {
     }
 }
 
+/**
+ * Displays a potential password next to the password input text box.
+ */
 function suggestPassword() {
     // Get random password
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_!@';
@@ -174,20 +177,25 @@ function suggestPassword() {
  * @param {event} e The event related to the form submission.
  */
 function validateForm(e) {
+
     let isValid = true;
 
     // Check username
     let username = document.querySelector("#username").value;
     if (username.length == 0) {
-        document.querySelector("#usernameError").innerHTML = "Username Required!";
+        document.querySelector("#usernameError").innerHTML = "Username Required!<br>";
         isValid = false;
     }
 
     // Check password
     let password = document.querySelector("#password").value;
     let retypedPassword = document.querySelector("#retypePassword").value;
-    if (password.length < 6 || password != retypedPassword) {
-        document.querySelector("#passwordError").innerHTML = "Invalid Password!";
+    if (password.length < 6) {
+        document.querySelector("#passwordError").innerHTML = "Invalid Password!<br>";
+        isValid = false;
+    }
+    if(retypedPassword = null || password != retypedPassword) {
+        document.querySelector("#retypeError").innerHTML = "Passwords don't match!<br>";
         isValid = false;
     }
 

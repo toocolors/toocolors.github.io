@@ -1,0 +1,19 @@
+body {
+    background-color: lightgreen;
+    width: 1000px;
+    margin: auto;
+}
+
+h1, form, footer {
+    margin: 0 auto;
+    padding: 10px;
+}
+
+form {
+    text-align: left;
+    width: 50%;
+}
+
+#submit {
+    margin-left: 40%;
+}
