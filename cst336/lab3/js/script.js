@@ -83,11 +83,11 @@ async function checkUsername() {
     // Check username
     let usernameError = document.querySelector("#usernameError");
     if(data.available) {
-        usernameError.innerHTML = "Username available!";
-        usernameError.style.color = "green";
+        usernameError.innerHTML = "Username available!<br>";
+        usernameError.className = "text-success";
     } else {
-        usernameError.innerHTML = "Username taken!";
-        usernameError.style.color = "red";
+        usernameError.innerHTML = "Username taken!<br>";
+        usernameError.className = "text-danger";
     }
 }
 
