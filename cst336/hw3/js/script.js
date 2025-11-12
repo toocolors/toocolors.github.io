@@ -4,6 +4,7 @@ let pokemonList = [];
 
 // Event Listeners
 document.querySelector("#queryButton").addEventListener("click", getPokemon);
+document.querySelector("#queryNumber").addEventListener("click", getNameQuery);
 
 // Call Functions
 checkExpDate();
@@ -47,6 +48,24 @@ function checkExpDate() {
         getPokemonList();
     }
 } // checkExpDate
+
+function getNameQuery() {
+    // Get id, reset queryName
+    let id = document.querySelector("#queryNumber").value - 1;
+    let queryName = document.querySelector("#queryName");
+    queryName.value = "";
+
+    // Check if id is valid
+    if (id <= 0 || pokemonList.count <= id) {
+        queryName.placeholder = "Pokémon not found."
+        return;
+    }
+
+    // Update queryName with name of pokemon
+    let name = pokemonList.results[id].name;
+    name = name.charAt(0).toUpperCase() + name.substring(1, name.length);
+    queryName.placeholder = `${name}`;
+}
 
 function getPokemon() {
     // Check if id is valid
