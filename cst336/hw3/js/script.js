@@ -60,6 +60,14 @@ function checkExpDate() {
     }
 } // checkExpDate
 
+/**
+ * Gets pokemon data associated with the given id.
+ * Looks for pokemon data in session storage,
+ *  then from PokeAPI if nothing is found in session storage,
+ *  then saves the pokemon data to session storage if it was retreived from PokeAPI.
+ * @param {Number} id 
+ * @returns The JSON of the requested pokemon.
+ */
 async function getPokemon(id) {
     // Look for pokemon in session storage
     console.log(`Looking for ${pokemonList.results[id].name} in session storage...`);
@@ -86,7 +94,7 @@ async function getPokemon(id) {
 
     // Return pokemon
     return pokemon;
-}
+} // getPokemon
 
 /**
  * Gets pokemon list from local storage.
