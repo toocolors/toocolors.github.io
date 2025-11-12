@@ -127,6 +127,7 @@ function parsePokemonName(name) {
 }
 
 async function querySubmit() {
+
     // Get id
     let queryNumber = document.querySelector("#queryNumber");
     let id;
@@ -140,6 +141,10 @@ async function querySubmit() {
     if (!Number.isInteger(id) || id < 0 || pokemonList.count <= id) {
         return;
     }
+
+    // Show Dex
+    document.querySelector("#dexBackground").style.display = "block";
+    document.querySelector("#dex").style.display = "block";
 
     // Get Pokemon
     let pokemon = await getPokemon(id);
@@ -158,9 +163,11 @@ async function querySubmit() {
     document.querySelector("#dexNumber").innerHTML = id + 1;
     
     // Update Pokemon Types
-    document.querySelector("#dexType").innerHTML = pokemon.types[0].type.name;
+    let firstType = pokemon.types[0].type.name;
+    document.querySelector("#dexType").innerHTML = `<span class='${firstType} typeSpan'>${firstType}</span>`;
     if(pokemon.types.length == 2) {
-        document.querySelector("#dexType").innerHTML += `, ${pokemon.types[1].type.name}`;
+        let secondType = pokemon.types[1].type.name;
+        document.querySelector("#dexType").innerHTML += `<span class='${secondType} typeSpan'>${secondType}</span>`;
     }
 
     // Update Dex Background

@@ -25,10 +25,98 @@ h1 {
     background-color: lightgreen;
     padding: 10px;
     margin-top: 0;
+    display: none;
 }
 
 #dex {
     background-color: white;
     width: 50%;
     margin: auto;
+    display: none;
+}
+
+/* TYPE TEXT STYLES */
+#dexType {
+    margin: 10px;
+}
+
+.typeSpan {
+    margin: auto 5px;
+    padding: 5px;
+}
+
+.bug {
+    background-color: #91a119;
+}
+
+.dark {
+    background-color: #50413f;
+}
+
+.dragon {
+    background-color: #5060e1;
+}
+
+.electric {
+    background-color: #fac000;
+}
+
+.fairy {
+    background-color: #ef70ef;
+}
+
+.fighting {
+    background-color: #ff8000;
+}
+
+.fire {
+    background-color: #e62829;
+}
+
+.flying {
+    background-color: #81b9ef;
+}
+
+.ghost {
+    background-color: #704170;
+}
+
+.grass {
+    background-color: #3fa129;
+}
+
+.ground {
+    background-color: #915121;
+}
+
+.ice {
+    background-color: #3fd8ff;
+}
+
+.normal {
+    background-color: #9fa19f;
+}
+
+.poison {
+    background-color: #9141cb;
+}
+
+.psychic {
+    background-color: #ef4179;
+}
+
+.rock {
+    background-color: #afa981;
+}
+
+.steel {
+    background-color: #60a1b8;
+}
+
+.stellar {
+    background-color: gray;
+}
+
+.water {
+    background-color: #2980ef;
 }
