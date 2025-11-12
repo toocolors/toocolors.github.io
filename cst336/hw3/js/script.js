@@ -144,6 +144,13 @@ async function querySubmit() {
     // Get Pokemon
     let pokemon = await getPokemon(id);
 
+    // Update Sprite
+    document.querySelector("#dexSprite").innerHTML = `<img src=${pokemon.sprites.front_default} alt=${pokemon.name}>`;
+
+    // Update Cry
+    document.querySelector("#dexCry").innerHTML = `<audio controls><source 
+        src='${pokemon.cries.latest}'></audio>`;
+
     // Update Pokemon Name
     document.querySelector("#dexName").innerHTML = `${parsePokemonName(pokemonList.results[id].name)}`;
     

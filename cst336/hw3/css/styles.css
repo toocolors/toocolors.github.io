@@ -1,7 +1,34 @@
 body {
+    background-color: lightblue;
     text-align: center;
+    width: 1000px;
+    margin: auto;
+}
+
+/* HEADER STYLES */
+h1 {
+    background-color: yellow;
+    margin: 0 auto;
+    padding: 10px;
 }
 
 /* QUERY STYLES */
+#query {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 0;
+}
 
 /* DEX STYLES */
+
+#dexBackground {
+    background-color: lightgreen;
+    padding: 10px;
+    margin-top: 0;
+}
+
+#dex {
+    background-color: white;
+    width: 50%;
+    margin: auto;
+}
