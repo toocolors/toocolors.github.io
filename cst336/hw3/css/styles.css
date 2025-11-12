@@ -35,6 +35,10 @@ h1 {
     display: none;
 }
 
+#dexNumber {
+    color: gray;
+}
+
 /* TYPE TEXT STYLES */
 #dexType {
     margin: 10px;

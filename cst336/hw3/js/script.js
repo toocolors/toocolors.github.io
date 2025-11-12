@@ -160,7 +160,7 @@ async function querySubmit() {
     document.querySelector("#dexName").innerHTML = `${parsePokemonName(pokemonList.results[id].name)}`;
     
     // Update Pokemon ID
-    document.querySelector("#dexNumber").innerHTML = id + 1;
+    document.querySelector("#dexNumber").innerHTML = `No. ${id + 1}`;
     
     // Update Pokemon Types
     let firstType = pokemon.types[0].type.name;
