@@ -4,8 +4,18 @@ let pokemonList = [];
 
 // Event Listeners
 document.querySelector("#queryButton").addEventListener("click", getPokemon);
-document.querySelector("#queryNumber").addEventListener("change", updateNameQuery);
-document.querySelector("#queryName").addEventListener("change", updateNumberQuery);
+document.querySelector("#queryNumber").addEventListener("input", updateNameQuery);
+document.querySelector("#queryName").addEventListener("input", updateNumberQuery);
+document.querySelector("#queryNumber").addEventListener("keypress", function(event) {
+    if(event.key === "Enter") {
+        getPokemon();
+    }
+});
+document.querySelector("#queryName").addEventListener("keypress", function(event) {
+    if(event.key === "Enter") {
+        getPokemon();
+    }
+});
 
 // Call Functions
 checkExpDate();
@@ -51,21 +61,22 @@ function checkExpDate() {
 } // checkExpDate
 
 function getPokemon() {
+    // Get id
+    let queryNumber = document.querySelector("#queryNumber");
+    let id;
+    if (queryNumber.value != "") {
+        id = queryNumber.value - 1;
+    } else if (queryNumber.placeholder != "") {
+        id = queryNumber.placeholder - 1;
+    }
+
     // Check if id is valid
-    let id = document.querySelector("#queryNumber").value - 1;
-    if (id <= 0 || pokemonList.count <= id) {
+    if (!Number.isInteger(id) || id < 0 || pokemonList.count <= id) {
         return;
     }
 
-    
     document.querySelector("#dexName").innerHTML = `${pokemonList.results[id].name}`;
     document.querySelector("#dexNumber").innerHTML = id + 1;
-}
-
-function getPokemonName(id) {
-    let name = pokemonList.results[id].name;
-    name = name.charAt(0).toUpperCase() + name.substring(1, name.length);
-    return name;
 }
 
 /**
@@ -93,6 +104,12 @@ async function getPokemonList() {
     }
 } // getPokemonList
 
+function parsePokemonName(id) {
+    let name = pokemonList.results[id].name;
+    name = name.charAt(0).toUpperCase() + name.substring(1, name.length);
+    return name;
+}
+
 /**
  * Saves a new expiration date into local storage.
  * The new expiration date is exactly a month from when this function is called.
@@ -116,16 +133,24 @@ function updateNameQuery() {
     queryName.value = "";
 
     // Check if id is valid
-    if (id < 0 || pokemonList.count <= id) {
+    if (!Number.isSafeInteger(id) || id < 0 ) {
+        queryName.placeholder = "Invalid ID.";
+        return;
+    } else if (pokemonList.count <= id) {
         queryName.placeholder = "Pokémon not found."
         return;
     }
 
     // Update queryName with name of pokemon
-    let name = getPokemonName(id);
+    let name = parsePokemonName(id);
     queryName.placeholder = `${name}`;
 } // updateNameQuery
 
+/**
+ * Updates queryNumber based on the pokemon name entered.
+ * Displays an error message if the pokemon name is invalid.
+ * @returns 
+ */
 function updateNumberQuery() {
     // Get name, reset queryNumber
     let name = document.querySelector("#queryName").value.toLowerCase();
@@ -135,14 +160,14 @@ function updateNumberQuery() {
     // Find Pokemon
     for(let i = 0; i < pokemonList.count; i++) {
         if (name == pokemonList.results[i].name) {
-            queryNumber.placeholder = i;
+            queryNumber.placeholder = i + 1;
             return;
         }
     }
 
     // Display error message
     queryNumber.placeholder = "Pokemon not found.";
-}
+} // updateNumberQuery
 
 /**
  * Gets a new pokemon list from PokeAPI.
