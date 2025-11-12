@@ -10,6 +10,12 @@ checkExpDate();
 
 // FUNCTIONS
 
+/**
+ * Checks expiration date of pokemon storage,
+ *  calls getPokemonList if date is valid,
+ *  calls updatePokemonList if date is invalid.
+ * @returns 
+ */
 function checkExpDate() {
     // Get expiration date
     console.log("Getting expiration date from local storage...");
@@ -34,8 +40,14 @@ function checkExpDate() {
         console.log("Expiration date is valid!");
         getPokemonList();
     }
-}
+} // checkExpDate
 
+/**
+ * Gets pokemon list from local storage.
+ * Calls updatePokemonList if pokemon list cannot 
+ *  be retrieved or parsed from local storage.
+ * @returns 
+ */
 async function getPokemonList() {
     // Check for Pokemon List in local storage
     console.log("Getting pokemon list from local storage...")
@@ -55,14 +67,22 @@ async function getPokemonList() {
         console.error("Failed to parse pokemon list JSON", err);
         updatePokemonList();
     }
-}
+} // getPokemonList
 
+/**
+ * Saves a new expiration date into local storage.
+ * The new expiration date is exactly a month from when this function is called.
+ */
 function updateExpDate() {
     let newDate = new Date()
     newDate = new Date(newDate.setMonth(newDate.getMonth() + 1));
     localStorage.setItem("pokemonListExpirationDate", newDate.toString());
-}
+} // updateExpDate
 
+/**
+ * Gets a new pokemon list from PokeAPI.
+ * Calls updateExpDate after retrieving the new list.
+ */
 async function updatePokemonList() {
     // Get Pokemon list from API
     console.log("Getting pokemon list from PokeAPI...")
@@ -77,4 +97,4 @@ async function updatePokemonList() {
 
     // Save new expiration date
     updateExpDate();
-}
+} // updatePokemonList
