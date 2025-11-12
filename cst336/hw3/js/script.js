@@ -1,9 +1,9 @@
 // Global Variables
 const apiURL = "https://pokeapi.co/api/v2/pokemon";
-let pokemonList = []
-
+let pokemonList = [];
 
 // Event Listeners
+document.querySelector("#queryButton").addEventListener("click", getPokemon);
 
 // Call Functions
 checkExpDate();
@@ -29,7 +29,6 @@ function checkExpDate() {
         return;
     }
     
-    
     // Check for expiration date in local storage, compare it to current date
     let currentDate = new Date();
     if (expDate == null) {
@@ -48,6 +47,18 @@ function checkExpDate() {
         getPokemonList();
     }
 } // checkExpDate
+
+function getPokemon() {
+    // Check if id is valid
+    let id = document.querySelector("#queryNumber").value - 1;
+    if (id <= 0 || pokemonList.count <= id) {
+        return;
+    }
+
+    
+    document.querySelector("#dexName").innerHTML = `${pokemonList.results[id].name}`;
+    document.querySelector("#dexNumber").innerHTML = id + 1;
+}
 
 /**
  * Gets pokemon list from local storage.
