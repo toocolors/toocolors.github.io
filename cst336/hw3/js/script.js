@@ -65,13 +65,13 @@ function checkExpDate() {
  * Looks for pokemon data in session storage,
  *  then from PokeAPI if nothing is found in session storage,
  *  then saves the pokemon data to session storage if it was retreived from PokeAPI.
- * @param {Number} id 
+ * @param {Number} id The id of the pokemon
  * @returns The JSON of the requested pokemon.
  */
 async function getPokemon(id) {
     // Look for pokemon in session storage
     console.log(`Looking for ${pokemonList.results[id].name} in session storage...`);
-    let data = sessionStorage.getItem(id);
+    let data = sessionStorage.getItem(`pokemon-${id}`);
     let pokemon;
     if(data != null) {
         try {
@@ -90,7 +90,7 @@ async function getPokemon(id) {
     console.log(`Got ${pokemonList.results[id].name} from PokeAPI!`);
 
     // Save pokemon to session storage
-    sessionStorage.setItem(id, JSON.stringify(pokemon));
+    sessionStorage.setItem(`pokemon-${id}`, JSON.stringify(pokemon));
 
     // Return pokemon
     return pokemon;
@@ -151,11 +151,32 @@ async function querySubmit() {
     document.querySelector("#dexNumber").innerHTML = id + 1;
     
     // Update Pokemon Types
-    document.querySelector("#dexType1").innerHTML = pokemon.types[0].type.name;
+    document.querySelector("#dexType").innerHTML = pokemon.types[0].type.name;
     if(pokemon.types.length == 2) {
-        document.querySelector("#dexType2").innerHTML = pokemon.types[1].type.name;
-    } else {
-        document.querySelector("#dexType2").innerHTML = "";
+        document.querySelector("#dexType").innerHTML += `, ${pokemon.types[1].type.name}`;
+    }
+
+    // Update Height
+    document.querySelector("#dexHeight").innerHTML = `Height: ${pokemon.height * 3.937008}`;
+
+    // Update Weight
+    document.querySelector("#dexWeight").innerHTML = `Weight: ${pokemon.weight * 0.2204623}`;
+
+    // Update Games
+    let gamesDiv = document.querySelector("#dexGames");
+    gamesDiv.innerHTML = "";
+    for(let i = 0; i < pokemon.game_indices.length; i++) {
+        let game = pokemon.game_indices[i].version.name;
+        gamesDiv.innerHTML += `<span id='game${i}'>${game}</span><br>`
+    }
+
+    // Update Moves
+    let movesDiv = document.querySelector("#dexMoves");
+    movesDiv.innerHTML = "";
+    for(let i = 0; i < pokemon.moves.length; i++) {
+        let move = pokemon.moves[i].move.name;
+        move = move.replace('-', ' ');
+        movesDiv.innerHTML += `<span id='move${i}'>${move}</span><br>`
     }
 }
 
