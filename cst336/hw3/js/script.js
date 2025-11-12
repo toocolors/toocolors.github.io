@@ -3,17 +3,17 @@ const apiURL = "https://pokeapi.co/api/v2/pokemon";
 let pokemonList = [];
 
 // Event Listeners
-document.querySelector("#queryButton").addEventListener("click", getPokemon);
+document.querySelector("#queryButton").addEventListener("click", querySubmit);
 document.querySelector("#queryNumber").addEventListener("input", updateNameQuery);
 document.querySelector("#queryName").addEventListener("input", updateNumberQuery);
 document.querySelector("#queryNumber").addEventListener("keypress", function(event) {
     if(event.key === "Enter") {
-        getPokemon();
+        querySubmit();
     }
 });
 document.querySelector("#queryName").addEventListener("keypress", function(event) {
     if(event.key === "Enter") {
-        getPokemon();
+        querySubmit();
     }
 });
 
@@ -60,23 +60,32 @@ function checkExpDate() {
     }
 } // checkExpDate
 
-function getPokemon() {
-    // Get id
-    let queryNumber = document.querySelector("#queryNumber");
-    let id;
-    if (queryNumber.value != "") {
-        id = queryNumber.value - 1;
-    } else if (queryNumber.placeholder != "") {
-        id = queryNumber.placeholder - 1;
+async function getPokemon(id) {
+    // Look for pokemon in session storage
+    console.log(`Looking for ${pokemonList.results[id].name} in session storage...`);
+    let data = sessionStorage.getItem(id);
+    let pokemon;
+    if(data != null) {
+        try {
+            pokemon = JSON.parse(data);
+            console.log(`Found ${pokemonList.results[id].name} in session storage!`);
+            return pokemon;
+        } catch (err) {
+            console.error("Could not parse session storage data.", err);
+        }
     }
 
-    // Check if id is valid
-    if (!Number.isInteger(id) || id < 0 || pokemonList.count <= id) {
-        return;
-    }
+    // Get pokemon from PokeAPI
+    console.log(`Getting ${pokemonList.results[id].name} from PokeAPI...`);
+    let response = await fetch(pokemonList.results[id].url);
+    pokemon = await response.json();
+    console.log(`Got ${pokemonList.results[id].name} from PokeAPI!`);
 
-    document.querySelector("#dexName").innerHTML = `${pokemonList.results[id].name}`;
-    document.querySelector("#dexNumber").innerHTML = id + 1;
+    // Save pokemon to session storage
+    sessionStorage.setItem(id, JSON.stringify(pokemon));
+
+    // Return pokemon
+    return pokemon;
 }
 
 /**
@@ -104,10 +113,42 @@ async function getPokemonList() {
     }
 } // getPokemonList
 
-function parsePokemonName(id) {
-    let name = pokemonList.results[id].name;
+function parsePokemonName(name) {
     name = name.charAt(0).toUpperCase() + name.substring(1, name.length);
     return name;
+}
+
+async function querySubmit() {
+    // Get id
+    let queryNumber = document.querySelector("#queryNumber");
+    let id;
+    if (queryNumber.value != "") {
+        id = queryNumber.value - 1;
+    } else if (queryNumber.placeholder != "") {
+        id = queryNumber.placeholder - 1;
+    }
+
+    // Check if id is valid
+    if (!Number.isInteger(id) || id < 0 || pokemonList.count <= id) {
+        return;
+    }
+
+    // Get Pokemon
+    let pokemon = await getPokemon(id);
+
+    // Update Pokemon Name
+    document.querySelector("#dexName").innerHTML = `${parsePokemonName(pokemonList.results[id].name)}`;
+    
+    // Update Pokemon ID
+    document.querySelector("#dexNumber").innerHTML = id + 1;
+    
+    // Update Pokemon Types
+    document.querySelector("#dexType1").innerHTML = pokemon.types[0].type.name;
+    if(pokemon.types.length == 2) {
+        document.querySelector("#dexType2").innerHTML = pokemon.types[1].type.name;
+    } else {
+        document.querySelector("#dexType2").innerHTML = "";
+    }
 }
 
 /**
@@ -142,7 +183,7 @@ function updateNameQuery() {
     }
 
     // Update queryName with name of pokemon
-    let name = parsePokemonName(id);
+    let name = parsePokemonName(pokemonList.results[id].name);
     queryName.placeholder = `${name}`;
 } // updateNameQuery
 
