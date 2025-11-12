@@ -149,7 +149,7 @@ async function querySubmit() {
 
     // Update Cry
     document.querySelector("#dexCry").innerHTML = `<audio controls><source 
-        src='${pokemon.cries.latest}'></audio>`;
+    src='${pokemon.cries.latest}'></audio>`;
 
     // Update Pokemon Name
     document.querySelector("#dexName").innerHTML = `${parsePokemonName(pokemonList.results[id].name)}`;
@@ -162,6 +162,9 @@ async function querySubmit() {
     if(pokemon.types.length == 2) {
         document.querySelector("#dexType").innerHTML += `, ${pokemon.types[1].type.name}`;
     }
+
+    // Update Dex Background
+    document.querySelector("#dexBackground").style.backgroundImage = `url('img/${pokemon.types[0].type.name}.png')`;
 
     // Update Height
     document.querySelector("#dexHeight").innerHTML = `Height: ${pokemon.height * 3.937008}`;
