@@ -4,7 +4,8 @@ let pokemonList = [];
 
 // Event Listeners
 document.querySelector("#queryButton").addEventListener("click", getPokemon);
-document.querySelector("#queryNumber").addEventListener("click", getNameQuery);
+document.querySelector("#queryNumber").addEventListener("change", updateNameQuery);
+document.querySelector("#queryName").addEventListener("change", updateNumberQuery);
 
 // Call Functions
 checkExpDate();
@@ -49,24 +50,6 @@ function checkExpDate() {
     }
 } // checkExpDate
 
-function getNameQuery() {
-    // Get id, reset queryName
-    let id = document.querySelector("#queryNumber").value - 1;
-    let queryName = document.querySelector("#queryName");
-    queryName.value = "";
-
-    // Check if id is valid
-    if (id <= 0 || pokemonList.count <= id) {
-        queryName.placeholder = "Pokémon not found."
-        return;
-    }
-
-    // Update queryName with name of pokemon
-    let name = pokemonList.results[id].name;
-    name = name.charAt(0).toUpperCase() + name.substring(1, name.length);
-    queryName.placeholder = `${name}`;
-}
-
 function getPokemon() {
     // Check if id is valid
     let id = document.querySelector("#queryNumber").value - 1;
@@ -77,6 +60,12 @@ function getPokemon() {
     
     document.querySelector("#dexName").innerHTML = `${pokemonList.results[id].name}`;
     document.querySelector("#dexNumber").innerHTML = id + 1;
+}
+
+function getPokemonName(id) {
+    let name = pokemonList.results[id].name;
+    name = name.charAt(0).toUpperCase() + name.substring(1, name.length);
+    return name;
 }
 
 /**
@@ -113,6 +102,47 @@ function updateExpDate() {
     newDate = new Date(newDate.setMonth(newDate.getMonth() + 1));
     localStorage.setItem("pokemonListExpirationDate", newDate.toString());
 } // updateExpDate
+
+/**
+ * Updates the placeholder text of queryName
+ *  to the pokemon with the currently entered id.
+ * Displays an error message if an invalid id is entered.
+ * @returns 
+ */
+function updateNameQuery() {
+    // Get id, reset queryName
+    let id = document.querySelector("#queryNumber").value - 1;
+    let queryName = document.querySelector("#queryName");
+    queryName.value = "";
+
+    // Check if id is valid
+    if (id < 0 || pokemonList.count <= id) {
+        queryName.placeholder = "Pokémon not found."
+        return;
+    }
+
+    // Update queryName with name of pokemon
+    let name = getPokemonName(id);
+    queryName.placeholder = `${name}`;
+} // updateNameQuery
+
+function updateNumberQuery() {
+    // Get name, reset queryNumber
+    let name = document.querySelector("#queryName").value.toLowerCase();
+    let queryNumber = document.querySelector("#queryNumber");
+    queryNumber.value = "";
+
+    // Find Pokemon
+    for(let i = 0; i < pokemonList.count; i++) {
+        if (name == pokemonList.results[i].name) {
+            queryNumber.placeholder = i;
+            return;
+        }
+    }
+
+    // Display error message
+    queryNumber.placeholder = "Pokemon not found.";
+}
 
 /**
  * Gets a new pokemon list from PokeAPI.
