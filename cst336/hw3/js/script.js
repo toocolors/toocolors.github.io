@@ -265,6 +265,12 @@ function linkifyPokemon(pName) {
     return link;
 } // linkifyPokemon
 
+function parseAbilityName(aName) {
+    // Look for ability in irregular abilities
+
+    // Process ability normally
+}
+
 /**
  * Takes a move name and returns a more readable version.
  * @param {String} move The name of the move to be parsed.
@@ -364,6 +370,22 @@ async function querySubmit() {
     }
     // Update total text
     document.querySelector("#dexTotal").innerHTML = total;
+
+    // Update Abilities
+    // Get dexAbilities div
+    let abilitiesDiv = document.querySelector("#dexAbilities");
+    // Check if pokemon has abilities listed
+    if (pokemon.abilities.length > 0) {
+        abilitiesDiv.style.display = "block";
+        abilitiesDiv.innerHTML = "<h3>Abilities:</h3>";
+    } else {
+        abilitiesDiv.style.display = "none";
+    }
+    // Populate abilities list (Only if there are abilities)
+    for(let i = 0; i < pokemon.abilities.length ; i++) {
+        let ability = pokemon.abilities[i].ability.name;
+        abilitiesDiv.innerHTML += `<span id='ability${i}'>${ability}</span><br>`;
+    }
 
     // Update Games
     // Get dexGames div

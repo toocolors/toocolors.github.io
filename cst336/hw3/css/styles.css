@@ -57,8 +57,7 @@ h3 {
     color: gray;
 }
 
-.genDiv {
-    background-color: blue;
+#dexAbilitiesGames {
     display: flex;
 }
 
