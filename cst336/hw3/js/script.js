@@ -194,6 +194,8 @@ async function querySubmit() {
     for(let i = 0; i < pokemon.stats.length; i++) {
         // Update table text
         document.querySelector(`#dexStat${i}`).innerHTML = `${statNames[i]}: ${pokemon.stats[i].base_stat}`;
+        // Update Stat Bar
+        document.querySelector(`#stat${[i]}Bar`).style.width = `${pokemon.stats[i].base_stat}px`;
         // Update total
         total += pokemon.stats[i].base_stat;
     }
