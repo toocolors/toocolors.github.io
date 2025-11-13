@@ -39,6 +39,12 @@ h1 {
     color: gray;
 }
 
+#dexStats {
+    margin: auto;
+    width: 50%;
+    text-align: left;
+}
+
 /* TYPE TEXT STYLES */
 #dexType {
     margin: 10px;
