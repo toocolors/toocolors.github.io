@@ -1,5 +1,6 @@
 // Global Variables
 const apiURL = "https://pokeapi.co/api/v2/pokemon";
+let pokemon;
 let pokemonList = [];
 const statNames = ['HP', 'Attack', 'Defense', 'S. Attack', 'S. Defense', 'Speed'];
 const wikiURL = "https://bulbapedia.bulbagarden.net/wiki/";
@@ -115,12 +116,12 @@ async function getPokemon(id) {
     // Look for pokemon in session storage
     console.log(`Looking for ${pokemonList.results[id].name} in session storage...`);
     let data = sessionStorage.getItem(`pokemon-${id}`);
-    let pokemon;
+    let mon;
     if(data != null) {
         try {
-            pokemon = JSON.parse(data);
+            mon = JSON.parse(data);
             console.log(`Found ${pokemonList.results[id].name} in session storage!`);
-            return pokemon;
+            return mon;
         } catch (err) {
             console.error("Could not parse session storage data.", err);
         }
@@ -129,14 +130,14 @@ async function getPokemon(id) {
     // Get pokemon from PokeAPI
     console.log(`Getting ${pokemonList.results[id].name} from PokeAPI...`);
     let response = await fetch(pokemonList.results[id].url);
-    pokemon = await response.json();
+    mon = await response.json();
     console.log(`Got ${pokemonList.results[id].name} from PokeAPI!`);
 
     // Save pokemon to session storage
-    sessionStorage.setItem(`pokemon-${id}`, JSON.stringify(pokemon));
+    sessionStorage.setItem(`pokemon-${id}`, JSON.stringify(mon));
 
     // Return pokemon
-    return pokemon;
+    return mon;
 } // getPokemon
 
 /**
@@ -256,7 +257,7 @@ async function querySubmit() {
     document.querySelector("#dex").style.display = "block";
 
     // Get Pokemon
-    let pokemon = await getPokemon(id);
+    pokemon = await getPokemon(id);
 
     // Update Sprite
     document.querySelector("#dexSprite").innerHTML = `<img 
