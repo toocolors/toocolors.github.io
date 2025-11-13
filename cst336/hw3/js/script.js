@@ -2,6 +2,7 @@
 const apiURL = "https://pokeapi.co/api/v2/pokemon";
 let pokemonList = [];
 const statNames = ['HP', 'Attack', 'Defense', 'S. Attack', 'S. Defense', 'Speed'];
+const wikiURL = "https://bulbapedia.bulbagarden.net/wiki/";
 
 // Event Listeners
 document.querySelector("#queryButton").addEventListener("click", querySubmit);
@@ -138,21 +139,49 @@ async function getPokemonList() {
     }
 } // getPokemonList
 
+/**
+ * Contructs an a element using the link text text parameters.
+ * @param {String} link The url to assign to the a element.
+ * @param {String} text The text to be displayed in the a element.
+ * @returns The constructed a element.
+ */
+function linkify(link, text) {
+    return `<a href='${link}' target='_blank'>${text}</a>`;
+} // linkify
+
+/**
+ * Takes a pokemon name and builds an a element
+ *  that displays its name and links to the pokemon's wiki page.
+ * @param {String} pName The name of a pokemon.
+ * @returns The a element for the pokemon.
+ */
+function linkifyPokemon(pName) {
+    // Get first part of pokemon name
+    let linkName = pName;
+    if(pName.includes(' ')) {
+        let i = pName.indexOf(' ');
+        linkName = pName.substring(0, i);
+    }
+
+    // Build HTML text
+    let link = linkify(wikiURL + linkName, pName);
+    return link;
+} // linkifyPokemon
+
 function parseName(name) {
     // Capitalize mame
     name = capitalize(name);
 
     while(name.includes('-')) {
         let i = name.indexOf('-');
-        name = name.substring(0, i - 1) + ' ' + capitalize(name.substring(i + 1, name.length));
+        name = name.substring(0, i) + ' ' + capitalize(name.substring(i + 1, name.length));
     }
 
     // Return name
     return name;
-}
+} // parseName
 
 async function querySubmit() {
-
     // Get id
     let queryNumber = document.querySelector("#queryNumber");
     let id;
@@ -184,7 +213,7 @@ async function querySubmit() {
     src='${pokemon.cries.latest}'></audio>`;
 
     // Update Pokemon Name
-    document.querySelector("#dexName").innerHTML = `${parseName(pokemonList.results[id].name)}`;
+    document.querySelector("#dexName").innerHTML = `${linkifyPokemon(parseName(pokemonList.results[id].name))}`;
     
     // Update Pokemon ID
     document.querySelector("#dexNumber").innerHTML = `No. ${id + 1}`;
@@ -236,7 +265,7 @@ async function querySubmit() {
     }
     // Populate games list (Only if there are games)
     for(let i = 0; i < pokemon.game_indices.length; i++) {
-        let game = pokemon.game_indices[i].version.name;
+        let game = parseName(pokemon.game_indices[i].version.name);
         gamesDiv.innerHTML += `<span id='game${i}'>${game}</span><br>`
     }
 
@@ -254,8 +283,7 @@ async function querySubmit() {
     }
     // Populate moves list (Only if there are moves)
     for(let i = 0; i < pokemon.moves.length; i++) {
-        let move = pokemon.moves[i].move.name;
-        move = move.replace('-', ' ');
+        let move = parseName(pokemon.moves[i].move.name);
         movesDiv.innerHTML += `<span id='move${i}'>${move}</span><br>`
     }
 }
