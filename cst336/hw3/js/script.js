@@ -187,6 +187,18 @@ async function querySubmit() {
     // Update Weight
     document.querySelector("#dexWeight").innerHTML = `Weight: ${pokemon.weight * 0.2204623}`;
 
+    // Update Stats
+    // 0 = HP, 1 = Attack, 2 = S. Attack, 3 = Defense, 4 = S. Defense, 5 = Speed
+    let total = 0;
+    for(let i = 0; i < pokemon.stats.length; i++) {
+        // Update table text
+        document.querySelector(`#dexStat${i}`).innerHTML = pokemon.stats[i].base_stat;
+        // Update total
+        total += pokemon.stats[i].base_stat;
+    }
+    // Update total text
+    document.querySelector("#dexTotal").innerHTML = total;
+
     // Update Games
     // Get dexGames div
     let gamesDiv = document.querySelector("#dexGames");

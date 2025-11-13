@@ -56,7 +56,14 @@ h1 {
 #dexStats {
     margin: auto;
     width: 50%;
+}
+
+#statTable {
     text-align: left;
+}
+
+td {
+    border: black 1px solid;
 }
 
 /* TYPE TEXT STYLES */
