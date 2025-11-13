@@ -186,16 +186,36 @@ async function querySubmit() {
     document.querySelector("#dexWeight").innerHTML = `Weight: ${pokemon.weight * 0.2204623}`;
 
     // Update Games
+    // Get dexGames div
     let gamesDiv = document.querySelector("#dexGames");
-    gamesDiv.innerHTML = "";
+    // Check if pokemon has games listed:
+    if(pokemon.game_indices.length > 0) {
+        // Show games div and header
+        gamesDiv.style.display = "block";
+        gamesDiv.innerHTML = "<h3>Games:</h3>";
+    } else {
+        // Hide games div
+        gamesDiv.style.display = "none";
+    }
+    // Populate games list (Only if there are games)
     for(let i = 0; i < pokemon.game_indices.length; i++) {
         let game = pokemon.game_indices[i].version.name;
         gamesDiv.innerHTML += `<span id='game${i}'>${game}</span><br>`
     }
 
     // Update Moves
+    // Get dexMoves div
     let movesDiv = document.querySelector("#dexMoves");
-    movesDiv.innerHTML = "";
+    // Check if pokemon has moves listed
+    if(pokemon.game_indices.length > 0) {
+        // Show moves div and header
+        movesDiv.style.display = "block";
+        movesDiv.innerHTML = "<h3>Moves:</h3>";
+    } else {
+        // Hide moves div
+        movesDiv.style.display = "none";
+    }
+    // Populate moves list (Only if there are moves)
     for(let i = 0; i < pokemon.moves.length; i++) {
         let move = pokemon.moves[i].move.name;
         move = move.replace('-', ' ');
