@@ -20,6 +20,12 @@ document.querySelector("#queryName").addEventListener("keypress", function(event
 // Call Functions
 checkExpDate();
 
+// Clear Inputs
+document.querySelector("#queryName").value = '';
+document.querySelector("#queryName").placeholder = '';
+document.querySelector("#queryNumber").value = '';
+document.querySelector("#queryNumber").placeholder = '';
+
 // FUNCTIONS
 
 /**
