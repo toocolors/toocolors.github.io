@@ -53,17 +53,48 @@ h1 {
     color: gray;
 }
 
+/* STATS TABLE STYLES */
+
 #dexStats {
     margin: auto;
-    width: 50%;
 }
 
 #statTable {
     text-align: left;
+    margin: auto;
 }
 
 td {
     border: black 1px solid;
+    width: auto;
+}
+
+.statBar {
+    width: 255px;
+}
+
+.stat0 {
+    background-color: #ff8080;
+}
+
+.stat1 {
+    background-color: #ffcc80;
+}
+
+.stat2 {
+    background-color: #ffff80;
+}
+
+.stat3 {
+    background-color: #80ff80;
+}
+
+.stat4 {
+    background-color: #8080ff;
+}
+
+.stat5 {
+    background-color: #ff80ff;
 }
 
 /* TYPE TEXT STYLES */

@@ -1,6 +1,7 @@
 // Global Variables
 const apiURL = "https://pokeapi.co/api/v2/pokemon";
 let pokemonList = [];
+const statNames = ['HP', 'Attack', 'Defense', 'S. Attack', 'S. Defense', 'Speed'];
 
 // Event Listeners
 document.querySelector("#queryButton").addEventListener("click", querySubmit);
@@ -192,7 +193,7 @@ async function querySubmit() {
     let total = 0;
     for(let i = 0; i < pokemon.stats.length; i++) {
         // Update table text
-        document.querySelector(`#dexStat${i}`).innerHTML = pokemon.stats[i].base_stat;
+        document.querySelector(`#dexStat${i}`).innerHTML = `${statNames[i]}: ${pokemon.stats[i].base_stat}`;
         // Update total
         total += pokemon.stats[i].base_stat;
     }
