@@ -156,7 +156,9 @@ async function querySubmit() {
     let pokemon = await getPokemon(id);
 
     // Update Sprite
-    document.querySelector("#dexSprite").innerHTML = `<img src=${pokemon.sprites.front_default} alt=${pokemon.name}>`;
+    document.querySelector("#dexSprite").innerHTML = `<img 
+    src=${pokemon.sprites.front_default} alt=${pokemon.name}
+    height='192px' width='192px'>`;
 
     // Update Cry
     document.querySelector("#dexCry").innerHTML = `<audio controls><source 
