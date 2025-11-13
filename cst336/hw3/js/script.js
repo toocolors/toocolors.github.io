@@ -5,28 +5,30 @@ const statNames = ['HP', 'Attack', 'Defense', 'S. Attack', 'S. Defense', 'Speed'
 const wikiURL = "https://bulbapedia.bulbagarden.net/wiki/";
 
 // Contains a list of moves with irregular names.
-const irregularMoveNames = [
-    "Double-Edge",
-    "Self-Destruct",
-    "Soft-Boiled",
-    "Mud-Slap",
-    "Lock-On",
-    "Will-O-Wisp",
-    "Wake-Up Slap",
-    "U-turn",
-    "X-Scissor",
-    "V-create",
-    "Trick-or-Treat",
-    "Freeze-Dry",
-    "Topsy-Turvy",
-    "Baby-Doll Eyes",
-    "Power-Up Punch",
-    "All-Out Pummeling",
-    "Savage Spin-Out",
-    "Never-Ending Nightmare",
-    "Multi-Attack"
+// Each element in the array is an array containing:
+//  0 = String to compare to API data.
+//  1 = String to be used for move name.
+const irregularMoves = [
+    ["double-edge", "Double-Edge"],
+    ["self-destruct", "Self-Destruct"],
+    ["soft-boiled", "Soft-Boiled",],
+    ["mud-slap", "Mud-Slap"],
+    ["lock-on", "Lock-On"],
+    ["will-o-wisp", "Will-O-Wisp"],
+    ["wake-up-slap", "Wake-Up Slap"],
+    ["u-turn", "U-turn"],
+    ["x-scissor", "X-Scissor"],
+    ["v-create", "V-create"],
+    ["trick-or-treat", "Trick-or-Treat"],
+    ["freeze-dry", "Freeze-Dry"],
+    ["topsy-turvy", "Topsy-Turvy"],
+    ["baby-doll-eyes", "Baby-Doll Eyes"],
+    ["power-up punch", "Power-Up Punch"],
+    ["all-out pummeling", "All-Out Pummeling"],
+    ["savage spin-out", "Savage Spin-Out"],
+    ["never-ending nightmare", "Never-Ending Nightmare"],
+    ["multi-attack", "Multi-Attack"]
 ]
-
 // Event Listeners
 document.querySelector("#queryButton").addEventListener("click", querySubmit);
 document.querySelector("#queryNumber").addEventListener("input", updateNameQuery);
@@ -204,6 +206,23 @@ function linkifyPokemon(pName) {
     return link;
 } // linkifyPokemon
 
+/**
+ * Takes a move name and returns a more readable version.
+ * @param {String} move The name of the move to be parsed.
+ * @returns The parsed move
+ */
+function parseMoveName(move) {
+    // Look for move in irregular moves
+    for(let i = 0; i < irregularMoves.length; i++) {
+        if(irregularMoves[i][0] == move) {
+            return irregularMoves[i][1];
+        }
+    }
+
+    // Process move normally
+    return parseName(move);
+} // parseMoveName
+
 function parseName(name) {
     // Capitalize mame
     name = capitalize(name);
@@ -319,10 +338,10 @@ async function querySubmit() {
     }
     // Populate moves list (Only if there are moves)
     for(let i = 0; i < pokemon.moves.length; i++) {
-        let move = parseName(pokemon.moves[i].move.name);
+        let move = parseMoveName(pokemon.moves[i].move.name);
         movesDiv.innerHTML += `<span id='move${i}'>${linkifyMove(move)}</span><br>`
     }
-}
+} // submitQuery
 
 /**
  * Saves a new expiration date into local storage.
