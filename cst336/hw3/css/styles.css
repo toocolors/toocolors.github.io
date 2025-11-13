@@ -57,6 +57,11 @@ h3 {
     color: gray;
 }
 
+.genDiv {
+    background-color: blue;
+    display: flex;
+}
+
 /* STATS TABLE STYLES */
 
 #dexStats {

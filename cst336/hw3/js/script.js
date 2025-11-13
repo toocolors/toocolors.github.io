@@ -30,6 +30,7 @@ const irregularMoves = [
     ["never-ending nightmare", "Never-Ending Nightmare"],
     ["multi-attack", "Multi-Attack"]
 ]
+
 // Event Listeners
 document.querySelector("#queryButton").addEventListener("click", querySubmit);
 document.querySelector("#queryNumber").addEventListener("input", updateNameQuery);
@@ -175,6 +176,63 @@ function linkify(link, text) {
     return `<a href='${link}' target='_blank'>${text}</a>`;
 } // linkify
 
+function linkifyGame(gName) {
+    // Get second half of url
+    let link;
+    switch (gName) {
+        case "red":
+        case "blue":
+            link = "Red_and_Green_Versions";
+            break;
+        case "yellow":
+            link = "Yellow_Version";
+            break;
+        case "gold":
+        case "silver":
+            link = "Gold_and_Silver_Versions";
+            break;
+        case "crystal":
+            link = "Crystal_Version";
+            break;
+        case "ruby":
+        case "sapphire":
+            link = "Ruby_and_Sapphire_Versions";
+            break;
+        case "firered":
+        case "leafgreen":
+            link = "FireRed_and_LeafGreen_Versions";
+            break;
+        case "emerald":
+            link = "Emerald_Version";
+            break;
+        case "diamond":
+        case "pearl":
+            link = "Diamond_and_Pearl_Versions";
+            break;
+        case "platinum":
+            link = "Platinum_Version";
+            break;
+        case "heartgold":
+        case "soulsilver":
+            link = "HeartGold_and_SoulSilver_Versions";
+            break;
+        case "black":
+        case "white":
+            link = "Black_and_White_Versions";
+            break;
+        case "black-2":
+        case "white-2":
+            link = "Black_and_White_Versions_2";
+            break;
+        default:
+            link = "Generation";
+            break;
+    }
+
+    // Build and Return link
+    return linkify(wikiURL + "Pokémon_" + link, parseName(gName));
+} // linkifyGame
+
 function linkifyMove(mName) {
     // Format link (Turn spaces into '_')
     let linkName = mName;
@@ -186,7 +244,7 @@ function linkifyMove(mName) {
     // Build HTML text
     let link = linkify(wikiURL + linkName + '_(move)', mName);
     return link;
-}
+} // linkifyMove
 
 /**
  * Takes a pokemon name and builds an a element
@@ -321,8 +379,8 @@ async function querySubmit() {
     }
     // Populate games list (Only if there are games)
     for(let i = 0; i < pokemon.game_indices.length; i++) {
-        let game = parseName(pokemon.game_indices[i].version.name);
-        gamesDiv.innerHTML += `<span id='game${i}'>${game}</span><br>`
+        let game = pokemon.game_indices[i].version.name;
+        gamesDiv.innerHTML += `<span id='game${i}'>${linkifyGame(game)}</span><br>`
     }
 
     // Update Moves
