@@ -328,19 +328,26 @@ async function querySubmit() {
     // Update Moves
     // Get dexMoves div
     let movesDiv = document.querySelector("#dexMoves");
+    let moves = [];
     // Check if pokemon has moves listed
     if(pokemon.game_indices.length > 0) {
         // Show moves div and header
         movesDiv.style.display = "block";
         movesDiv.innerHTML = "<h3>Moves:</h3>";
+        // Get and sort moves
+        for(let i = 0; i < pokemon.moves.length; i++) {
+            moves.push(pokemon.moves[i].move.name);
+        }
+        moves = moves.sort();
     } else {
         // Hide moves div
         movesDiv.style.display = "none";
     }
     // Populate moves list (Only if there are moves)
-    for(let i = 0; i < pokemon.moves.length; i++) {
-        let move = parseMoveName(pokemon.moves[i].move.name);
-        movesDiv.innerHTML += `<span id='move${i}'>${linkifyMove(move)}</span><br>`
+    for(let i = 0; i < moves.length; i++) {
+        let move = parseMoveName(moves[i]);
+        // movesDiv.innerHTML += `<span id='move${i}'>${linkifyMove(move)}</span><br>`;
+        movesDiv.innerHTML += `${linkifyMove(move)}<br>`;
     }
 } // submitQuery
 
