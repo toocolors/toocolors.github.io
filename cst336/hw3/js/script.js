@@ -30,6 +30,16 @@ document.querySelector("#queryNumber").placeholder = '';
 // FUNCTIONS
 
 /**
+ * Takes a string, capitalizes the first letter, 
+ *  and returns the captalized string.
+ * @param {String} str The string to be capitazlied
+ * @returns The capitalized string
+ */
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.substring(1, str.length);
+}
+
+/**
  * Checks expiration date of pokemon storage,
  *  calls getPokemonList if date is valid,
  *  calls updatePokemonList if date is invalid.
@@ -128,8 +138,16 @@ async function getPokemonList() {
     }
 } // getPokemonList
 
-function parsePokemonName(name) {
-    name = name.charAt(0).toUpperCase() + name.substring(1, name.length);
+function parseName(name) {
+    // Capitalize mame
+    name = capitalize(name);
+
+    while(name.includes('-')) {
+        let i = name.indexOf('-');
+        name = name.substring(0, i - 1) + ' ' + capitalize(name.substring(i + 1, name.length));
+    }
+
+    // Return name
     return name;
 }
 
@@ -166,17 +184,19 @@ async function querySubmit() {
     src='${pokemon.cries.latest}'></audio>`;
 
     // Update Pokemon Name
-    document.querySelector("#dexName").innerHTML = `${parsePokemonName(pokemonList.results[id].name)}`;
+    document.querySelector("#dexName").innerHTML = `${parseName(pokemonList.results[id].name)}`;
     
     // Update Pokemon ID
     document.querySelector("#dexNumber").innerHTML = `No. ${id + 1}`;
     
     // Update Pokemon Types
     let firstType = pokemon.types[0].type.name;
-    document.querySelector("#dexType").innerHTML = `<span class='${firstType} typeSpan'>${firstType}</span>`;
+    document.querySelector("#dexType").innerHTML = `<span 
+    class='${firstType} typeSpan'>${capitalize(firstType)}</span>`;
     if(pokemon.types.length == 2) {
         let secondType = pokemon.types[1].type.name;
-        document.querySelector("#dexType").innerHTML += `<span class='${secondType} typeSpan'>${secondType}</span>`;
+        document.querySelector("#dexType").innerHTML += `<span 
+        class='${secondType} typeSpan'>${capitalize(secondType)}</span>`;
     }
 
     // Update Dex Background
@@ -272,7 +292,7 @@ function updateNameQuery() {
     }
 
     // Update queryName with name of pokemon
-    let name = parsePokemonName(pokemonList.results[id].name);
+    let name = parseName(pokemonList.results[id].name);
     queryName.placeholder = `${name}`;
 } // updateNameQuery
 
