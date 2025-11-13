@@ -5,6 +5,19 @@ body {
     margin: auto;
 }
 
+main, footer {
+    background-color: white;
+    
+}
+
+main {
+    padding-bottom: 10px;
+}
+
+hr {
+    margin-top: 0;
+}
+
 /* HEADER STYLES */
 h1 {
     background-color: yellow;
@@ -23,15 +36,15 @@ h1 {
 
 #dexBackground {
     background-color: lightgreen;
-    padding: 10px;
-    margin-top: 0;
+    padding: 5px;
+    margin: 0 50px;
     display: none;
 }
 
 #dex {
     background-color: white;
     width: 50%;
-    margin: auto;
+    margin: 50px auto;
     padding: 20px;
     display: none;
 }
