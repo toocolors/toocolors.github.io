@@ -4,6 +4,29 @@ let pokemonList = [];
 const statNames = ['HP', 'Attack', 'Defense', 'S. Attack', 'S. Defense', 'Speed'];
 const wikiURL = "https://bulbapedia.bulbagarden.net/wiki/";
 
+// Contains a list of moves with irregular names.
+const irregularMoveNames = [
+    "Double-Edge",
+    "Self-Destruct",
+    "Soft-Boiled",
+    "Mud-Slap",
+    "Lock-On",
+    "Will-O-Wisp",
+    "Wake-Up Slap",
+    "U-turn",
+    "X-Scissor",
+    "V-create",
+    "Trick-or-Treat",
+    "Freeze-Dry",
+    "Topsy-Turvy",
+    "Baby-Doll Eyes",
+    "Power-Up Punch",
+    "All-Out Pummeling",
+    "Savage Spin-Out",
+    "Never-Ending Nightmare",
+    "Multi-Attack"
+]
+
 // Event Listeners
 document.querySelector("#queryButton").addEventListener("click", querySubmit);
 document.querySelector("#queryNumber").addEventListener("input", updateNameQuery);
@@ -149,6 +172,19 @@ function linkify(link, text) {
     return `<a href='${link}' target='_blank'>${text}</a>`;
 } // linkify
 
+function linkifyMove(mName) {
+    // Format link (Turn spaces into '_')
+    let linkName = mName;
+    while (linkName.includes(' ')) {
+        let i = linkName.indexOf(' ');
+        linkName = linkName.substring(0, i) + '_' + linkName.substring(i + 1, linkName.length);
+    }
+
+    // Build HTML text
+    let link = linkify(wikiURL + linkName + '_(move)', mName);
+    return link;
+}
+
 /**
  * Takes a pokemon name and builds an a element
  *  that displays its name and links to the pokemon's wiki page.
@@ -158,13 +194,13 @@ function linkify(link, text) {
 function linkifyPokemon(pName) {
     // Get first part of pokemon name
     let linkName = pName;
-    if(pName.includes(' ')) {
+    if (pName.includes(' ')) {
         let i = pName.indexOf(' ');
         linkName = pName.substring(0, i);
     }
 
     // Build HTML text
-    let link = linkify(wikiURL + linkName, pName);
+    let link = linkify(wikiURL + linkName + '_(Pokémon)', pName);
     return link;
 } // linkifyPokemon
 
@@ -284,7 +320,7 @@ async function querySubmit() {
     // Populate moves list (Only if there are moves)
     for(let i = 0; i < pokemon.moves.length; i++) {
         let move = parseName(pokemon.moves[i].move.name);
-        movesDiv.innerHTML += `<span id='move${i}'>${move}</span><br>`
+        movesDiv.innerHTML += `<span id='move${i}'>${linkifyMove(move)}</span><br>`
     }
 }
 
