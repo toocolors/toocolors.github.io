@@ -5,6 +5,15 @@ let pokemonList = [];
 const statNames = ['HP', 'Attack', 'Defense', 'S. Attack', 'S. Defense', 'Speed'];
 const wikiURL = "https://bulbapedia.bulbagarden.net/wiki/";
 
+// Contains a list of abilities with irregular names.
+// Each element in the array is an array containing:
+// 0 = String to compare to API data
+// 1 = String to be used for ability name.
+const irregularAbilities = [
+    ["soul-heart", "Soul-Heart"],
+    ["well-baked-body", "Well-Baked Body"]
+];
+
 // Contains a list of moves with irregular names.
 // Each element in the array is an array containing:
 //  0 = String to compare to API data.
@@ -29,7 +38,7 @@ const irregularMoves = [
     ["savage spin-out", "Savage Spin-Out"],
     ["never-ending nightmare", "Never-Ending Nightmare"],
     ["multi-attack", "Multi-Attack"]
-]
+];
 
 // Event Listeners
 document.querySelector("#queryButton").addEventListener("click", querySubmit);
@@ -176,6 +185,19 @@ function linkify(link, text) {
     return `<a href='${link}' target='_blank'>${text}</a>`;
 } // linkify
 
+function linkifyAbility(aName) {
+    // Format link (Turn spaces into '_')
+    let linkName = aName;
+    while (linkName.includes(' ')) {
+        let i = linkName.indexOf(' ');
+        linkName = linkName.substring(0, i) + '_' + linkName.substring(i + 1, linkName.length);
+    }
+
+    // Build HTML text
+    let link = linkify(wikiURL + linkName + '_(Ability)', aName);
+    return link;
+} // linkifyAbility
+
 function linkifyGame(gName) {
     // Get second half of url
     let link;
@@ -265,11 +287,22 @@ function linkifyPokemon(pName) {
     return link;
 } // linkifyPokemon
 
+/**
+ * Takes an ability name and returns a more readable version.
+ * @param {String} aName 
+ * @returns The parsed ability name.
+ */
 function parseAbilityName(aName) {
     // Look for ability in irregular abilities
+    for(let i = 0; i < irregularAbilities.length; i++) {
+        if (irregularAbilities[i][0] == aName) {
+            return irregularAbilities[i][1];
+        }
+    }
 
     // Process ability normally
-}
+    return parseName(aName);
+} // parseAbilityName
 
 /**
  * Takes a move name and returns a more readable version.
@@ -383,8 +416,8 @@ async function querySubmit() {
     }
     // Populate abilities list (Only if there are abilities)
     for(let i = 0; i < pokemon.abilities.length ; i++) {
-        let ability = pokemon.abilities[i].ability.name;
-        abilitiesDiv.innerHTML += `<span id='ability${i}'>${ability}</span><br>`;
+        let ability = parseAbilityName(pokemon.abilities[i].ability.name);
+        abilitiesDiv.innerHTML += `<span id='ability${i}'>${linkifyAbility(ability)}</span><br>`;
     }
 
     // Update Games
