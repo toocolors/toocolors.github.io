@@ -148,6 +148,7 @@ td {
 #dexAbilities, #dexHeightWeight {
     padding: 40px;
     padding-top: 0;
+    padding-bottom: 0;
 }
 
 /* TYPE TEXT STYLES */
