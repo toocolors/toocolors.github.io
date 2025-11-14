@@ -57,10 +57,6 @@ h3 {
     color: gray;
 }
 
-#dexAbilitiesGames {
-    display: flex;
-}
-
 /* STATS TABLE STYLES */
 
 #dexStats {
@@ -140,6 +136,18 @@ td {
 
 .stat5 {
     background-color: #ff80ff;
+}
+
+/* ABILITIES, HEIGHT, WEIGHT STYLES */
+
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+#dexAbilities, #dexHeightWeight {
+    padding: 40px;
+    padding-top: 0;
 }
 
 /* TYPE TEXT STYLES */

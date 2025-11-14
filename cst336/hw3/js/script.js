@@ -385,10 +385,10 @@ async function querySubmit() {
     document.querySelector("#dexBackground").style.backgroundImage = `url('img/${pokemon.types[0].type.name}.png')`;
 
     // Update Height
-    document.querySelector("#dexHeight").innerHTML = `Height: ${pokemon.height * 3.937008}`;
+    document.querySelector("#dexHeight").innerHTML = `<h3>Height:</h3> ${pokemon.height * 3.937008}`;
 
     // Update Weight
-    document.querySelector("#dexWeight").innerHTML = `Weight: ${pokemon.weight * 0.2204623}`;
+    document.querySelector("#dexWeight").innerHTML = `<h3>Weight:</h3> ${pokemon.weight * 0.2204623}`;
 
     // Update Stats
     // 0 = HP, 1 = Attack, 2 = S. Attack, 3 = Defense, 4 = S. Defense, 5 = Speed
