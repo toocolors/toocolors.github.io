@@ -45,6 +45,7 @@ const irregularMoves = [
 
 // Event Listeners
 document.querySelector("#queryButton").addEventListener("click", querySubmit);
+document.querySelector("#randomButton").addEventListener("click", randomQuery);
 document.querySelector("#queryNumber").addEventListener("input", updateNameQuery);
 document.querySelector("#queryName").addEventListener("input", updateNumberQuery);
 document.querySelector("#queryNumber").addEventListener("keypress", function(event) {
@@ -417,6 +418,18 @@ async function querySubmit() {
     // Update Moves
     updateMoves();
 } // submitQuery
+
+function randomQuery() {
+    // Get random ID
+    let randId = Math.floor(Math.random() * (pokemonList.count - 1));
+
+    // Update name and number input boxes
+    document.querySelector("#queryNumber").value = randId;
+    updateNameQuery();
+
+    // Call submitQuery
+    querySubmit();
+}
 
 /**
  * Updates the abilities section of the page.
