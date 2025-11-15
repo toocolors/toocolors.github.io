@@ -201,6 +201,12 @@ function linkifyAbility(aName) {
     return link;
 } // linkifyAbility
 
+/**
+ * Constructs an a element based on the game passed in.
+ * A switch statement is used to get the second half of the wiki URL.
+ * @param {String} gName The name of the game to create a link for.
+ * @returns The created a element.
+ */
 function linkifyGame(gName) {
     // Get second half of url
     let link;
