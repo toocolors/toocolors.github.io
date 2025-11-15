@@ -4,8 +4,8 @@ let pokemonList = [];
 
 // Global Constants
 const apiURL = "https://pokeapi.co/api/v2/pokemon";
-const gamesColumnNum = 3;
 const generationNum = 8 // The number of generation divs for displaying games.
+const idLimit = 721; // The maximum ID supported.
 const statNames = ['HP', 'Attack', 'Defense', 'S. Attack', 'S. Defense', 'Speed'];
 const wikiURL = "https://bulbapedia.bulbagarden.net/wiki/";
 
@@ -428,7 +428,7 @@ async function querySubmit() {
     }
 
     // Check if id is valid
-    if (!Number.isInteger(id) || id < 0 || pokemonList.count <= id) {
+    if (!Number.isInteger(id) || id < 0 || idLimit <= id) {
         return;
     }
 
@@ -484,7 +484,7 @@ async function querySubmit() {
 
 function randomQuery() {
     // Get random ID
-    let randId = Math.floor(Math.random() * (pokemonList.count - 1));
+    let randId = Math.floor(Math.random() * (idLimit - 1));
 
     // Update name and number input boxes
     document.querySelector("#queryNumber").value = randId;
@@ -663,7 +663,7 @@ function updateNameQuery() {
     if (!Number.isSafeInteger(id) || id < 0 ) {
         queryName.placeholder = "Invalid ID.";
         return;
-    } else if (pokemonList.count <= id) {
+    } else if (idLimit <= id) {
         queryName.placeholder = "Pokémon not found."
         return;
     }
@@ -685,7 +685,7 @@ function updateNumberQuery() {
     queryNumber.value = "";
 
     // Find Pokemon
-    for(let i = 0; i < pokemonList.count; i++) {
+    for(let i = 0; i < idLimit; i++) {
         if (name == pokemonList.results[i].name) {
             queryNumber.placeholder = i + 1;
             return;
