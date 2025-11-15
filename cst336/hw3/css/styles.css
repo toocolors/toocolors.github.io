@@ -54,12 +54,16 @@ h3 {
     display: none;
 }
 
-#dex {
+#dex, #dexMoves {
     background-color: white;
     width: 50%;
     margin: 50px auto;
     padding: 20px;
     display: none;
+}
+
+#dexMoves {
+    width: 30%;
 }
 
 #dexNumber {
