@@ -143,12 +143,19 @@ td {
 .flex {
     display: flex;
     justify-content: center;
+    flex-direction: row;
 }
 
 #dexAbilities, #dexHeightWeight {
     padding: 40px;
     padding-top: 0;
     padding-bottom: 0;
+}
+
+/* GAMES STYLES */
+
+.gameDiv {
+    padding: 0 10px;
 }
 
 /* TYPE TEXT STYLES */
@@ -160,6 +167,8 @@ td {
     margin: auto 5px;
     padding: 5px;
 }
+
+/* TYPE COLOR STYLES */
 
 .bug {
     background-color: #91a119;

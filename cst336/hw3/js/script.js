@@ -1,5 +1,7 @@
 // Global Variables
 const apiURL = "https://pokeapi.co/api/v2/pokemon";
+const gamesColumnNum = 3;
+const movesColumnNum = 2;
 let pokemon;
 let pokemonList = [];
 const statNames = ['HP', 'Attack', 'Defense', 'S. Attack', 'S. Defense', 'Speed'];
@@ -423,11 +425,16 @@ async function querySubmit() {
     // Update Games
     // Get dexGames div
     let gamesDiv = document.querySelector("#dexGames");
+    // Reset dexGames div
+    gamesDiv.innerHTML = '';
+    for(let i = 0; i < gamesColumnNum; i++) {
+        gamesDiv.innerHTML += `<div id='gamesDiv${i}' class='gameDiv'></div>`;
+    }
+    
     // Check if pokemon has games listed:
     if(pokemon.game_indices.length > 0) {
         // Show games div and header
-        gamesDiv.style.display = "block";
-        gamesDiv.innerHTML = "<h3>Games:</h3>";
+        gamesDiv.style.display = "flex";
     } else {
         // Hide games div
         gamesDiv.style.display = "none";
@@ -435,7 +442,10 @@ async function querySubmit() {
     // Populate games list (Only if there are games)
     for(let i = 0; i < pokemon.game_indices.length; i++) {
         let game = pokemon.game_indices[i].version.name;
-        gamesDiv.innerHTML += `<span id='game${i}'>${linkifyGame(game)}</span><br>`
+        let destDiv = document.querySelector(`#gamesDiv${i % gamesColumnNum}`);
+        console.log(`gameDiv${i % 2}`);
+        destDiv.innerHTML += `<span 
+        id='game${i}'>${linkifyGame(game)}</span><br><br>`;
     }
 
     // Update Moves
