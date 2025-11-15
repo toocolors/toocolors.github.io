@@ -595,10 +595,17 @@ function updateStats() {
  * Updates the types section of the page.
  */
 function updateTypes() {
+    // get dexType
+    let typeDiv = document.querySelector("#dexType");
+
+    // Reset dexType
+    typeDiv.innerHTML = '';
+
+    // Display Types
     for (let i = 0; i < pokemon.types.length; i++) {
         let type = pokemon.types[i].type.name;
         let typeCap = capitalize(type);
-        document.querySelector("#dexType").innerHTML += `
+        typeDiv.innerHTML += `
         <span class='${type} typeSpan'>
         ${linkify(wikiURL + typeCap + '_(type)', typeCap)}
         </span>`;
