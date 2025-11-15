@@ -508,37 +508,9 @@ function updateAbilities() {
 
 /**
  * Updates the games section of the page.
+ * Each game is organized based on which generation of pokemon games
+ *  it belongs to.
  */
-// function updateGames() {
-    // // Get dexGames div
-    // let gamesDiv = document.querySelector("#dexGames");
-    
-    // // Reset dexGames div
-    // gamesDiv.innerHTML = '';
-    // for(let i = 0; i < gamesColumnNum; i++) {
-    //     gamesDiv.innerHTML += `<div id='gamesDiv${i}' class='gameDiv'></div>`;
-    // }
-    
-    // // Check if pokemon has games listed:
-    // if(pokemon.game_indices.length > 0) {
-    //     // Show games div and header
-    //     gamesDiv.style.display = "flex";
-    //     document.querySelector("#gamesHeader").style.display = "block";
-    // } else {
-    //     // Hide games div
-    //     gamesDiv.style.display = "none";
-    //     document.querySelector("#gamesHeader").style.display = "none";
-    // }
-    
-    // // Populate games list (Only if there are games)
-    // for(let i = 0; i < pokemon.game_indices.length; i++) {
-    //     let game = pokemon.game_indices[i].version.name;
-    //     let destDiv = document.querySelector(`#gamesDiv${i % gamesColumnNum}`);
-    //     destDiv.innerHTML += `<span 
-    //     id='game${i}'>${linkifyGame(game)}</span><br><br>`;
-    // }
-// } // updateGames
-
 function updateGames() {
     // Reset games divs
     document.querySelector("#gamesBox").style.display = "none";
@@ -579,7 +551,7 @@ function updateGames() {
         // Add game to div
         destDiv.innerHTML += `${linkifyGame(parseName(game))}<br>`;
     }
-}
+} // updateGames
 
 /**
  * Saves a new expiration date into local storage.
