@@ -2,9 +2,10 @@
 let pokemon;
 let pokemonList = [];
 
-// Constants
+// Global Constants
 const apiURL = "https://pokeapi.co/api/v2/pokemon";
 const gamesColumnNum = 3;
+const generationNum = 8 // The number of generation divs for displaying games.
 const statNames = ['HP', 'Attack', 'Defense', 'S. Attack', 'S. Defense', 'Speed'];
 const wikiURL = "https://bulbapedia.bulbagarden.net/wiki/";
 
@@ -122,6 +123,54 @@ function checkExpDate() {
         getPokemonList();
     }
 } // checkExpDate
+
+/**
+ * Returns the number of the div that the passed in game should be placed in.
+ * 1 = Gen 1
+ * 2 = Gen 1 Remakes
+ * 3 = Gen 2
+ * 4 = Gen 2 Remakes
+ * 5 = Gen 3
+ * 6 = Gen 4
+ * 7 = Gen 5
+ * 8 = Gen 6+ / Other
+ * @param {String} game The name of a pokemon game.
+ * @returns The number of the div to put the game in.
+ */
+function getGen(game) {
+    switch (game) {
+        case "red":
+        case "blue":
+        case "yellow":
+            return 1;
+        case "firered":
+        case "leafgreen":
+            return 2;
+        case "gold":
+        case "silver":
+        case "crystal":
+            return 3;
+        case "heartgold":
+        case "soulsilver":
+            return 4
+        case "ruby":
+        case "sapphire":
+        case "emerald":
+            return 5;
+        case "diamond":
+        case "pearl":
+        case "platinum":
+            return 6;
+        case "black":
+        case "white":
+        case "black-2":
+        case "white-2":
+            return 7;
+        default:
+            return 8;
+    }
+    
+}
 
 /**
  * Gets pokemon data associated with the given id.
@@ -460,35 +509,77 @@ function updateAbilities() {
 /**
  * Updates the games section of the page.
  */
+// function updateGames() {
+    // // Get dexGames div
+    // let gamesDiv = document.querySelector("#dexGames");
+    
+    // // Reset dexGames div
+    // gamesDiv.innerHTML = '';
+    // for(let i = 0; i < gamesColumnNum; i++) {
+    //     gamesDiv.innerHTML += `<div id='gamesDiv${i}' class='gameDiv'></div>`;
+    // }
+    
+    // // Check if pokemon has games listed:
+    // if(pokemon.game_indices.length > 0) {
+    //     // Show games div and header
+    //     gamesDiv.style.display = "flex";
+    //     document.querySelector("#gamesHeader").style.display = "block";
+    // } else {
+    //     // Hide games div
+    //     gamesDiv.style.display = "none";
+    //     document.querySelector("#gamesHeader").style.display = "none";
+    // }
+    
+    // // Populate games list (Only if there are games)
+    // for(let i = 0; i < pokemon.game_indices.length; i++) {
+    //     let game = pokemon.game_indices[i].version.name;
+    //     let destDiv = document.querySelector(`#gamesDiv${i % gamesColumnNum}`);
+    //     destDiv.innerHTML += `<span 
+    //     id='game${i}'>${linkifyGame(game)}</span><br><br>`;
+    // }
+// } // updateGames
+
 function updateGames() {
-    // Get dexGames div
-    let gamesDiv = document.querySelector("#dexGames");
-    
-    // Reset dexGames div
-    gamesDiv.innerHTML = '';
-    for(let i = 0; i < gamesColumnNum; i++) {
-        gamesDiv.innerHTML += `<div id='gamesDiv${i}' class='gameDiv'></div>`;
+    // Reset games divs
+    document.querySelector("#gamesBox").style.display = "none";
+    for (let i = 1; i <= generationNum; i++) {
+        document.querySelector(`#gen${i}Header`).style.display = "none";
+        document.querySelector(`#gen${i}Div`).style.display = "none";
+        document.querySelector(`#gen${i}Div`).innerHTML = "";
     }
-    
-    // Check if pokemon has games listed:
-    if(pokemon.game_indices.length > 0) {
-        // Show games div and header
-        gamesDiv.style.display = "flex";
-        document.querySelector("#gamesHeader").style.display = "block";
+
+    // Check if there are games
+    if (pokemon.game_indices.length > 0) {
+        document.querySelector("#gamesBox").style.display = "block";
     } else {
-        // Hide games div
-        gamesDiv.style.display = "none";
-        document.querySelector("#gamesHeader").style.display = "none";
+        return;
     }
-    
-    // Populate games list (Only if there are games)
+
+    // Populate games list (only if there are games)
+    currentGen = 0;
     for(let i = 0; i < pokemon.game_indices.length; i++) {
+        // Get game
         let game = pokemon.game_indices[i].version.name;
-        let destDiv = document.querySelector(`#gamesDiv${i % gamesColumnNum}`);
-        destDiv.innerHTML += `<span 
-        id='game${i}'>${linkifyGame(game)}</span><br><br>`;
+
+        // Get gen number of game
+        let newGen = getGen(game);
+
+        // Get destination div
+        let destDiv = document.querySelector(`#gen${newGen}Div`);
+
+        // Display destDiv if adding to it for first time
+        if (newGen != currentGen) {
+            destDiv.style.display = "block";
+            document.querySelector(`#gen${newGen}Header`).style.display = "block";
+        }
+
+        // Update currentGen
+        currentGen = newGen;
+
+        // Add game to div
+        destDiv.innerHTML += `${linkifyGame(parseName(game))}<br>`;
     }
-} // updateGames
+}
 
 /**
  * Saves a new expiration date into local storage.
