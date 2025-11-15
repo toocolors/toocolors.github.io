@@ -251,6 +251,12 @@ function linkifyAbility(aName) {
         linkName = linkName.substring(0, i) + '_' + linkName.substring(i + 1, linkName.length);
     }
 
+    // Check if ability is hidden
+    if (linkName.includes("(")) {
+        let index = linkName.indexOf("(");
+        linkName = linkName.substring(0, index);
+    }
+
     // Build HTML text
     let link = linkify(wikiURL + linkName + '_(Ability)', aName);
     return link;
@@ -498,11 +504,29 @@ function updateAbilities() {
     } else {
         abilitiesDiv.style.display = "none";
     }
+
+    // Get abilities and add '(Hidden)' to abilities where applicable
+    let abilities = [];
+    for(let i = 0; i < pokemon.abilities.length ; i++) {
+        // Get ability
+        let ability = pokemon.abilities[i].ability.name;
+        // Check if ability is hidden
+        if(pokemon.abilities[i].is_hidden) {
+            ability += " (Hidden)";
+        }
+
+        // Add ability to abilities array
+        abilities.push(ability);
+    }
+
+    // Sort abilities
+    abilities = abilities.sort();
+
     
     // Populate abilities list (Only if there are abilities)
-    for(let i = 0; i < pokemon.abilities.length ; i++) {
-        let ability = parseAbilityName(pokemon.abilities[i].ability.name);
-        abilitiesDiv.innerHTML += `<span id='ability${i}'>${linkifyAbility(ability)}</span><br><br>`;
+    for(let i = 0; i < abilities.length ; i++) {
+        let ability = parseAbilityName(abilities[i]);
+        abilitiesDiv.innerHTML += `${linkifyAbility(ability)}<br><br>`;
     }
 } // updateAbilities
 
