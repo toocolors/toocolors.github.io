@@ -1,11 +1,17 @@
 // Global Variables
+let pokemon;
+let pokemonList = [];
+
+// Constants
 const apiURL = "https://pokeapi.co/api/v2/pokemon";
 const gamesColumnNum = 3;
 const movesColumnNum = 2;
-let pokemon;
-let pokemonList = [];
 const statNames = ['HP', 'Attack', 'Defense', 'S. Attack', 'S. Defense', 'Speed'];
 const wikiURL = "https://bulbapedia.bulbagarden.net/wiki/";
+
+// Contains each letter of the alphabet.
+// Used to organize moves.
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 // Contains a list of abilities with irregular names.
 // Each element in the array is an array containing:
@@ -481,7 +487,6 @@ function updateGames() {
     for(let i = 0; i < pokemon.game_indices.length; i++) {
         let game = pokemon.game_indices[i].version.name;
         let destDiv = document.querySelector(`#gamesDiv${i % gamesColumnNum}`);
-        console.log(`gameDiv${i % 2}`);
         destDiv.innerHTML += `<span 
         id='game${i}'>${linkifyGame(game)}</span><br><br>`;
     }
@@ -500,22 +505,54 @@ function updateExpDate() {
 /**
  * Updates the moves section of the page.
  */
+// function updateMoves() {
+//     // Get dexMoves div
+//     let movesDiv = document.querySelector("#dexMoves");
+    
+//     // Reset dexMoves
+//     movesDiv.innerHTML = '';
+//     for(let i = 0; i < movesColumnNum; i++) {
+//         movesDiv.innerHTML += `<div id='movesDiv${i}' class='moveDiv'></div>`;
+//     }
+    
+//     // Check if pokemon has moves listed
+//     let moves = [];
+//     if(pokemon.moves.length > 0) {
+//         // Show moves div and header
+//         movesDiv.style.display = "flex";
+//         document.querySelector("#movesHeader").style.display = "block";
+        
+//         // Get and sort moves
+//         for(let i = 0; i < pokemon.moves.length; i++) {
+//             moves.push(pokemon.moves[i].move.name);
+//         }
+//         moves = moves.sort();
+//     } else {
+//         // Hide moves div
+//         movesDiv.style.display = "none";
+//         document.querySelector("#movesHeader").style.display = "none";
+//     }
+    
+//     // Populate moves list (Only if there are moves)
+//     for(let i = 0; i < moves.length; i++) {
+//         let move = parseMoveName(moves[i]);
+//         let destDiv = document.querySelector(`#movesDiv${i % movesColumnNum}`);
+//         destDiv.innerHTML += `${linkifyMove(move)}<br><br>`;
+//     }
+// } // updateMoves
+
 function updateMoves() {
     // Get dexMoves div
     let movesDiv = document.querySelector("#dexMoves");
-    
+
     // Reset dexMoves
-    movesDiv.innerHTML = '';
-    for(let i = 0; i < movesColumnNum; i++) {
-        movesDiv.innerHTML += `<div id='movesDiv${i}' class='moveDiv'></div>`;
-    }
-    
+    movesDiv.innerHTML = '<h3>Moves:</h3>';
+
     // Check if pokemon has moves listed
     let moves = [];
     if(pokemon.moves.length > 0) {
         // Show moves div and header
-        movesDiv.style.display = "flex";
-        document.querySelector("#movesHeader").style.display = "block";
+        movesDiv.style.display = "block";
         
         // Get and sort moves
         for(let i = 0; i < pokemon.moves.length; i++) {
@@ -525,16 +562,37 @@ function updateMoves() {
     } else {
         // Hide moves div
         movesDiv.style.display = "none";
-        document.querySelector("#movesHeader").style.display = "none";
     }
-    
+
     // Populate moves list (Only if there are moves)
-    for(let i = 0; i < moves.length; i++) {
+    let letter = 'A';
+    let index = 0;
+
+    for (let i = 0; i < moves.length; i++) {
+        // Get move
         let move = parseMoveName(moves[i]);
-        let destDiv = document.querySelector(`#movesDiv${i % movesColumnNum}`);
-        destDiv.innerHTML += `${linkifyMove(move)}<br><br>`;
+        let newIndex = index;
+
+        // Get next letter if move starts with different letter
+        while(move.charAt(0) != letters.charAt(newIndex)) {
+            newIndex++;
+        }
+        let newLetter = letters.charAt(newIndex);
+
+        // Check if index has changed or loop has just started
+        if(i == 0 || newIndex > index) {
+            // Create first outer and inner div
+            movesDiv.innerHTML += `<h3>${newLetter}</h3>`
+        }
+
+        // Add move to div
+        movesDiv.innerHTML += `${linkifyMove(move)}<br>`;
+
+        // Update letter and index
+        letter = newLetter;
+        index = newIndex;
     }
-} // updateMoves
+}
 
 /**
  * Updates the placeholder text of queryName
