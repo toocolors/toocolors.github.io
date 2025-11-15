@@ -202,7 +202,8 @@ function linkifyAbility(aName) {
 } // linkifyAbility
 
 /**
- * Constructs an a element based on the game passed in.
+ * Takes a game name and builds an a element
+ *  that displays its name and links to the game's wiki page.
  * A switch statement is used to get the second half of the wiki URL.
  * @param {String} gName The name of the game to create a link for.
  * @returns The created a element.
@@ -264,6 +265,13 @@ function linkifyGame(gName) {
     return linkify(wikiURL + "Pokémon_" + link, parseName(gName));
 } // linkifyGame
 
+
+/**
+ * Takes a move name and builds an a element
+ *  that displays its name and links to the moves's wiki page.
+ * @param {String} mName The name of a move.
+ * @returns The a element for the move.
+ */
 function linkifyMove(mName) {
     // Format link (Turn spaces into '_')
     let linkName = mName;
@@ -330,6 +338,11 @@ function parseMoveName(move) {
     return parseName(move);
 } // parseMoveName
 
+/**
+ * Removes the spaces and capitalizes each word in the given name.
+ * @param {String} name The name to be parsed.
+ * @returns The parsed name.
+ */
 function parseName(name) {
     // Capitalize mame
     name = capitalize(name);
