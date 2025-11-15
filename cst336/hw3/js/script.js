@@ -5,7 +5,6 @@ let pokemonList = [];
 // Constants
 const apiURL = "https://pokeapi.co/api/v2/pokemon";
 const gamesColumnNum = 3;
-const movesColumnNum = 2;
 const statNames = ['HP', 'Attack', 'Defense', 'S. Attack', 'S. Defense', 'Speed'];
 const wikiURL = "https://bulbapedia.bulbagarden.net/wiki/";
 
@@ -505,42 +504,6 @@ function updateExpDate() {
 /**
  * Updates the moves section of the page.
  */
-// function updateMoves() {
-//     // Get dexMoves div
-//     let movesDiv = document.querySelector("#dexMoves");
-    
-//     // Reset dexMoves
-//     movesDiv.innerHTML = '';
-//     for(let i = 0; i < movesColumnNum; i++) {
-//         movesDiv.innerHTML += `<div id='movesDiv${i}' class='moveDiv'></div>`;
-//     }
-    
-//     // Check if pokemon has moves listed
-//     let moves = [];
-//     if(pokemon.moves.length > 0) {
-//         // Show moves div and header
-//         movesDiv.style.display = "flex";
-//         document.querySelector("#movesHeader").style.display = "block";
-        
-//         // Get and sort moves
-//         for(let i = 0; i < pokemon.moves.length; i++) {
-//             moves.push(pokemon.moves[i].move.name);
-//         }
-//         moves = moves.sort();
-//     } else {
-//         // Hide moves div
-//         movesDiv.style.display = "none";
-//         document.querySelector("#movesHeader").style.display = "none";
-//     }
-    
-//     // Populate moves list (Only if there are moves)
-//     for(let i = 0; i < moves.length; i++) {
-//         let move = parseMoveName(moves[i]);
-//         let destDiv = document.querySelector(`#movesDiv${i % movesColumnNum}`);
-//         destDiv.innerHTML += `${linkifyMove(move)}<br><br>`;
-//     }
-// } // updateMoves
-
 function updateMoves() {
     // Get dexMoves div
     let movesDiv = document.querySelector("#dexMoves");
@@ -592,7 +555,7 @@ function updateMoves() {
         letter = newLetter;
         index = newIndex;
     }
-}
+} // updateMoves
 
 /**
  * Updates the placeholder text of queryName
