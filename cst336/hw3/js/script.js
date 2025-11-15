@@ -595,12 +595,12 @@ function updateStats() {
  * Updates the types section of the page.
  */
 function updateTypes() {
-    let firstType = pokemon.types[0].type.name;
-    document.querySelector("#dexType").innerHTML = `<span 
-    class='${firstType} typeSpan'>${capitalize(firstType)}</span>`;
-    if(pokemon.types.length == 2) {
-        let secondType = pokemon.types[1].type.name;
-        document.querySelector("#dexType").innerHTML += `<span 
-        class='${secondType} typeSpan'>${capitalize(secondType)}</span>`;
+    for (let i = 0; i < pokemon.types.length; i++) {
+        let type = pokemon.types[i].type.name;
+        let typeCap = capitalize(type);
+        document.querySelector("#dexType").innerHTML += `
+        <span class='${type} typeSpan'>
+        ${linkify(wikiURL + typeCap + '_(type)', typeCap)}
+        </span>`;
     }
 } // updateTypes
