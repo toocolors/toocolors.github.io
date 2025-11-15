@@ -666,18 +666,29 @@ function updateMoves() {
  * @returns 
  */
 function updateNameQuery() {
-    // Get id, reset queryName
-    let id = document.querySelector("#queryNumber").value - 1;
+    // Get id
+    let queryNumber = document.querySelector("#queryNumber");
+    let id = queryNumber.value - 1;
+
+    // Get and reset queryName
     let queryName = document.querySelector("#queryName");
     queryName.value = "";
 
-    // Check if id is valid
-    if (!Number.isSafeInteger(id) || id < 0 ) {
-        queryName.placeholder = "Invalid ID.";
+    // Check if id is a number or is empty
+    if (queryNumber.value == '' || Number.isNaN(id)) {
+        queryName.placeholder = '';
+        queryName.value = '';
+        queryNumber.value = '';
         return;
-    } else if (idLimit <= id) {
-        queryName.placeholder = "Pokémon not found."
-        return;
+    }
+
+    // Set id to valid values
+    if(id < 0) {
+        id = idLimit - 1;
+        document.querySelector("#queryNumber").value = idLimit;
+    } else if (id + 1 > idLimit){
+        id = 0;
+        document.querySelector("#queryNumber").value = id + 1;
     }
 
     // Update queryName with name of pokemon
