@@ -39,7 +39,8 @@ const irregularMoves = [
     ["all-out pummeling", "All-Out Pummeling"],
     ["savage spin-out", "Savage Spin-Out"],
     ["never-ending nightmare", "Never-Ending Nightmare"],
-    ["multi-attack", "Multi-Attack"]
+    ["multi-attack", "Multi-Attack"],
+    ["power-up-punch", "Power-Up Punch"]
 ];
 
 // Event Listeners
