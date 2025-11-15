@@ -460,10 +460,14 @@ async function querySubmit() {
     document.querySelector("#dexBackground").style.backgroundImage = `url('img/${pokemon.types[0].type.name}.png')`;
 
     // Update Height
-    document.querySelector("#dexHeight").innerHTML = `<h3>Height:</h3> ${pokemon.height * 3.937008}`;
+    let height = pokemon.height * 0.328084;
+    height = height.toFixed(1);
+    document.querySelector("#dexHeight").innerHTML = `<h3>Height:</h3> ${height} ft.`;
 
     // Update Weight
-    document.querySelector("#dexWeight").innerHTML = `<h3>Weight:</h3> ${pokemon.weight * 0.2204623}`;
+    let weight = pokemon.weight * 0.2204623;
+    weight = weight.toFixed(1);
+    document.querySelector("#dexWeight").innerHTML = `<h3>Weight:</h3> ${weight} lbs.`;
 
     // Update Stats
     updateStats();
