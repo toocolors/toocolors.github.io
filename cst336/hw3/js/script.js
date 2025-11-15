@@ -419,7 +419,7 @@ async function querySubmit() {
     // Populate abilities list (Only if there are abilities)
     for(let i = 0; i < pokemon.abilities.length ; i++) {
         let ability = parseAbilityName(pokemon.abilities[i].ability.name);
-        abilitiesDiv.innerHTML += `<span id='ability${i}'>${linkifyAbility(ability)}</span><br>`;
+        abilitiesDiv.innerHTML += `<span id='ability${i}'>${linkifyAbility(ability)}</span><br><br>`;
     }
 
     // Update Games
@@ -430,14 +430,15 @@ async function querySubmit() {
     for(let i = 0; i < gamesColumnNum; i++) {
         gamesDiv.innerHTML += `<div id='gamesDiv${i}' class='gameDiv'></div>`;
     }
-    
     // Check if pokemon has games listed:
     if(pokemon.game_indices.length > 0) {
         // Show games div and header
         gamesDiv.style.display = "flex";
+        document.querySelector("#gamesHeader").style.display = "block";
     } else {
         // Hide games div
         gamesDiv.style.display = "none";
+        document.querySelector("#gamesHeader").style.display = "none";
     }
     // Populate games list (Only if there are games)
     for(let i = 0; i < pokemon.game_indices.length; i++) {
@@ -451,12 +452,18 @@ async function querySubmit() {
     // Update Moves
     // Get dexMoves div
     let movesDiv = document.querySelector("#dexMoves");
-    let moves = [];
+    // Reset dexMoves
+    movesDiv.innerHTML = '';
+    for(let i = 0; i < movesColumnNum; i++) {
+        movesDiv.innerHTML += `<div id='movesDiv${i}' class='moveDiv'></div>`;
+    }
+    
     // Check if pokemon has moves listed
-    if(pokemon.game_indices.length > 0) {
+    let moves = [];
+    if(pokemon.moves.length > 0) {
         // Show moves div and header
-        movesDiv.style.display = "block";
-        movesDiv.innerHTML = "<h3>Moves:</h3>";
+        movesDiv.style.display = "flex";
+        document.querySelector("#movesHeader").style.display = "block";
         // Get and sort moves
         for(let i = 0; i < pokemon.moves.length; i++) {
             moves.push(pokemon.moves[i].move.name);
@@ -465,12 +472,13 @@ async function querySubmit() {
     } else {
         // Hide moves div
         movesDiv.style.display = "none";
+        document.querySelector("#movesHeader").style.display = "none";
     }
     // Populate moves list (Only if there are moves)
     for(let i = 0; i < moves.length; i++) {
         let move = parseMoveName(moves[i]);
-        // movesDiv.innerHTML += `<span id='move${i}'>${linkifyMove(move)}</span><br>`;
-        movesDiv.innerHTML += `${linkifyMove(move)}<br>`;
+        let destDiv = document.querySelector(`#movesDiv${i % movesColumnNum}`);
+        destDiv.innerHTML += `${linkifyMove(move)}<br><br>`;
     }
 } // submitQuery
 

@@ -158,6 +158,12 @@ td {
     padding: 0 10px;
 }
 
+/* MOVES STYLES */
+
+.moveDiv {
+    padding: 0 5px;
+}
+
 /* TYPE TEXT STYLES */
 #dexType {
     margin: 10px;
