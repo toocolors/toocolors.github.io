@@ -374,14 +374,7 @@ async function querySubmit() {
     document.querySelector("#dexNumber").innerHTML = `No. ${id + 1}`;
     
     // Update Pokemon Types
-    let firstType = pokemon.types[0].type.name;
-    document.querySelector("#dexType").innerHTML = `<span 
-    class='${firstType} typeSpan'>${capitalize(firstType)}</span>`;
-    if(pokemon.types.length == 2) {
-        let secondType = pokemon.types[1].type.name;
-        document.querySelector("#dexType").innerHTML += `<span 
-        class='${secondType} typeSpan'>${capitalize(secondType)}</span>`;
-    }
+    updateTypes();
 
     // Update Dex Background
     document.querySelector("#dexBackground").style.backgroundImage = `url('img/${pokemon.types[0].type.name}.png')`;
@@ -393,22 +386,25 @@ async function querySubmit() {
     document.querySelector("#dexWeight").innerHTML = `<h3>Weight:</h3> ${pokemon.weight * 0.2204623}`;
 
     // Update Stats
-    // 0 = HP, 1 = Attack, 2 = S. Attack, 3 = Defense, 4 = S. Defense, 5 = Speed
-    let total = 0;
-    for(let i = 0; i < pokemon.stats.length; i++) {
-        // Update table text
-        document.querySelector(`#dexStat${i}`).innerHTML = `${statNames[i]}: ${pokemon.stats[i].base_stat}`;
-        // Update Stat Bar
-        document.querySelector(`#stat${[i]}Bar`).style.width = `${pokemon.stats[i].base_stat}px`;
-        // Update total
-        total += pokemon.stats[i].base_stat;
-    }
-    // Update total text
-    document.querySelector("#dexTotal").innerHTML = total;
+    updateStats();
 
     // Update Abilities
+    updateAbilities();
+
+    // Update Games
+    updateGames();
+
+    // Update Moves
+    updateMoves();
+} // submitQuery
+
+/**
+ * Updates the abilities section of the page.
+ */
+function updateAbilities() {
     // Get dexAbilities div
     let abilitiesDiv = document.querySelector("#dexAbilities");
+    
     // Check if pokemon has abilities listed
     if (pokemon.abilities.length > 0) {
         abilitiesDiv.style.display = "block";
@@ -416,20 +412,27 @@ async function querySubmit() {
     } else {
         abilitiesDiv.style.display = "none";
     }
+    
     // Populate abilities list (Only if there are abilities)
     for(let i = 0; i < pokemon.abilities.length ; i++) {
         let ability = parseAbilityName(pokemon.abilities[i].ability.name);
         abilitiesDiv.innerHTML += `<span id='ability${i}'>${linkifyAbility(ability)}</span><br><br>`;
     }
+} // updateAbilities
 
-    // Update Games
+/**
+ * Updates the games section of the page.
+ */
+function updateGames() {
     // Get dexGames div
     let gamesDiv = document.querySelector("#dexGames");
+    
     // Reset dexGames div
     gamesDiv.innerHTML = '';
     for(let i = 0; i < gamesColumnNum; i++) {
         gamesDiv.innerHTML += `<div id='gamesDiv${i}' class='gameDiv'></div>`;
     }
+    
     // Check if pokemon has games listed:
     if(pokemon.game_indices.length > 0) {
         // Show games div and header
@@ -440,6 +443,7 @@ async function querySubmit() {
         gamesDiv.style.display = "none";
         document.querySelector("#gamesHeader").style.display = "none";
     }
+    
     // Populate games list (Only if there are games)
     for(let i = 0; i < pokemon.game_indices.length; i++) {
         let game = pokemon.game_indices[i].version.name;
@@ -448,10 +452,25 @@ async function querySubmit() {
         destDiv.innerHTML += `<span 
         id='game${i}'>${linkifyGame(game)}</span><br><br>`;
     }
+} // updateGames
 
-    // Update Moves
+/**
+ * Saves a new expiration date into local storage.
+ * The new expiration date is exactly a month from when this function is called.
+ */
+function updateExpDate() {
+    let newDate = new Date()
+    newDate = new Date(newDate.setMonth(newDate.getMonth() + 1));
+    localStorage.setItem("pokemonListExpirationDate", newDate.toString());
+} // updateExpDate
+
+/**
+ * Updates the moves section of the page.
+ */
+function updateMoves() {
     // Get dexMoves div
     let movesDiv = document.querySelector("#dexMoves");
+    
     // Reset dexMoves
     movesDiv.innerHTML = '';
     for(let i = 0; i < movesColumnNum; i++) {
@@ -464,6 +483,7 @@ async function querySubmit() {
         // Show moves div and header
         movesDiv.style.display = "flex";
         document.querySelector("#movesHeader").style.display = "block";
+        
         // Get and sort moves
         for(let i = 0; i < pokemon.moves.length; i++) {
             moves.push(pokemon.moves[i].move.name);
@@ -474,23 +494,14 @@ async function querySubmit() {
         movesDiv.style.display = "none";
         document.querySelector("#movesHeader").style.display = "none";
     }
+    
     // Populate moves list (Only if there are moves)
     for(let i = 0; i < moves.length; i++) {
         let move = parseMoveName(moves[i]);
         let destDiv = document.querySelector(`#movesDiv${i % movesColumnNum}`);
         destDiv.innerHTML += `${linkifyMove(move)}<br><br>`;
     }
-} // submitQuery
-
-/**
- * Saves a new expiration date into local storage.
- * The new expiration date is exactly a month from when this function is called.
- */
-function updateExpDate() {
-    let newDate = new Date()
-    newDate = new Date(newDate.setMonth(newDate.getMonth() + 1));
-    localStorage.setItem("pokemonListExpirationDate", newDate.toString());
-} // updateExpDate
+} // updateMoves
 
 /**
  * Updates the placeholder text of queryName
@@ -560,3 +571,36 @@ async function updatePokemonList() {
     // Save new expiration date
     updateExpDate();
 } // updatePokemonList
+
+/**
+ * Updates the stats section of the page.
+ */
+function updateStats() {
+    // 0 = HP, 1 = Attack, 2 = S. Attack, 3 = Defense, 4 = S. Defense, 5 = Speed
+    let total = 0;
+    for(let i = 0; i < pokemon.stats.length; i++) {
+        // Update table text
+        document.querySelector(`#dexStat${i}`).innerHTML = `${statNames[i]}: ${pokemon.stats[i].base_stat}`;
+        // Update Stat Bar
+        document.querySelector(`#stat${[i]}Bar`).style.width = `${pokemon.stats[i].base_stat}px`;
+        // Update total
+        total += pokemon.stats[i].base_stat;
+    }
+    
+    // Update total text
+    document.querySelector("#dexTotal").innerHTML = total;
+} // updateStats
+
+/**
+ * Updates the types section of the page.
+ */
+function updateTypes() {
+    let firstType = pokemon.types[0].type.name;
+    document.querySelector("#dexType").innerHTML = `<span 
+    class='${firstType} typeSpan'>${capitalize(firstType)}</span>`;
+    if(pokemon.types.length == 2) {
+        let secondType = pokemon.types[1].type.name;
+        document.querySelector("#dexType").innerHTML += `<span 
+        class='${secondType} typeSpan'>${capitalize(secondType)}</span>`;
+    }
+} // updateTypes
