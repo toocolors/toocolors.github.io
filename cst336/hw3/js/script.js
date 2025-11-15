@@ -379,7 +379,6 @@ async function querySubmit() {
 
     // Show Dex
     document.querySelector("#dexBackground").style.display = "block";
-    document.querySelector("#dex").style.display = "block";
 
     // Get Pokemon
     pokemon = await getPokemon(id);
