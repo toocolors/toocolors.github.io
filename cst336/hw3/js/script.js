@@ -494,6 +494,18 @@ function randomQuery() {
     querySubmit();
 }
 
+function unparseName(name) {
+    // Unparse name
+    name = name.toLowerCase();
+    while (name.includes(' ')) {
+        let i = name.indexOf(' ');
+        name = name.substring(0, i) + '-' + name.substring(i + 1, name.length);
+    }
+
+    // return name
+    return name;
+}
+
 /**
  * Updates the abilities section of the page.
  */
@@ -680,7 +692,7 @@ function updateNameQuery() {
  */
 function updateNumberQuery() {
     // Get name, reset queryNumber
-    let name = document.querySelector("#queryName").value.toLowerCase();
+    let name = unparseName(document.querySelector("#queryName").value);
     let queryNumber = document.querySelector("#queryNumber");
     queryNumber.value = "";
 
