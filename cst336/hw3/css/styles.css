@@ -179,6 +179,10 @@ td {
 
 /* GAMES STYLES */
 
+#gamesBox {
+    width: 40%;
+}
+
 .gameDiv {
     padding: 0 10px;
 }
