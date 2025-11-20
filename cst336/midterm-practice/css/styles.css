@@ -1,0 +1,38 @@
+body {
+    font-size: 1.2em;
+    text-align: center;
+    width: 1000px;
+    margin: auto;
+}
+
+main, hr, footer {
+    background-color: white;
+}
+
+hr, footer {
+    margin-top: 0;
+}
+
+main {
+    margin-bottom: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+#authorImg {
+    margin: 10px auto;
+    margin-right: 10px;
+    height: 300px;
+}
+
+#authorBio {
+    margin: 10px auto;
+    width: 300px;
+    margin-left: 10px;
+}
+
+#error {
+    color: red;
+}
